@@ -1,0 +1,29 @@
+Package: growthscreener
+Title: Finding Children with Unusual Growth Patterns
+Version: 1.0.0
+Authors@R: 
+    c(person(given = "Paula",
+           family = "van Dommelen",
+           role = c("aut", "cre"),
+           email = "paula.vandommelen@tno.nl"),
+       person(given = "Stef",
+           family = "van Buuren",
+           role = c("aut"),
+           email = "stef.vanbuuren@tno.nl"))
+Description: Unusual child growth may be a sign of an underlying 
+    disease or condition. This package implements functions that 
+    evaluate the growth pattern of a child relative to Dutch 
+    guidelines.
+Depends: 
+    R (>= 2.10)
+Imports: 
+    AGD (>= 0.41.0)
+Remotes: 
+    stefvanbuuren/AGD
+License: AGPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat (>= 2.1.0)

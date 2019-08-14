@@ -1,0 +1,70 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+options(width = 80)
+```
+# growthscreener
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The `growthscreener` package implements tools to evaluate child 
+growth with respect to Dutch criteria for unusual growth. 
+Application of these tools helps to identify children that meet 
+criteria for criteria for referral from youth health care (JGZ) for
+follow-up with a general physician or pediatrician.
+
+Dutch guidelines for unusual height growth are currently implemented.
+
+## Installation
+
+The following statements will install the `growthscreener` package
+
+```{r eval = FALSE}
+install.packages("remotes")
+remotes::install_github("stefvanbuuren/growthscreener")
+```
+
+## Example
+
+Find the advice for a very short girl:
+
+```{r example}
+library(growthscreener)
+
+# a very short girl, 4 months old
+msgcode <- calculate_advice_hgt(sex = "F", etn = "N", 
+                                bw = 3250, ga = 40,
+                                dob = as.Date("2018-07-31"),
+                                dom1 = as.Date("2018-12-12"), 
+                                y1 = 55)
+msgcode
+cat(fold(msg(msgcode)))
+
+# some more details
+d <- calculate_helpers_hgt(sex = "F", etn = "N", 
+                           bw = 3250, ga = 40,
+                           dob = as.Date("2018-07-31"),
+                           dom1 = as.Date("2018-12-12"), 
+                           y1 = 55)
+d
+```
+
+The height SDS at the age of 4 months is equal to -3.26, which is 
+the reason for referral. There are 40 different messages for height.
+
+## Background
+
+The calculations follow to the "JGZ-Richtlijn Lengtegroei 2019". See
+<https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/lengtegroei-2019>
+for more details.

@@ -1,0 +1,15 @@
+#' Table of Dutch birth weight references
+#' @name datasets
+"ref.nl5defSGAgewicht"
+
+#' Table of Dutch birth length references
+#' @rdname datasets
+"ref.nl5defSGAlengte"
+
+#' Table of Dutch nl5 references
+#' @rdname datasets
+"nl5.hgt"
+
+#' Table of return message and return code
+#' @rdname datasets
+"messages_hgt"
