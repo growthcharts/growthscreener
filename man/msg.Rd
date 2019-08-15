@@ -7,14 +7,14 @@
 msg(msgcode)
 }
 \arguments{
-\item{msgcode}{Integer with message code}
+\item{msgcode}{Integer vector with message codes}
 }
 \value{
-A string with the message code
+A vector of strings with the message code
 }
 \description{
 Find message string
 }
 \examples{
-msg(31)
+msg(c(31, 41))
 }
