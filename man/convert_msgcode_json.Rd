@@ -4,7 +4,7 @@
 \alias{convert_msgcode_json}
 \title{Pack screener code as JSON string}
 \usage{
-convert_msgcode_json(url, msgcode, dom1 = ymd(), dom0 = ymd(),
+convert_msgcode_json(url = "", msgcode = 0, dom1 = NA, dom0 = NA,
   yname = "hgt")
 }
 \arguments{

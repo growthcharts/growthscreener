@@ -12,17 +12,16 @@
 #' @return A JSON-string
 #' @author Stef van Buuren 2019
 #' @export
-convert_msgcode_json <- function(url, msgcode,
-                                 dom1 = ymd(), dom0 = ymd(),
+convert_msgcode_json <- function(url = "", msgcode = 0,
+                                 dom1 = NA, dom0 = NA,
                                  yname = "hgt") {
-  catnum <- ifelse(yname == "hgt", 1, NA_integer_)
-  catoms <- ifelse(yname == "hgt", "Lengte", NA_character_)
+  catnum <- ifelse(yname == "hgt", 1L, 0L)
+  catoms <- ifelse(yname == "hgt", "Lengte", "")
   msgc <- as.integer(msgcode)
   mess <- msg(msgcode)
-  richtlijn <- ifelse(yname == "hgt", 101, NA_integer_)
-  d0 <- ifelse (is.Date(dom0), format(dom0, "%Y%m%d"), character(0))
-  d1 <- ifelse (is.Date(dom1), format(dom1, "%Y%m%d"), character(0))
-
+  richtlijn <- ifelse(yname == "hgt", 2019, 0)
+  d0 <- ifelse (is.Date(dom0), format(dom0, "%Y%m%d"), "")
+  d1 <- ifelse (is.Date(dom1), format(dom1, "%Y%m%d"), "")
   answer <- list(
     UrlGroeicurven = url,
     Resultaten =
