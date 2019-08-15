@@ -1,0 +1,32 @@
+{
+   "UrlGroeicurven":"https://groeidiagrammen.nl/ocpu/lib/james/www/?ind=https://groeidiagrammen.nl/ocpu/tmp/2715113/",
+   "Resultaten":[
+      {
+         "Categorie":1,
+         "CategorieOmschrijving":"Lengte",
+         "Code":1111,
+         "CodeOmschrijving":"Verwijzen naar huisarts, omdat de huidige lengte onder de -2 SD valt",
+         "Richtlijn":12345,
+         "Leeftijd0":"20180708",
+         "Leeftijd1":"20190628"
+      },
+      {
+         "Categorie":2,
+         "CategorieOmschrijving":"Gewicht",
+         "Code":2222,
+         "CodeOmschrijving":"Verwijzen naar huisarts, omdat het huidige gewicht boven de +2 SD valt.",
+         "Richtlijn":12345,
+         "Leeftijd0":"20180708",
+         "Leeftijd1":"20190628"
+      },
+      {
+         "Categorie":3,
+         "CategorieOmschrijving":"Hoofdomtrek",
+         "Code":3333,
+         "CodeOmschrijving":"In principe geen verwijzing nodig, naar eigen inzicht handelen.",
+         "Richtlijn":12345,
+         "Leeftijd0":"20180708",
+         "Leeftijd1":"20190628"
+      }
+   ]
+}
