@@ -1,4 +1,5 @@
 #' @importFrom AGD            y2z
 #' @importFrom lubridate      is.Date ymd
-#' @importFrom jsonlite       toJSON
+#' @importFrom methods        slot
+#' @importFrom minihealth     get_dob get_xyz is.individual
 NULL
