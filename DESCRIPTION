@@ -19,11 +19,11 @@ Depends:
 Imports: 
     AGD (>= 0.41.0),
     lubridate,
-    minihealth,
+    minihealth (>= 0.60.0),
     methods
 Remotes: 
     stefvanbuuren/AGD,
-    stefvanbuuren/minihealth
+    stefvanbuuren/minihealth@stef
 License: AGPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
