@@ -23,7 +23,7 @@ Imports:
     methods
 Remotes: 
     stefvanbuuren/AGD,
-    stefvanbuuren/minihealth@stef
+    stefvanbuuren/minihealth
 License: AGPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
