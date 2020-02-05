@@ -3,7 +3,6 @@
 #' wish to divide up calculations into two steps if intermediate
 #' results are needed.
 #' @rdname advice_hgt
-#' @inheritParams calculate_advice_hgt
 #' @return \code{calculate_helpers_hgt()} returns a \code{list} with
 #' the following elements:
 #' \describe{

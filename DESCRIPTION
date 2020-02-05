@@ -1,6 +1,6 @@
 Package: growthscreener
 Title: Finding Children with Unusual Growth Patterns
-Version: 1.1.0
+Version: 1.2.0
 Authors@R: 
     c(person(given = "Paula",
            family = "van Dommelen",
@@ -19,7 +19,7 @@ Depends:
 Imports: 
     AGD (>= 0.41.0),
     lubridate,
-    minihealth (>= 0.60.0),
+    minihealth (>= 0.64.0),
     methods
 Remotes: 
     stefvanbuuren/AGD,
@@ -28,6 +28,7 @@ License: AGPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests: 
+    jsonlite,
     testthat (>= 2.1.0)

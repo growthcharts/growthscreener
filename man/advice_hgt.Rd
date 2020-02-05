@@ -6,15 +6,36 @@
 \alias{calculate_helpers_hgt}
 \title{Referral advice for body height}
 \usage{
-calculate_advice_hgt(sex = NA_character_, dob = as.Date(NA), bw = NA,
-  bl = NA, ga = NA, etn = NA_character_, hgtf = NA, hgtm = NA,
-  dom1 = as.Date(NA), y1 = NA, dom0 = as.Date(NA), y0 = NA,
-  d = NULL)
+calculate_advice_hgt(
+  sex = NA_character_,
+  dob = as.Date(NA),
+  bw = NA,
+  bl = NA,
+  ga = NA,
+  etn = NA_character_,
+  hgtf = NA,
+  hgtm = NA,
+  dom1 = as.Date(NA),
+  y1 = NA,
+  dom0 = as.Date(NA),
+  y0 = NA,
+  d = NULL
+)
 
-calculate_helpers_hgt(sex = NA_character_, dob = as.Date(NA),
-  bw = NA, bl = NA, ga = NA, etn = NA_character_, hgtf = NA,
-  hgtm = NA, dom1 = as.Date(NA), y1 = NA, dom0 = as.Date(NA),
-  y0 = NA)
+calculate_helpers_hgt(
+  sex = NA_character_,
+  dob = as.Date(NA),
+  bw = NA,
+  bl = NA,
+  ga = NA,
+  etn = NA_character_,
+  hgtf = NA,
+  hgtm = NA,
+  dom1 = as.Date(NA),
+  y1 = NA,
+  dom0 = as.Date(NA),
+  y0 = NA
+)
 }
 \arguments{
 \item{sex}{Character, either \code{"M"} (male) or \code{"F"} (female)}
