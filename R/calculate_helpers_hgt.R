@@ -28,6 +28,17 @@ calculate_helpers_hgt <- function(sex = NA_character_, dob = as.Date(NA),
   th_z <- thl[2L]
   age1 <- as.integer(dom1 - dob)/365.25
   age0 <- as.integer(dom0 - dob)/365.25
+
+  s <- sex # due to find.reference not accepting sex as a condition.
+  if(ga >= 37){
+    if(is.na(etn)) etn <- "NL"
+    ref <- find.reference(yname == "hgt" & sex == s & sub == etn,
+                          libname = "nl2009", select = TRUE, exact = TRUE)
+  } else if(ga < 37){
+    ref <- find.reference(yname == "hgt" & sex == s & sub == ga,
+                          libname = "preterm", select = TRUE, exact = TRUE)
+  }
+
   z1 <- y2z(y = y1, x = age1, sex = sex, sub = etn,
             ref = growthscreener::nl5.hgt)
   z0 <- y2z(y = y0, x = age0, sex = sex, sub = etn,
