@@ -31,7 +31,7 @@ screen_curves_ind <- function(ind) {
     msgcodes <- rep(NA, n)
     for (i in 1L:n) {
       msgcodes[i] <- calculate_advice_hgt(
-        sex = ifelse(slot(ind, "sex") == "female", "F", "M"),
+        sex = ifelse(slot(ind, "sex") == "female", "female", "male"),
         dob = get_dob(ind),
         bw = slot(ind, "bw"),
         bl = NA,

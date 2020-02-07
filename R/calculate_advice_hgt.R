@@ -14,13 +14,13 @@
 #' remote in ages (e.g. period between 1 month and 14 years) is probably
 #' not that useful. In practice, we may be interested in setting the
 #' maximum period to, say, five years.
-#' @param sex   Character, either \code{"M"} (male) or \code{"F"} (female)
+#' @param sex   Character, either \code{"male"} or \code{"female"}
 #' @param dob   Date of birth (class Date)
 #' @param bw    Birth weight (grammes)
 #' @param bl    Birth length (cm)
 #' @param ga    Gestational age, completed weeks (Integer or character)
-#' @param etn   Etnicity, one of \code{"N"} (dutch), \code{"T"} (turkish),
-#'              \code{"M"} (moroccan) or \code{"H"} (hindustani).
+#' @param etn   Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
+#'              \code{"MA"} (moroccan) or \code{"HS"} (hindustani).
 #' @param hgtf  Height of father (cm)
 #' @param hgtm  Height of mother (cm)
 #' @param dom1  Date of last measurement (Date)
@@ -28,13 +28,14 @@
 #' @param dom0  Date of previous measurement (Date)
 #' @param y0    Height at previous measurement (cm)
 #' @param d     Optional, list of derived variables, obtained by
-#'              \code{calculate_derived_variables()}
+#'              \code{calculate_helpers()}
 #' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
 #' @author Paula van Dommelen, Stef van Buuren, 2019
+#' @seealso calculate_helpers
 #' @rdname advice_hgt
 #' @examples
 #' msg(calculate_advice_hgt())
-#' msgcode <- calculate_advice_hgt(sex = "M", etn = "N",
+#' msgcode <- calculate_advice_hgt(sex = "male", etn = "NL",
 #'                                 dob = as.Date("2018-07-31"),
 #'                                 dom1 = as.Date("2018-12-12"), y1 = 64)
 #' msg(msgcode)
@@ -47,7 +48,7 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
                                  d = NULL) {
 
   if (is.null(d))
-    d <- calculate_helpers_hgt(sex, dob, bw, bl, ga, etn,
+    d <- calculate_helpers(y = "hgt", sex, dob, bw, bl, ga, etn,
                                hgtf, hgtm, dom1, y1, dom0, y0)
   bw_z <- d$bw_z
   bl_z <- d$bl_z
@@ -61,11 +62,11 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
 
   # return early if data are insufficient
   # if (is.na(sex)) return(19)
-  if (!sex %in% c("M", "F")) return(19)
+  if (!sex %in% c("male", "female")) return(19)
   if (is.na(dob)) return(16)
   if (is.na(dom1)) return(15)
   if (is.na(y1)) return(ifelse(age1 < 18.0, 18, 21))
-  if (!etn %in% c("N", "T", "M", "H")) return(20)
+  if (!etn %in% c("NL", "TU", "MA", "HS")) return(20)
 
   # outside age range
   if (age1 >= 18.0) return(21)
@@ -102,7 +103,7 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
     if (!is.na(th_z)) if (z1 > 2.0 & (z1 - th_z) > 2.0) return(46)
     if (z1 > 2.0 & is.na(th_z)) return(82)
     if (z1 > 1.0 &
-        ((age1 < 8.0 & sex == "F") | (age1 < 9.0 & sex == "M"))) return(79)
+        ((age1 < 8.0 & sex == "female") | (age1 < 9.0 & sex == "male"))) return(79)
     if (z1 > 1.0) return(81)
 
     if (is.na(z0)) return(11)
@@ -114,11 +115,11 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
 
     # tall
     if (z1 > 2.5) return(47)
-    if (z1 > 2.0 & sex == "F" & y1 >= 170) return(71)
-    if (z1 > 2.0 & sex == "M" & y1 >= 185) return(72)
+    if (z1 > 2.0 & sex == "female" & y1 >= 170) return(71)
+    if (z1 > 2.0 & sex == "male" & y1 >= 185) return(72)
     if (z1 > 2.0) return(73)
-    if (sex == "F" & y1 >= 170.0) return(74)
-    if (sex == "M" & y1 >= 185.0) return(75)
+    if (sex == "female" & y1 >= 170.0) return(74)
+    if (sex == "male" & y1 >= 185.0) return(75)
   }
 
   # check for gain z1 - z0

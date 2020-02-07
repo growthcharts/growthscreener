@@ -20,36 +20,36 @@ calculate_th <- function(hgtf, hgtm,
 
   # don't calculate if we're missing proper sex or etn
   if (is.null(sex) | is.null(etn)) return(c(NA, NA))
-  if (!sex %in% c("M", "F")) return(c(NA, NA))
-  if (!etn %in% c("N", "T", "M", "H")) return(c(NA, NA))
+  if (!sex %in% c("male", "female")) return(c(NA, NA))
+  if (!etn %in% c("NL", "TU", "MA", "HS")) return(c(NA, NA))
 
-  if (sex == "M") {
+  if (sex == "male") {
     th <- switch(EXPR = etn,
-                 "N" = 44.5 + 0.376 * hgtf + 0.411 * hgtm,
-                 "T" = 29.6 + 0.441 * hgtf + 0.465 * hgtm,
-                 "M" = 22.4 + 0.439 * hgtf + 0.508 * hgtm,
-                 "H" = 43.6 + 0.366 * hgtf + 0.431 * hgtm,
+                 "NL" = 44.5 + 0.376 * hgtf + 0.411 * hgtm,
+                 "TU" = 29.6 + 0.441 * hgtf + 0.465 * hgtm,
+                 "MA" = 22.4 + 0.439 * hgtf + 0.508 * hgtm,
+                 "HS" = 43.6 + 0.366 * hgtf + 0.431 * hgtm,
                  NA)
     th_z <- switch(EXPR = etn,
-                   "N" = (th - 183.8) / 7.1,
-                   "T" = (th - 176.8) / 6.8,
-                   "M" = (th - 177.2) / 7.7,
-                   "H" = (th - 174.3) / 7.0,
+                   "NL" = (th - 183.8) / 7.1,
+                   "TU" = (th - 176.8) / 6.8,
+                   "MA" = (th - 177.2) / 7.7,
+                   "HS" = (th - 174.3) / 7.0,
                    NA)
   }
 
-  if (sex == "F") {
+  if (sex == "female") {
     th <- switch(EXPR = etn,
-                 "N" = 47.1 + 0.334 * hgtf + 0.364 * hgtm,
-                 "T" = 32.8 + 0.389 * hgtf + 0.410 * hgtm,
-                 "M" = 32.1 + 0.370 * hgtf + 0.429 * hgtm,
-                 "H" = 49.4 + 0.308 * hgtf + 0.364 * hgtm,
+                 "NL" = 47.1 + 0.334 * hgtf + 0.364 * hgtm,
+                 "TU" = 32.8 + 0.389 * hgtf + 0.410 * hgtm,
+                 "MA" = 32.1 + 0.370 * hgtf + 0.429 * hgtm,
+                 "HS" = 49.4 + 0.308 * hgtf + 0.364 * hgtm,
                  NA)
     th_z <- switch(EXPR = etn,
-                   "N" = (th - 170.7) / 6.3,
-                   "T" = (th - 162.6) / 6.0,
-                   "M" = (th - 162.8) / 6.5,
-                   "H" = (th - 159.6) / 5.9,
+                   "NL" = (th - 170.7) / 6.3,
+                   "TU" = (th - 162.6) / 6.0,
+                   "MA" = (th - 162.8) / 6.5,
+                   "HS" = (th - 159.6) / 5.9,
                    NA)
   }
 

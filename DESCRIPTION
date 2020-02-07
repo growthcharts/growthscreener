@@ -17,12 +17,12 @@ Description: Unusual child growth may be a sign of an underlying
 Depends: 
     R (>= 2.10)
 Imports: 
-    AGD (>= 0.41.0),
+    clopus,
     lubridate,
     minihealth (>= 0.64.0),
     methods
 Remotes: 
-    stefvanbuuren/AGD,
+    stefvanbuuren/clopus,
     stefvanbuuren/minihealth
 License: AGPL-3 + file LICENSE
 Encoding: UTF-8
