@@ -5,7 +5,8 @@
 #' \code{calculate_advice_hdc()}. The user may wish to divide up calculations
 #' into two steps if intermediate results are needed.
 #' @param y     Character, variable to calculate Z-scores of. Can be one of
-#'   \code{"hgt"}, \code{"wgt"}, \code{"hdc"} or \code{"bmi"}
+#'   \code{"hgt"}, \code{"wgt"}, \code{"hdc"}, \code{"bmi"} or \code{"wfh"}
+#'   (weight for height).
 #' @param sex   Character, either \code{"male"} or \code{"female"}
 #' @param dob   Date of birth (class Date)
 #' @param bw    Birth weight (grammes)
@@ -19,6 +20,9 @@
 #' @param y1    \code{y} at last measurement (cm)
 #' @param dom0  Date of previous measurement (Date)
 #' @param y0    \code{y} at previous measurement (cm)
+#' @param hgt0  \code{hgt} at last measurement (cm), only used for \code{wfh}
+#' @param hgt1  \code{hgt} at previous measurement (cm), only used for
+#'   \code{wfh}
 #' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
 #' @author Paula van Dommelen, Stef van Buuren, Arjan Huizing, 2020
 #' @return \code{calculate_helpers()} returns a \code{list} with the following
@@ -32,7 +36,8 @@
 calculate_helpers <- function(y = "hgt", sex = NA_character_, dob = as.Date(NA),
                               bw = NA, bl = NA, ga = NA, etn = NA_character_,
                               hgtf = NA, hgtm = NA, dom1 = as.Date(NA),
-                              y1 = NA, dom0 = as.Date(NA), y0 = NA) {
+                              y1 = NA, dom0 = as.Date(NA), y0 = NA,
+                              hgt0 = NA, hgt1 = NA) {
   bw_z <- calculate_birth_z(bw, sex, ga, yname = "wgt")
   bl_z <- calculate_birth_z(bl, sex, ga, yname = "hgt")
   thl  <- calculate_th(hgtf, hgtm, sex = sex, etn = etn)
@@ -42,23 +47,33 @@ calculate_helpers <- function(y = "hgt", sex = NA_character_, dob = as.Date(NA),
   age0 <- as.integer(dom0 - dob)/365.25
 
   ref <- NULL
-  if(ga < 37 & age1 < 4 & !is.na(ga) & !is.na(age1)){
+  if(y == "wfh"){
+    lib <- "preterm"
+    pop <- ""
+  } else if(ga < 37 & age1 < 4 & !is.na(ga) & !is.na(age1)){
     lib <- "preterm"
     pop <- ga
   } else{
     lib <- ifelse(etn == "HS", "nlhs", "nl2009")
     pop <- etn
   }
-  s <- sex # due to find.reference not accepting sex as a condition.
+  s <- sex # due to find.reference not accepting sex == sex
   try(ref <- find.reference(yname == y & sex == s & sub == pop,
                             libname = lib,
                             select = TRUE,
                             exact = TRUE),
       silent = TRUE)
 
-  z1 <- y2z(y = y1, x = age1, sex = sex, sub = etn,
+  if(y == "wfh"){
+    x1 <- hgt1
+    x0 <- hgt1
+  } else{
+    x1 <- age1
+    x0 <- age0
+  }
+  z1 <- y2z(y = y1, x = x1, sex = sex, sub = etn,
             ref = ref)
-  z0 <- y2z(y = y0, x = age0, sex = sex, sub = etn,
+  z0 <- y2z(y = y0, x = x0, sex = sex, sub = etn,
             ref = ref)
 
   list(bw_z = bw_z, bl_z = bl_z, th = th, th_z = th_z,

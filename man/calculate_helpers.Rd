@@ -17,12 +17,15 @@ calculate_helpers(
   dom1 = as.Date(NA),
   y1 = NA,
   dom0 = as.Date(NA),
-  y0 = NA
+  y0 = NA,
+  hgt0 = NA,
+  hgt1 = NA
 )
 }
 \arguments{
 \item{y}{Character, variable to calculate Z-scores of. Can be one of
-\code{"hgt"}, \code{"wgt"}, \code{"hdc"} or \code{"bmi"}}
+\code{"hgt"}, \code{"wgt"}, \code{"hdc"}, \code{"bmi"} or \code{"wfh"}
+(weight for height).}
 
 \item{sex}{Character, either \code{"male"} or \code{"female"}}
 
@@ -48,6 +51,11 @@ calculate_helpers(
 \item{dom0}{Date of previous measurement (Date)}
 
 \item{y0}{\code{y} at previous measurement (cm)}
+
+\item{hgt0}{\code{hgt} at last measurement (cm), only used for \code{wfh}}
+
+\item{hgt1}{\code{hgt} at previous measurement (cm), only used for
+\code{wfh}}
 }
 \value{
 \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
