@@ -46,25 +46,24 @@ calculate_helpers <- function(y = "hgt", sex = NA_character_, dob = as.Date(NA),
   age1 <- as.integer(dom1 - dob)/365.25
   age0 <- as.integer(dom0 - dob)/365.25
 
+  # Find correct reference.
   ref <- NULL
   if(y == "wfh"){
-    lib <- "preterm"
     pop <- ""
   } else if(ga < 37 & age1 < 4 & !is.na(ga) & !is.na(age1)){
-    lib <- "preterm"
     pop <- ga
   } else{
-    lib <- ifelse(etn == "HS", "nlhs", "nl2009")
     pop <- etn
   }
   s <- sex # due to find.reference not accepting sex == sex
   try(ref <- find.reference(yname == y & sex == s & sub == pop,
-                            libname = lib,
-                            select = TRUE,
-                            exact = TRUE),
+                            select = TRUE),
       silent = TRUE)
+  if(length(ref) > 1){ # grab the most recent ref if multiple are available.
+    ref <- ref[which.max(sapply(ref, FUN = function(x) attr(attr(x, "info"), "year")))]
+  }
 
-  if(y == "wfh"){
+  if(y == "wfh"){ # wfh is by hgt rather than by age.
     x1 <- hgt1
     x0 <- hgt1
   } else{
@@ -72,9 +71,9 @@ calculate_helpers <- function(y = "hgt", sex = NA_character_, dob = as.Date(NA),
     x0 <- age0
   }
   z1 <- y2z(y = y1, x = x1, sex = sex, sub = etn,
-            ref = ref)
+            ref = ref[[1L]])
   z0 <- y2z(y = y0, x = x0, sex = sex, sub = etn,
-            ref = ref)
+            ref = ref[[1L]])
 
   list(bw_z = bw_z, bl_z = bl_z, th = th, th_z = th_z,
        age1 = age1, age0 = age0, z1 = z1, z0 = z0)
