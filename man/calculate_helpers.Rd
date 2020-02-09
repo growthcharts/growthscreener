@@ -46,15 +46,15 @@ calculate_helpers(
 
 \item{dom1}{Date of last measurement (Date)}
 
-\item{y1}{\code{y} at last measurement (cm)}
+\item{y1}{\code{y} at last measurement}
 
 \item{dom0}{Date of previous measurement (Date)}
 
-\item{y0}{\code{y} at previous measurement (cm)}
+\item{y0}{\code{y} at previous measurement}
 
-\item{hgt0}{\code{hgt} at last measurement (cm), only used for \code{wfh}}
+\item{hgt0}{\code{hgt} at last measurement (cm), used when y is \code{wfh}}
 
-\item{hgt1}{\code{hgt} at previous measurement (cm), only used for
+\item{hgt1}{\code{hgt} at previous measurement (cm), used when y is
 \code{wfh}}
 }
 \value{

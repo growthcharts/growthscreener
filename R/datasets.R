@@ -13,3 +13,7 @@
 #' Table of return message and return code
 #' @rdname datasets
 "messages_hgt"
+
+#' Table of BMI cut-off points (Cole, 2000)
+#' @rdname datasets
+"bmi_table"

@@ -17,11 +17,11 @@
 #' @param hgtf  Height of father (cm)
 #' @param hgtm  Height of mother (cm)
 #' @param dom1  Date of last measurement (Date)
-#' @param y1    \code{y} at last measurement (cm)
+#' @param y1    \code{y} at last measurement
 #' @param dom0  Date of previous measurement (Date)
-#' @param y0    \code{y} at previous measurement (cm)
-#' @param hgt0  \code{hgt} at last measurement (cm), only used for \code{wfh}
-#' @param hgt1  \code{hgt} at previous measurement (cm), only used for
+#' @param y0    \code{y} at previous measurement
+#' @param hgt0  \code{hgt} at last measurement (cm), used when y is \code{wfh}
+#' @param hgt1  \code{hgt} at previous measurement (cm), used when y is
 #'   \code{wfh}
 #' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
 #' @author Paula van Dommelen, Stef van Buuren, Arjan Huizing, 2020
