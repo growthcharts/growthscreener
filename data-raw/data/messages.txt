@@ -39,3 +39,32 @@ msgcode	msg
 80	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Zijn er duidelijke symptomen die samenhangen met aandoeningen die gepaard gaan met een grote lengte, met name achterstand in motorische en/of spraak/taal achterstand, gedragsproblemen en macrocefalie? Indien ja, Verwijzen naar huisarts/kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
 81	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Zijn er duidelijke symptomen die samenhangen met aandoeningen die gepaard gaan met een grote lengte, met name achterstand in motorische en/of spraak/taal achterstand, gedragsproblemen en macrocefalie? Indien ja, Verwijzen naar huisarts/kinderarts. Indien nee, voer de eerdere meting in om te bepalen of een verwijzing nodig is.
 82	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Zijn er duidelijke symptomen die samenhangen met aandoeningen die gepaard gaan met een grote lengte, met name achterstand in motorische en/of spraak/taal achterstand, gedragsproblemen en macrocefalie? Indien ja, Verwijzen naar huisarts/kinderarts. Indien nee, voer zowel de lengte van de moeder als de vader in om te bepalen of een verwijzing nodig is.
+112	Bij een leeftijd onder 1 jaar is een voormeting nodig om een advies te bepalen. Voer indien mogelijk de lengte in bij de voorlaatste meting.
+113	Bij een leeftijd onder 1 jaar is een voormeting nodig om een advies te bepalen. Voer indien mogelijk het gewicht in bij de voorlaatste meting.
+114	Voer de lengte bij de huidige meeting in.
+115	Voer de datum van de huidige meting in.
+116	Voer de geboortedatum in.
+117	Voer de gegevens in.
+118	Voer het gewicht bij de huidige meting in.
+119	Voer het geslacht in.
+120	Voer etniciteit in.
+121	De JGZ-richtlijn lengtegroei is bedoeld voor kinderen tot en met 18 jaar.
+122	Het kind is nog te kort om de gewicht naar lengte richtlijnen toe te passen.
+123	Het kind is te lang om de gewicht naar lengte richtlijnen toe te passen. Reken om naar BMI.
+131	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen.
+141	Snelle gewichtstoename, advies: In de gaten houden, naar eigen inzicht handelen.
+142	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Obesitas, verwijzen naar huisarts/kinderarts.
+143	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Overgewicht, advies: Aandacht besteden aan gezonde voeding en levensstijl, naar eigen inzicht handelen.
+144	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Obesitas, verwijzen naar huisarts/kinderarts na 3-6 maanden contact.
+145	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Overgewicht, advies: Onder de 5 jaar behandeling volgens overbruggingsplan.
+146	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Overgewicht, advies: Bloeddruk meten. Indien bloeddruk verhoogd herhaald meten. Indien weer verhoogd verwijzen naar huisarts/kinderarts.
+215	Voer de datum van de huidige meting en voorlaatste meting in.
+216	Voer de geboortedatum in.
+217	Voer de gegevens in.
+218	Voer de hoofdomtrek bij de huidige en voorlaatste meting in.
+219	Voer het geslacht in.
+220	Voer etniciteit in.
+221	De richtlijn hoofdomtrek is bedoeld voor kinderen tot 1 jaar.
+231	Het advies volgens de richtlijn hoofdomtrek is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen.
+241	Het advies volgens de richtlijn hoofdomtrek is als volgt: Snelle toename van de hoofdomtrek, verwijzing huisarts/kinderarts.
+242	Het advies volgens de richtlijn hoofdomtrek is als volgt: Afbuigende hoofdomtrek, verwijzing huisarts/kinderarts.

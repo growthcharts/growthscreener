@@ -46,7 +46,7 @@ calculate_advice_wgt(
 \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
 }
 \description{
-This function traverses the decision tree of the "JGZ-Richtlijn Gewicht
+This function traverses the decision tree of the "JGZ-Richtlijn overgewicht
 2012".
 }
 \details{

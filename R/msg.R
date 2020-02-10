@@ -6,7 +6,7 @@
 #' msg(c(31, 41))
 #' @export
 msg <- function(msgcode) {
-  mess <- growthscreener::messages_hgt
+  mess <- growthscreener::messages
   result <- character(length(msgcode))
   if (length(result) == 0) return(return)
   for (i in 1L:length(msgcode)) {

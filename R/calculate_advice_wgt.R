@@ -1,6 +1,6 @@
 #' Referral advice for body weight
 #'
-#' This function traverses the decision tree of the "JGZ-Richtlijn Gewicht
+#' This function traverses the decision tree of the "JGZ-Richtlijn overgewicht
 #' 2012".
 #'
 #' The decision tree assesses body weight \code{y1} against height \code{hgt1}.
@@ -58,7 +58,8 @@ calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
 
   # outside age/hgt range
   if (age1 >= 19.0) return(121)
-  if ((age1 < 2.0 | !useBmi) & (hgt1 < 35 | hgt1 > 120)) return(122)
+  if ((age1 < 2.0 | !useBmi) & (hgt1 < 35)) return(122)
+  if ((age1 < 2.0 | !useBmi) & (hgt1 > 120)) return(123)
 
   # if directly using bmi
   if(useBmi & age1 >= 2.0){
@@ -69,7 +70,10 @@ calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
                        "ob"]) return(144)
     if(bmi > bmi_table[bmi_table$sex == sex &
                        bmi_table$age == floor(age1),
-                       "ow"]) return(144)
+                       "ow"]){
+      if(age1 < 5.0) return(145)
+      return(146)
+    }
 
     # signal everything is OK
     return(131)
@@ -78,7 +82,8 @@ calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
   # if using wfh z-scores
   if (age1 < 1.0) {
     # fast increase
-    if (is.na(y0)) return(123)
+    if (is.na(y0)) return(112)
+    if (is.na(hgt0)) return(113)
     if ((z1 - z0) > 0.67) return(141)
   }
 
@@ -97,7 +102,10 @@ calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
                          "ob"]) return(144)
       if(bmi > bmi_table[bmi_table$sex == sex &
                          bmi_table$age == floor(age1),
-                         "ow"]) return(145)
+                         "ow"]){
+        if(age1 < 5.0) return(145)
+        return(146)
+      }
     }
   }
 

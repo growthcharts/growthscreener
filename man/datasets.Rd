@@ -6,7 +6,7 @@
 \alias{ref.nl5defSGAgewicht}
 \alias{ref.nl5defSGAlengte}
 \alias{nl5.hgt}
-\alias{messages_hgt}
+\alias{messages}
 \alias{bmi_table}
 \title{Table of Dutch birth weight references}
 \format{An object of class \code{data.frame} with 36 rows and 8 columns.}
@@ -17,7 +17,7 @@ ref.nl5defSGAlengte
 
 nl5.hgt
 
-messages_hgt
+messages
 
 bmi_table
 }
