@@ -3,8 +3,9 @@
 create_ref.nl5def <- function() {
   ref.nl5def<-data.frame(matrix(NA,570,7))
   ref.nl5def[,1]<-rep("nl5",570)
-  ref.nl5def[,2]<-c(rep("N",190),rep("T",190),rep("M",190))
-  ref.nl5def[,3]<-c(rep("M",95),rep("F",95),rep("M",95),rep("F",95),rep("M",95),rep("F",95))
+  ref.nl5def[,2]<-c(rep("NL",190),rep("TU",190),rep("MA",190))
+  ref.nl5def[,3]<-c(rep("male",95),rep("female",95),rep("male",95),rep("female",95),
+                    rep("male",95),rep("female",95))
   ref.nl5def[,4]<-c(0.0000,0.0027,0.0055,0.0082,0.0110,0.0137,0.0164,0.0192,0.0219,0.0246,
                     0.0274,0.0301,0.0329,0.0356,0.0383,0.0575,0.0767,0.0958,0.1150,0.1342,
                     0.1533,0.1725,0.1916,0.2108,0.2300,0.2491,0.2500,0.2917,0.3333,0.3750,

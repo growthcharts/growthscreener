@@ -1,12 +1,16 @@
 #' Referral advice for body weight
 #'
 #' This function traverses the decision tree of the "JGZ-Richtlijn overgewicht
-#' 2012".
+#' 2012" and "JGZ-Richtlijn Ondergewicht 2019"
 #'
-#' The decision tree assesses body weight \code{y1} against height \code{hgt1}.
-#' This is done either directly for children below the age of 2, or by
-#' automatically calculating BMI and comparing that against cut-off points
-#' defined in Cole (2000).
+#' The decision tree assesses both single and paired measurements.
+#' The last observations (\code{y1}) is generally taken as the
+#' last measurement, whereas \code{y0} can be one of the previous
+#' measurements. For more than two measurements, there are many
+#' pairs possible, and these pairs need not be consecutive.
+#' The \code{y0} measurement needs to be defined by the user,
+#' and is informally taken as an earlier measurement that maximumizes
+#' the referal probability.
 #'
 #' @param sex     Character, either \code{"male"} or \code{"female"}
 #' @param dob     Date of birth (class Date)
@@ -19,7 +23,6 @@
 #'   \code{calculate_helpers()}
 #' @param hgt1    Height at last measurement (cm)
 #' @param hgt0    Height at previous measurement (cm)
-#' @param useBmi  Always use bmi cut-off points at ages over 2 (boolean)
 #' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
 #' @author Paula van Dommelen, Stef van Buuren, 2019
 #' @seealso calculate_helpers
@@ -36,12 +39,14 @@ calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
                                  ga = NA, dom0 = as.Date(NA), y0 = NA,
                                  dom1 = as.Date(NA), y1 = NA,
                                  hgt1 = NA, hgt0 = NA,
-                                 d = NULL, useBmi = TRUE){
+                                 d = NULL){
 
-  if(is.null(d))
-    d <- calculate_helpers(y = "wfh", sex = sex, dob = dob, ga = ga,
-                           dom1 = dom1, y1 = y1, hgt1 = hgt1,
-                           dom0 = dom0, y0 = y0, hgt0 = hgt0)
+  if(is.null(d)){
+    d <- calculate_helpers(yname = "wfh", lib = "preterm", sex = sex, dob = dob,
+                           ga = ga, dom1 = dom1, y1 = log1p(y1), hgt1 = hgt1,
+                           dom0 = dom0, y0 = log1p(y0), hgt0 = hgt0)
+  }
+
   age0 <- d$age0
   z0   <- d$z0
   age1 <- d$age1
@@ -50,65 +55,63 @@ calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
   # start the sieve
 
   # return early if data are insufficient
-  if (!sex %in% c("male", "female")) return(119)
-  if (is.na(dob)) return(116)
-  if (is.na(dom1)) return(115)
-  if (is.na(hgt1)) return(114)
+  if (!sex %in% c("male", "female")) return(2019)
+  if (is.na(dob)) return(2016)
+  if (is.na(dom1)) return(2015)
+  if (is.na(hgt1)) return(2014)
   if (is.na(y1)) return(ifelse(age1 < 19.0, 118, 121))
+  #if (is.na(etn)) return(2020) # redundant.
 
   # outside age/hgt range
-  if (age1 >= 19.0) return(121)
-  if ((age1 < 2.0 | !useBmi) & (hgt1 < 35)) return(122)
-  if ((age1 < 2.0 | !useBmi) & (hgt1 > 120)) return(123)
+  if (age1 >= 19.0) return(2021)
+  if (age1 < 2.0 & hgt1 < 35) return(2022)
+  if (age1 < 2.0 & hgt1 > 120) return(2023)
 
-  # if directly using bmi
-  if(useBmi & age1 >= 2.0){
+  if (age1 < 1.0) {
+    # fast increase
+    if (is.na(y0)) return(2012)
+    if (is.na(hgt0)) return(2013)
+    if ((z1 - z0) > 0.67) return(2041)
+
+    # fast decrease
+    if ((z1 - z0) < -0.67) return(2051)
+  }
+
+  if (age1 >= 1.0 & age1 < 2.0) {
+    # high weight
+    if(z1 > 2.0) return(2042)
+    if(z1 > 1.0) return(2043)
+
+    # low weight
+    if(z1 < -2.0) return(2052)
+    # decreasing
+    if (is.na(y0)) return(2012)
+    if (is.na(hgt0)) return(2013)
+    if ((z1 - z0) < -1.0) return(2053)
+  }
+
+  if(age1 >= 2.0){
+    # high weight
     bmi <- y1/(hgt1/100)^2
     bmi_table <- growthscreener::bmi_table
     if(bmi > bmi_table[bmi_table$sex == sex &
                        bmi_table$age == floor(age1),
-                       "ob"]) return(144)
+                       "ob"]) return(2044)
     if(bmi > bmi_table[bmi_table$sex == sex &
                        bmi_table$age == floor(age1),
                        "ow"]){
-      if(age1 < 5.0) return(145)
-      return(146)
+      if(age1 < 5.0) return(2045)
+      return(2046)
     }
 
-    # signal everything is OK
-    return(131)
-  }
-
-  # if using wfh z-scores
-  if (age1 < 1.0) {
-    # fast increase
-    if (is.na(y0)) return(112)
-    if (is.na(hgt0)) return(113)
-    if ((z1 - z0) > 0.67) return(141)
-  }
-
-  if (age1 >= 1.0 & age1 < 2.0) {
-    if(z1 > 2.0) return(142)
-    if(z1 > 1.0) return(143)
-  }
-
-  if (age1 >= 2.0 & age1 < 19.0) {
-    # calc BMI if higher than 1.0
-    if (z1 > 1){
-      bmi <- y1/(hgt1/100)^2
-      bmi_table <- growthscreener::bmi_table
-      if(bmi > bmi_table[bmi_table$sex == sex &
-                         bmi_table$age == floor(age1),
-                         "ob"]) return(144)
-      if(bmi > bmi_table[bmi_table$sex == sex &
-                         bmi_table$age == floor(age1),
-                         "ow"]){
-        if(age1 < 5.0) return(145)
-        return(146)
-      }
-    }
+    # low weight
+    if(z1 < -2.0) return(2052)
+    # decreasing weight (less than -1 SD)
+    if (is.na(y0)) return(2012)
+    if (is.na(hgt0)) return(2013)
+    if ((z1 - z0) < -1.0) return(2053)
   }
 
   # signal everthing is OK
-  return(131)
+  return(2031)
 }

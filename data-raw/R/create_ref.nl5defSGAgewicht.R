@@ -3,8 +3,8 @@
 create_ref.nl5defSGAgewicht <- function() {
   x <- data.frame(matrix(NA, 36L, 8L))
   x[, 1L] <- rep("pinkeltje", 36L)
-  x[, 2L] <- c(rep("N", 36L))
-  x[, 3L] <- c(rep(c("M", "F"), 18L))
+  x[, 2L] <- c(rep("NL", 36L))
+  x[, 3L] <- c(rep(c("male", "female"), 18L))
   x[, 4L] <- rep(0L, 36L)
   x[, 5L] <- rep(c(1.0885, 0.8089), 18L)
   x[, 6L] <- c(0.9620, 0.8770, 0.9850, 0.9010, 1.0420, 0.9530,

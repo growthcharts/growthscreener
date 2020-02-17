@@ -5,7 +5,8 @@
 \title{Calculate values required for referral}
 \usage{
 calculate_helpers(
-  y = "hgt",
+  yname = "hgt",
+  lib = "nl2009",
   sex = NA_character_,
   dob = as.Date(NA),
   bw = NA,
@@ -16,16 +17,18 @@ calculate_helpers(
   hgtm = NA,
   dom1 = as.Date(NA),
   y1 = NA,
+  hgt1 = NA,
   dom0 = as.Date(NA),
   y0 = NA,
-  hgt0 = NA,
-  hgt1 = NA
+  hgt0 = NA
 )
 }
 \arguments{
-\item{y}{Character, variable to calculate Z-scores of. Can be one of
+\item{yname}{Character, variable to calculate Z-scores of. Can be one of
 \code{"hgt"}, \code{"wgt"}, \code{"hdc"}, \code{"bmi"} or \code{"wfh"}
 (weight for height).}
+
+\item{lib}{library to search the reference in}
 
 \item{sex}{Character, either \code{"male"} or \code{"female"}}
 
@@ -48,14 +51,14 @@ calculate_helpers(
 
 \item{y1}{\code{y} at last measurement}
 
+\item{hgt1}{\code{hgt} at previous measurement (cm), used when y is
+\code{wfh}}
+
 \item{dom0}{Date of previous measurement (Date)}
 
 \item{y0}{\code{y} at previous measurement}
 
 \item{hgt0}{\code{hgt} at last measurement (cm), used when y is \code{wfh}}
-
-\item{hgt1}{\code{hgt} at previous measurement (cm), used when y is
-\code{wfh}}
 }
 \value{
 \code{calculate_advice_hgt} returns an integer, the \code{msgcode}

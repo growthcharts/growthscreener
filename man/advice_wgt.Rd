@@ -14,8 +14,7 @@ calculate_advice_wgt(
   y1 = NA,
   hgt1 = NA,
   hgt0 = NA,
-  d = NULL,
-  useBmi = TRUE
+  d = NULL
 )
 }
 \arguments{
@@ -39,21 +38,23 @@ calculate_advice_wgt(
 
 \item{d}{Optional, list of derived variables, obtained by
 \code{calculate_helpers()}}
-
-\item{useBmi}{Always use bmi cut-off points at ages over 2 (boolean)}
 }
 \value{
 \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
 }
 \description{
 This function traverses the decision tree of the "JGZ-Richtlijn overgewicht
-2012".
+2012" and "JGZ-Richtlijn Ondergewicht 2019"
 }
 \details{
-The decision tree assesses body weight \code{y1} against height \code{hgt1}.
-This is done either directly for children below the age of 2, or by
-automatically calculating BMI and comparing that against cut-off points
-defined in Cole (2000).
+The decision tree assesses both single and paired measurements.
+The last observations (\code{y1}) is generally taken as the
+last measurement, whereas \code{y0} can be one of the previous
+measurements. For more than two measurements, there are many
+pairs possible, and these pairs need not be consecutive.
+The \code{y0} measurement needs to be defined by the user,
+and is informally taken as an earlier measurement that maximumizes
+the referal probability.
 }
 \examples{
 msg(calculate_advice_wgt())

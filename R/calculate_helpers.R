@@ -4,9 +4,10 @@
 #' \code{calculate_advice_hgt()}, \code{calculate_advice_wgt()} and
 #' \code{calculate_advice_hdc()}. The user may wish to divide up calculations
 #' into two steps if intermediate results are needed.
-#' @param y     Character, variable to calculate Z-scores of. Can be one of
+#' @param yname     Character, variable to calculate Z-scores of. Can be one of
 #'   \code{"hgt"}, \code{"wgt"}, \code{"hdc"}, \code{"bmi"} or \code{"wfh"}
 #'   (weight for height).
+#' @param lib   library to search the reference in
 #' @param sex   Character, either \code{"male"} or \code{"female"}
 #' @param dob   Date of birth (class Date)
 #' @param bw    Birth weight (grammes)
@@ -33,11 +34,12 @@
 #'   \item{\code{z1}}{y-value SDS at \code{age1}} \item{\code{z0}}{y-value SDS
 #'   at \code{age0}} }
 #' @export
-calculate_helpers <- function(y = "hgt", sex = NA_character_, dob = as.Date(NA),
-                              bw = NA, bl = NA, ga = NA, etn = NA_character_,
-                              hgtf = NA, hgtm = NA, dom1 = as.Date(NA),
-                              y1 = NA, dom0 = as.Date(NA), y0 = NA,
-                              hgt0 = NA, hgt1 = NA) {
+calculate_helpers <- function(yname = "hgt", lib = "nl2009", sex = NA_character_,
+                              dob = as.Date(NA), bw = NA, bl = NA, ga = NA,
+                              etn = NA_character_, hgtf = NA, hgtm = NA,
+                              dom1 = as.Date(NA), y1 = NA, hgt1 = NA,
+                              dom0 = as.Date(NA), y0 = NA, hgt0 = NA) {
+
   bw_z <- calculate_birth_z(bw, sex, ga, yname = "wgt")
   bl_z <- calculate_birth_z(bl, sex, ga, yname = "hgt")
   thl  <- calculate_th(hgtf, hgtm, sex = sex, etn = etn)
@@ -47,33 +49,26 @@ calculate_helpers <- function(y = "hgt", sex = NA_character_, dob = as.Date(NA),
   age0 <- as.integer(dom0 - dob)/365.25
 
   # Find correct reference.
-  ref <- NULL
-  if(y == "wfh"){
-    pop <- ""
-  } else if(ga < 37 & age1 < 4 & !is.na(ga) & !is.na(age1)){
-    pop <- ga
-  } else{
-    pop <- etn
-  }
-  s <- sex # due to find.reference not accepting sex == sex
-  try(ref <- find.reference(yname == y & sex == s & sub == pop,
-                            select = TRUE),
-      silent = TRUE)
-  if(length(ref) > 1){ # grab the most recent ref if multiple are available.
-    ref <- ref[which.max(sapply(ref, FUN = function(x) attr(attr(x, "info"), "year")))]
-  }
+  s <- sex
+  y <- yname
+  pop <- ifelse(ga < 37 & age1 < 4 & !is.na(ga) & !is.na(age1), ga, "NL")
 
-  if(y == "wfh"){ # wfh is by hgt rather than by age.
+  if(yname == "wfh"){ # wfh is by hgt rather than by age.
     x1 <- hgt1
-    x0 <- hgt1
+    x0 <- hgt0
+    pop <- ""
   } else{
     x1 <- age1
     x0 <- age0
   }
+
+  ref <- try(find.reference(yname == y & sex == s & sub == pop,
+                        libname = lib, select = TRUE, exact = TRUE),
+             silent = TRUE)
   z1 <- y2z(y = y1, x = x1, sex = sex, sub = etn,
-            ref = ref[[1L]])
+            ref = ref)
   z0 <- y2z(y = y0, x = x0, sex = sex, sub = etn,
-            ref = ref[[1L]])
+            ref = ref)
 
   list(bw_z = bw_z, bl_z = bl_z, th = th, th_z = th_z,
        age1 = age1, age0 = age0, z1 = z1, z0 = z0)

@@ -3,8 +3,8 @@
 create_ref.nl5defSGAlengte <- function() {
   x <- data.frame(matrix(NA, 36L, 8L))
   x[, 1L] <- rep("pinkeltje", 36L)
-  x[, 2L] <- c(rep("N", 36L))
-  x[, 3L] <- c(rep(c("M", "F"), 18L))
+  x[, 2L] <- c(rep("NL", 36L))
+  x[, 3L] <- c(rep(c("male", "female"), 18L))
   x[, 4L] <- rep(0L, 36L)
   x[, 5L] <- rep(1, 36L)
   x[, 6L] <- c(28.49, 28.60, 30.68, 30.66, 32.80, 32.66,

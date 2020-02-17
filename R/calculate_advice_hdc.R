@@ -3,9 +3,15 @@
 #' This function traverses a decision tree for head circumference for children
 #' below the age of 1.
 #'
-#' The decision tree always assesses the paired measurements of \code{y1} and
-#' \code{y0}. The last observations (\code{y1}) is taken as the last
-#' measurement, whereas \code{y0} can be one of the previous measurements.
+#' The decision tree assesses both single and paired measurements.
+#' The last observations (\code{y1}) is generally taken as the
+#' last measurement, whereas \code{y0} can be one of the previous
+#' measurements. For more than two measurements, there are many
+#' pairs possible, and these pairs need not be consecutive.
+#' The \code{y0} measurement needs to be defined by the user,
+#' and is informally taken as an earlier measurement that maximumizes
+#' the referal probability.
+#'
 #' @param sex   Character, either \code{"male"} or \code{"female"}
 #' @param dob   Date of birth (class Date)
 #' @param ga    Gestational age, completed weeks (Integer or character)
@@ -35,9 +41,12 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
                                  dom0 = as.Date(NA), y0 = NA,
                                  d = NULL) {
 
-  if (is.null(d))
-    d <- calculate_helpers(y = "hdc", sex = sex, dob = dob, ga = ga, etn = etn,
-                           dom1 = dom1, y1 = y1, dom0 = dom0, y0 = y0)
+  if (is.null(d)){
+    lib <- ifelse(ga < 37 & !is.na(ga), "preterm", "nl1997")
+    d <- calculate_helpers(yname = "hdc", lib = lib, sex = sex, dob = dob, ga = ga,
+                           etn = etn, dom1 = dom1, y1 = y1, dom0 = dom0, y0 = y0)
+  }
+
 
   age1 <- d$age1
   age0 <- d$age0
@@ -47,25 +56,34 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
   # start the sieve
 
   # return early if data are insufficient
-  # if (is.na(sex)) return(19)
-  if (!sex %in% c("male", "female")) return(219)
-  if (is.na(dob)) return(216)
-  if (is.na(dom1) | is.na(dom0)) return(215)
-  if (is.na(y1) | is.na(y0)) return(ifelse(age1 < 1.0, 218, 221))
-  if (!etn %in% c("NL", "TU", "MA")) return(220)
+  if (!sex %in% c("male", "female")) return(3019)
+  if (is.na(dob)) return(3016)
+  if (is.na(dom1)) return(3015)
+  if (is.na(y1)) return(ifelse(age1 < 1.0, 3018, 3021))
+  #if (is.na(etn)) return(3020) # redundant.
 
   # outside age range
-  if (age1 >= 1.0) return(221)
+  if (age1 >= 1.0) return(3021)
 
-  # check for gain z1 - z0
-    # rapid increase (within 0.5 yrs)
-    if(age1 - age0 <= 0.5){
-      if((z1 - z0) > 0.5) return(241)
-    }
+  # check single measurement
+  if(z1 > 2.5) return(3041)
+  if(z1 < -2) return(3043)
 
-    # shift of less than -0.5
-    if((z1 - z0) < -0.5) return(242)
+  # check for change z1 - z0
+    # perhaps add a filter so that we dont always need z0 values for a '31'
+  if(is.na(dom0)) return(3022)
+  if(is.na(y0)) return(3023)
+
+  if((z1 - z0) > 2.5) return(3042)
+
+  # increase (within 0.5 yrs)
+  if(age1 - age0 <= 0.5){
+    if((z1 - z0) > 0.5) return(3043)
+  }
+  # decrease
+  if((z1 - z0) < -0.5) return(3044)
+
 
   # signal everthing is OK
-  return(231)
+  return(3031)
 }
