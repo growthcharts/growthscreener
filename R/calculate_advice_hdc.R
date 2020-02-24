@@ -78,10 +78,10 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
 
   # increase (within 0.5 yrs)
   if(age1 - age0 <= 0.5){
-    if((z1 - z0) > 0.5) return(3043)
+    if((z1 - z0) > 0.5) return(3044)
   }
   # decrease
-  if((z1 - z0) < -0.5) return(3044)
+  if((z1 - z0) < -0.5) return(3045)
 
 
   # signal everthing is OK
