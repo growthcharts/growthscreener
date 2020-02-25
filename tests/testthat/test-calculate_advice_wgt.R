@@ -16,6 +16,7 @@ kids <- data.frame(
   hgt0 = c(NA, NA, NA, 59, NA, NA, NA, NA, 102),
   hgt1 = c(NA, NA, NA, 60, 85, 85, 105, 105, 105),
   code = c(2019, 2016, 2015, 2041, 2043, 2012, 2045, 2052, 2053),
+  etn = c("NL", "NL", "NL", "NL", "NL", "NL", "NL", "NL", "NL"),
   stringsAsFactors = FALSE)
 
 # apply algorithm to kids
@@ -25,6 +26,7 @@ for (k in 1:nrow(kids)) {
   found <- calculate_advice_wgt(sex  = kids[k, "sex"],
                                 dob  = kids[k, "dob"],
                                 ga   = kids[k, "ga"],
+                                etn  = kids[k, "etn"],
                                 hgt0 = kids[k, "hgt0"],
                                 hgt1 = kids[k, "hgt1"],
                                 dom1 = kids[k, "dom1"],

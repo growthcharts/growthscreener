@@ -14,6 +14,7 @@ kids <- data.frame(
            "female", "female", "female", "female"),
   ga   = c(NA, NA, NA, NA, 33, 33, NA, NA, NA),
   code = c(3019, 3016, 3015, 3021, 3041, 3043, 3022, 3044, 3031),
+  etn = c("NL", "NL", "NL", "NL", "NL", "NL", "NL", "NL", "NL"),
   stringsAsFactors = FALSE)
 
 # apply algorithm to kids
@@ -23,6 +24,7 @@ for (k in 1:nrow(kids)) {
   found <- calculate_advice_hdc(sex  = kids[k, "sex"],
                                 dob  = kids[k, "dob"],
                                 ga   = kids[k, "ga"],
+                                etn  = kids[k, "etn"],
                                 dom1 = kids[k, "dom1"],
                                 y1   = kids[k, "y1"],
                                 dom0 = kids[k, "dom0"],

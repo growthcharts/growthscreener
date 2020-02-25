@@ -69,7 +69,7 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
   if (is.na(dob)) return(1016)
   if (is.na(dom1)) return(1015)
   if (is.na(y1)) return(ifelse(age1 < 18.0, 1018, 1021))
-  #if (is.na(etn)) return(1020) # redundant.
+  if (is.na(etn)) return(1020)
 
   # outside age range
   if (age1 >= 18.0) return(1021)

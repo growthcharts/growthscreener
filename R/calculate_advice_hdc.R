@@ -60,7 +60,7 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
   if (is.na(dob)) return(3016)
   if (is.na(dom1)) return(3015)
   if (is.na(y1)) return(ifelse(age1 < 1.0, 3018, 3021))
-  #if (is.na(etn)) return(3020) # redundant.
+  if (is.na(etn)) return(3020)
 
   # outside age range
   if (age1 >= 1.0) return(3021)
