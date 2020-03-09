@@ -1,6 +1,6 @@
 Package: growthscreener
 Title: Finding Children with Unusual Growth Patterns
-Version: 1.2.0
+Version: 1.3.0
 Authors@R: 
     c(person(given = "Paula",
            family = "van Dommelen",
@@ -9,15 +9,19 @@ Authors@R:
        person(given = "Stef",
            family = "van Buuren",
            role = c("aut"),
-           email = "stef.vanbuuren@tno.nl"))
+           email = "stef.vanbuuren@tno.nl"),
+        person(given = "Arjan", 
+            family = "Huizing", 
+            role = c("aut"),
+            email = "arjan.huizing@tno.nl"))
 Description: Unusual child growth may be a sign of an underlying 
     disease or condition. This package implements functions that 
     evaluate the growth pattern of a child relative to Dutch 
     guidelines.
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5.0)
 Imports: 
-    clopus,
+    clopus (>= 0.43.0),
     lubridate,
     minihealth (>= 0.64.0),
     methods
