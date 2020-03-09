@@ -7,6 +7,7 @@ path <- path.expand("~/Package/growthscreener/growthscreener/data-raw")
 source(file.path(path, "R", "create_ref.nl5def.R"))
 source(file.path(path, "R", "create_ref.nl5defSGAgewicht.R"))
 source(file.path(path, "R", "create_ref.nl5defSGAlengte.R"))
+source(file.path(path, "R", "create_bmi_table.R"))
 
 ref.nl5defSGAgewicht <- create_ref.nl5defSGAgewicht()
 ref.nl5defSGAlengte <- create_ref.nl5defSGAlengte()
@@ -19,5 +20,7 @@ fn <- file.path(path, "data", "Hindo.xlsx")
 Hindo.hgt <- data.frame(read_excel(fn))
 nl5.hgt <- rbind(nl5.hgt, Hindo.hgt)
 
-usethis::use_data(nl5.hgt, ref.nl5defSGAgewicht, ref.nl5defSGAlengte,
+bmi_table <- create_bmi_table()
+
+usethis::use_data(nl5.hgt, ref.nl5defSGAgewicht, ref.nl5defSGAlengte, bmi_table,
                   overwrite = TRUE)

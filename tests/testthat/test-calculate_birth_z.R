@@ -1,6 +1,6 @@
 context("calculate_birth_z")
 
-sex <- "M"
+sex <- "male"
 bw  <- 3000
 ga <- 40
 yname <- "bw"
