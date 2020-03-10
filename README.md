@@ -39,8 +39,7 @@ library(growthscreener)
 #>   print.bytes Rcpp
 
 # a very short girl, 4 months old
-msgcode <- calculate_advice_hgt(sex = "female", etn = "N", 
-                                bw = 3250, ga = 40,
+msgcode <- calculate_advice_hgt(sex = "female", bw = 3250, ga = 40,
                                 dob = as.Date("2018-07-31"),
                                 dom1 = as.Date("2018-12-12"), 
                                 y1 = 55)
@@ -52,9 +51,7 @@ cat(fold(msg(msgcode)))
 #> gram is.
 
 # some more details
-d <- calculate_helpers(yname = "hgt", 
-                       sex = "female", etn = "N", 
-                       bw = 3250, ga = 40,
+d <- calculate_helpers(yname = "hgt", sex = "female", bw = 3250, ga = 40,
                        dob = as.Date("2018-07-31"),
                        dom1 = as.Date("2018-12-12"), 
                        y1 = 55)
