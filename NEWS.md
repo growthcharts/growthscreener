@@ -1,3 +1,8 @@
+# growthscreener 1.3.1
+
+* Remove etnicity from `wgt` and `hdc` 
+ * Set default `etn = "NL"` for `hgt`
+
 # growthscreener 1.3.0
 
 * Restructures the computational flow to adapt to multiple screeners
