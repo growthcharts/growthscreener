@@ -8,7 +8,6 @@ calculate_advice_wgt(
   sex = NA_character_,
   dob = as.Date(NA),
   ga = NA,
-  etn = NA_character_,
   dom0 = as.Date(NA),
   y0 = NA,
   dom1 = as.Date(NA),
@@ -24,9 +23,6 @@ calculate_advice_wgt(
 \item{dob}{Date of birth (class Date)}
 
 \item{ga}{Gestational age, completed weeks (Integer or character)}
-
-\item{etn}{Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
-\code{"MA"} (moroccan) or \code{"HS"} (hindustani).}
 
 \item{dom0}{Date of previous measurement (Date)}
 

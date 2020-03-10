@@ -57,7 +57,7 @@ calculate_helpers <- function(yname = "hgt", lib = "nl2009", sex = NA_character_
     x1 <- hgt1
     x0 <- hgt0
     pop <- ""
-  } else{
+  } else {
     x1 <- age1
     x0 <- age0
   }

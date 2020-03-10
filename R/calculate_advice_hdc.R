@@ -15,8 +15,6 @@
 #' @param sex   Character, either \code{"male"} or \code{"female"}
 #' @param dob   Date of birth (class Date)
 #' @param ga    Gestational age, completed weeks (Integer or character)
-#' @param etn   Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish) or
-#'   \code{"MA"} (moroccan).
 #' @param dom1  Date of last measurement (Date)
 #' @param y1    Head circumference at last measurement (cm)
 #' @param dom0  Date of previous measurement (Date)
@@ -29,14 +27,14 @@
 #' @rdname advice_hdc
 #' @examples
 #' msg(calculate_advice_hdc())
-#' msgcode <- calculate_advice_hdc(sex = "female", etn = "NL",
+#' msgcode <- calculate_advice_hdc(sex = "female",
 #'                                 dob = as.Date("2015-09-01"),
 #'                                 dom1 = as.Date("2016-05-01"), y1 = 40,
 #'                                 dom0 = as.Date("2015-12-01"), y0 = 36)
 #' msg(msgcode)
 #' @export
 calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
-                                 ga = NA, etn = NA_character_,
+                                 ga = NA,
                                  dom1 = as.Date(NA), y1 = NA,
                                  dom0 = as.Date(NA), y0 = NA,
                                  d = NULL) {
@@ -44,7 +42,7 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
   if (is.null(d)){
     lib <- ifelse(ga < 37 & !is.na(ga), "preterm", "nl1997")
     d <- calculate_helpers(yname = "hdc", lib = lib, sex = sex, dob = dob, ga = ga,
-                           etn = etn, dom1 = dom1, y1 = y1, dom0 = dom0, y0 = y0)
+                           dom1 = dom1, y1 = y1, dom0 = dom0, y0 = y0)
   }
 
 
@@ -60,7 +58,6 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
   if (is.na(dob)) return(3016)
   if (is.na(dom1)) return(3015)
   if (is.na(y1)) return(ifelse(age1 < 1.0, 3018, 3021))
-  if (is.na(etn)) return(3020)
 
   # outside age range
   if (age1 >= 1.0) return(3021)

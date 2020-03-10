@@ -8,7 +8,6 @@ calculate_advice_hdc(
   sex = NA_character_,
   dob = as.Date(NA),
   ga = NA,
-  etn = NA_character_,
   dom1 = as.Date(NA),
   y1 = NA,
   dom0 = as.Date(NA),
@@ -22,9 +21,6 @@ calculate_advice_hdc(
 \item{dob}{Date of birth (class Date)}
 
 \item{ga}{Gestational age, completed weeks (Integer or character)}
-
-\item{etn}{Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish) or
-\code{"MA"} (moroccan).}
 
 \item{dom1}{Date of last measurement (Date)}
 
@@ -56,7 +52,7 @@ the referal probability.
 }
 \examples{
 msg(calculate_advice_hdc())
-msgcode <- calculate_advice_hdc(sex = "female", etn = "NL",
+msgcode <- calculate_advice_hdc(sex = "female",
                                 dob = as.Date("2015-09-01"),
                                 dom1 = as.Date("2016-05-01"), y1 = 40,
                                 dom0 = as.Date("2015-12-01"), y0 = 36)

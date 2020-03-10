@@ -21,6 +21,7 @@
 #' @param ga    Gestational age, completed weeks (Integer or character)
 #' @param etn   Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
 #'              \code{"MA"} (moroccan) or \code{"HS"} (hindustani).
+#'              The default is \code{"NL"}. Only used for target height.
 #' @param hgtf  Height of father (cm)
 #' @param hgtm  Height of mother (cm)
 #' @param dom1  Date of last measurement (Date)
@@ -35,14 +36,14 @@
 #' @rdname advice_hgt
 #' @examples
 #' msg(calculate_advice_hgt())
-#' msgcode <- calculate_advice_hgt(sex = "male", etn = "NL",
+#' msgcode <- calculate_advice_hgt(sex = "male",
 #'                                 dob = as.Date("2018-07-31"),
 #'                                 dom1 = as.Date("2018-12-12"), y1 = 64)
 #' msg(msgcode)
 #' @export
 calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
                                  bw = NA, bl = NA, ga = NA,
-                                 etn = NA_character_, hgtf = NA, hgtm = NA,
+                                 etn = "NL", hgtf = NA, hgtm = NA,
                                  dom1 = as.Date(NA), y1 = NA,
                                  dom0 = as.Date(NA), y0 = NA,
                                  d = NULL) {
@@ -69,7 +70,6 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
   if (is.na(dob)) return(1016)
   if (is.na(dom1)) return(1015)
   if (is.na(y1)) return(ifelse(age1 < 18.0, 1018, 1021))
-  if (is.na(etn)) return(1020)
 
   # outside age range
   if (age1 >= 18.0) return(1021)

@@ -10,7 +10,7 @@ calculate_advice_hgt(
   bw = NA,
   bl = NA,
   ga = NA,
-  etn = NA_character_,
+  etn = "NL",
   hgtf = NA,
   hgtm = NA,
   dom1 = as.Date(NA),
@@ -32,7 +32,8 @@ calculate_advice_hgt(
 \item{ga}{Gestational age, completed weeks (Integer or character)}
 
 \item{etn}{Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
-\code{"MA"} (moroccan) or \code{"HS"} (hindustani).}
+\code{"MA"} (moroccan) or \code{"HS"} (hindustani).
+The default is \code{"NL"}. Only used for target height.}
 
 \item{hgtf}{Height of father (cm)}
 
@@ -71,7 +72,7 @@ maximum period to, say, five years.
 }
 \examples{
 msg(calculate_advice_hgt())
-msgcode <- calculate_advice_hgt(sex = "male", etn = "NL",
+msgcode <- calculate_advice_hgt(sex = "male",
                                 dob = as.Date("2018-07-31"),
                                 dom1 = as.Date("2018-12-12"), y1 = 64)
 msg(msgcode)

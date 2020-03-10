@@ -15,8 +15,6 @@
 #' @param sex     Character, either \code{"male"} or \code{"female"}
 #' @param dob     Date of birth (class Date)
 #' @param ga      Gestational age, completed weeks (Integer or character)
-#' @param etn   Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
-#'              \code{"MA"} (moroccan) or \code{"HS"} (hindustani).
 #' @param dom1    Date of last measurement (Date)
 #' @param y1      Weight at last measurement (kg)
 #' @param dom0    Date of previous measurement (Date)
@@ -38,7 +36,7 @@
 #' msg(msgcode)
 #' @export
 calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
-                                 ga = NA, etn = NA_character_, dom0 = as.Date(NA),
+                                 ga = NA, dom0 = as.Date(NA),
                                  y0 = NA, dom1 = as.Date(NA), y1 = NA,
                                  hgt1 = NA, hgt0 = NA,
                                  d = NULL){
@@ -62,7 +60,6 @@ calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
   if (is.na(dom1)) return(2015)
   if (is.na(hgt1)) return(2014)
   if (is.na(y1)) return(ifelse(age1 < 19.0, 118, 121))
-  if (is.na(etn)) return(2020)
 
   # outside age/hgt range
   if (age1 >= 19.0) return(2021)
