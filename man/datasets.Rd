@@ -30,6 +30,6 @@ Table of Dutch nl5 references
 
 Table of return message and return code
 
-Table of BMI cut-off points (Cole, 2000)
+Table of BMI cut-off points (Cole, 2000 (overweight), 2007 (thinness))
 }
 \keyword{datasets}
