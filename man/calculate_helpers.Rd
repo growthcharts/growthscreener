@@ -73,7 +73,7 @@ at \code{age0}} }
 }
 \description{
 \code{calculate_helpers()} provides an optional pre-calculation for
-\code{calculate_advice_hgt()}, \code{calculate_advice_wgt()} and
+\code{calculate_advice_hgt()}, \code{calculate_advice_wfh()} and
 \code{calculate_advice_hdc()}. The user may wish to divide up calculations
 into two steps if intermediate results are needed.
 }

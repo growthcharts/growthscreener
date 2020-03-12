@@ -62,5 +62,5 @@ msg(msgcode)
 calculate_helpers
 }
 \author{
-Paula van Dommelen, Stef van Buuren, 2019
+Arjan Huizing, 2020
 }

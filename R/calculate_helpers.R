@@ -1,7 +1,7 @@
 #' Calculate values required for referral
 #'
 #' \code{calculate_helpers()} provides an optional pre-calculation for
-#' \code{calculate_advice_hgt()}, \code{calculate_advice_wgt()} and
+#' \code{calculate_advice_hgt()}, \code{calculate_advice_wfh()} and
 #' \code{calculate_advice_hdc()}. The user may wish to divide up calculations
 #' into two steps if intermediate results are needed.
 #' @param yname     Character, variable to calculate Z-scores of. Can be one of

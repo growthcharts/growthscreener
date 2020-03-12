@@ -55,14 +55,15 @@ msgcode	msg
 2022	Het kind is nog te kort om de gewicht naar lengte richtlijnen toe te passen.
 2023	Het kind is te lang om de gewicht naar lengte richtlijnen toe te passen. Reken om naar BMI.
 2031	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen.
-2041	Snelle gewichtstoename, advies: In de gaten houden, naar eigen inzicht handelen.
 2042	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Obesitas, verwijzen naar huisarts/kinderarts.
-2043	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Overgewicht, advies: Aandacht besteden aan gezonde voeding en levensstijl, naar eigen inzicht handelen.
 2044	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Obesitas, verwijzen naar huisarts/kinderarts na 3-6 maanden contact.
 2045	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Overgewicht, advies: Onder de 5 jaar behandeling volgens overbruggingsplan.
 2046	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Overgewicht, advies: Bloeddruk meten. Indien bloeddruk verhoogd herhaald meten. Indien weer verhoogd verwijzen naar huisarts/kinderarts.
-2051	Het advies volgens de JGZ-richtlijn ondergewicht is als volgt: Ondergewicht, advies: Is er sprake van een afwijkende voedingstoestand en/of klachten of symptomen die kunnen wijzen op onderliggende ziekte of problemen? Indien ja, Verwijzen naar kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
-2052	Het advies volgens de JGZ-richtlijn ondergewicht is als volgt: Gewichtsafname van meer dan 1 SD, advies: Is er sprake van een afwijkende voedingstoestand en/of klachten of symptomen die kunnen wijzen op onderliggende ziekte of problemen? Indien ja, Verwijzen naar kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
+2071	Snelle gewichtstoename (0.67 SD), advies: In de gaten houden, naar eigen inzicht handelen.
+2072	Snelle gewichtsafname (-0.67 SD), advies: In de gaten houden, naar eigen inzicht handelen.
+2073	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Overgewicht, advies: Aandacht besteden aan gezonde voeding en levensstijl, naar eigen inzicht handelen.
+2074	Het advies volgens de JGZ-richtlijn ondergewicht is als volgt: Ondergewicht, advies: Is er sprake van een afwijkende voedingstoestand en/of klachten of symptomen die kunnen wijzen op onderliggende ziekte of problemen? Indien ja, Verwijzen naar kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
+2075	Het advies volgens de JGZ-richtlijn ondergewicht is als volgt: Sterke gewichtsafname (-1 SD), advies: Is er sprake van een afwijkende voedingstoestand en/of klachten of symptomen die kunnen wijzen op onderliggende ziekte of problemen? Indien ja, Verwijzen naar kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
 3015	Voer de datum van de huidige meting in.
 3016	Voer de geboortedatum in.
 3017	Voer de gegevens in.

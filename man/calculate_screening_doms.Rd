@@ -4,13 +4,13 @@
 \alias{calculate_screening_doms}
 \title{Extract measurements that can function as date zero}
 \usage{
-calculate_screening_doms(ind, ynames = c("hgt", "wgt", "hdc"), na.omit = TRUE)
+calculate_screening_doms(ind, ynames = c("hgt", "wfh", "hdc"), na.omit = TRUE)
 }
 \arguments{
 \item{ind}{An object of class \code{minihealth::individual}}
 
 \item{ynames}{Character vector identifying the measures to be
-screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}
+screened. By default, \code{ynames = c("hgt", "wfh", "hdc")}.}
 
 \item{na.omit}{A logical indicating whether records with a missing
 \code{x} (age) or \code{y} (yname) should be removed. Defaults to
@@ -20,9 +20,12 @@ screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}
 A list with \code{length(ynames)} elements. Each list element
 is another \code{list} with elements \code{dom0} (back-calculated
 dates of measurement, vector, reverse time), \code{age0} (decimal age),
-\code{y0} (measurement) and \code{z0} (Z-score equivalent), as well as
-similar quantities \code{dom1}, \code{age1}, \code{y1} and
-\code{z1} for the upper part of the pair.
+\code{y0} (measurement), \code{z0} (Z-score equivalent) and
+\itemize{
+\item for weight - \code{h0}, as well as similar quantities \code{dom1},
+\code{age1}, \code{y1}, \code{z1} and \code{h1} for the upper part
+of the pair.
+}
 }
 \description{
 This function scans the \code{ind} object, and finds the observation

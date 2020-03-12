@@ -22,7 +22,7 @@
 #' @param d     Optional, list of derived variables, obtained by
 #'   \code{calculate_helpers()}
 #' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
-#' @author Paula van Dommelen, Stef van Buuren, 2019
+#' @author Arjan Huizing, 2020
 #' @seealso calculate_helpers
 #' @rdname advice_hdc
 #' @examples
