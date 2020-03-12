@@ -22,9 +22,11 @@ Depends:
     R (>= 3.5.0)
 Imports: 
     clopus (>= 0.43.0),
+    dplyr,
     lubridate,
     minihealth (>= 0.64.0),
-    methods
+    methods,
+    tidyselect
 Remotes: 
     stefvanbuuren/clopus,
     stefvanbuuren/minihealth

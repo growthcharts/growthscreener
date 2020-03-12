@@ -4,19 +4,43 @@
 \alias{screen_curves_ind}
 \title{Screen growth curves according to JGZ guidelines}
 \usage{
-screen_curves_ind(ind)
+screen_curves_ind(
+  ind,
+  ynames = c("hgt", "wgt", "hdc"),
+  na.omit = TRUE,
+  recalculate_z = FALSE
+)
 }
 \arguments{
 \item{ind}{An object of class \code{minihealth::individual}}
+
+\item{ynames}{Character vector identifying the measures to be
+screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}
+
+\item{na.omit}{A logical indicating whether records with a missing
+\code{x} (age) or \code{y} (yname) should be removed. Defaults to
+\code{TRUE}.}
+
+\item{recalculate_z}{A logical indicating whether Z-scores should be
+recalculated.}
 }
 \value{
-A data frame with 7 columns.
+A data frame with the following columns
+\describe{
+\item{\code{Categorie}}{The category of the screening guidelines:
+\code{1000 = hgt}, \code{2000 = wgt}, \code{3000 = hdc}}
+\item{\code{CategorieOmschrijving}}{A string indicating the measure}
+\item{\code{Code}}{Integer message code}
+\item{\code{CodeOmschrijving}}{A string with the message}
+\item{\code{Versie}}{Version of \code{growthscreener} package}
+\item{\code{Leeftijd0}}{First date of the evaluation pair}
+\item{\code{Leeftijd1}}{Second date of the evaluation pair}
+}
 }
 \description{
 Screen growth curves according to JGZ guidelines
 }
 \examples{
-p <- minihealth::donordata_to_individual(dnr = "smocc", id = 10022)
-screen_curves_ind(p)
-
+ind <- minihealth::donordata_to_individual(dnr = "smocc", id = 10022)
+screen_curves_ind(ind)
 }
