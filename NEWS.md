@@ -1,3 +1,7 @@
+# growthscreener 1.4.1
+
+* Updates to `roxygen 7.1.0`
+
 # growthscreener 1.4.0
 
 * Renames `wgt` to the more appropriate `wfh` guidelines
