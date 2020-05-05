@@ -9,7 +9,17 @@
 \alias{messages}
 \alias{bmi_table}
 \title{Table of Dutch birth weight references}
-\format{An object of class \code{data.frame} with 36 rows and 8 columns.}
+\format{
+An object of class \code{data.frame} with 36 rows and 8 columns.
+
+An object of class \code{data.frame} with 36 rows and 8 columns.
+
+An object of class \code{data.frame} with 706 rows and 7 columns.
+
+An object of class \code{data.frame} with 80 rows and 2 columns.
+
+An object of class \code{data.frame} with 66 rows and 7 columns.
+}
 \usage{
 ref.nl5defSGAgewicht
 

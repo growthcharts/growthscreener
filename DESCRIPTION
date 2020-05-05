@@ -1,6 +1,6 @@
 Package: growthscreener
 Title: Finding Children with Unusual Growth Patterns
-Version: 1.4.0
+Version: 1.4.1
 Authors@R: 
     c(person(given = "Paula",
            family = "van Dommelen",
@@ -34,7 +34,7 @@ License: AGPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Suggests: 
     jsonlite,
     testthat (>= 2.1.0)
