@@ -1,3 +1,8 @@
+# growthscreener 1.4.2
+
+* Updates to `roxygen 7.1.1`
+* Evades testing problem by adding `jamestest` to `suggests:`
+
 # growthscreener 1.4.1
 
 * Updates to `roxygen 7.1.0`

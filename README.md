@@ -34,9 +34,6 @@ Find the advice for a very short girl:
 
 ``` r
 library(growthscreener)
-#> Registered S3 method overwritten by 'pryr':
-#>   method      from
-#>   print.bytes Rcpp
 
 # a very short girl, 4 months old
 msgcode <- calculate_advice_hgt(sex = "female", bw = 3250, ga = 40,
@@ -65,7 +62,7 @@ the reason for referral.
 
 ## Background
 
-The calculations implement several guidelines and guidelines:
+The package implements the following guidelines:
 
   - **JGZ-Richtlijn Lengtegroei 2019**:
     <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/lengtegroei-2019>

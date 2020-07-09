@@ -67,7 +67,7 @@ the reason for referral.
 
 ## Background
 
-The calculations implement several guidelines and guidelines:
+The package implements the following guidelines:
 
 - **JGZ-Richtlijn Lengtegroei 2019**: <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/lengtegroei-2019>
 - **JGZ-Richtlijn Overgewicht 2012**: <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/overgewicht>
