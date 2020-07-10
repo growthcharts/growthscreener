@@ -26,16 +26,16 @@
 #' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
 #' @author Arjan Huizing, Stef van Buuren 2020
 #' @seealso calculate_helpers
-#' @rdname advice_wfh
+#' @rdname advice_wgt
 #' @examples
-#' msg(calculate_advice_wfh())
-#' msgcode <- calculate_advice_wfh(sex = "male",
+#' msg(calculate_advice_wgt())
+#' msgcode <- calculate_advice_wgt(sex = "male",
 #'                                 dob = as.Date("2015-01-01"),
 #'                                 dom1 = as.Date("2018-12-12"),
 #'                                 y1 = 25, hgt1 = 120)
 #' msg(msgcode)
 #' @export
-calculate_advice_wfh <- function(sex = NA_character_, dob = as.Date(NA),
+calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
                                  ga = NA, dom0 = as.Date(NA),
                                  y0 = NA, dom1 = as.Date(NA), y1 = NA,
                                  hgt1 = NA, hgt0 = NA,

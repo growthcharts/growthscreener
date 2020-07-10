@@ -6,7 +6,7 @@
 \usage{
 screen_curves_ind(
   ind,
-  ynames = c("hgt", "wfh", "hdc"),
+  ynames = c("hgt", "wgt", "hdc"),
   na.omit = TRUE,
   recalculate_z = FALSE
 )
@@ -15,7 +15,7 @@ screen_curves_ind(
 \item{ind}{An object of class \code{minihealth::individual}}
 
 \item{ynames}{Character vector identifying the measures to be
-screened. By default, \code{ynames = c("hgt", "wfh", "hdc")}.}
+screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}
 
 \item{na.omit}{A logical indicating whether records with a missing
 \code{x} (age) or \code{y} (yname) should be removed. Defaults to
@@ -29,7 +29,7 @@ recalculated.}
 A data frame with the following columns
 \describe{
 \item{\code{Categorie}}{The category of the screening guidelines:
-\code{1000 = hgt}, \code{2000 = wfh}, \code{3000 = hdc}}
+\code{1000 = hgt}, \code{2000 = wgt}, \code{3000 = hdc}}
 \item{\code{CategorieOmschrijving}}{A string indicating the measure}
 \item{\code{Code}}{Integer message code}
 \item{\code{CodeOmschrijving}}{A string with the message}

@@ -4,13 +4,13 @@
 \alias{calculate_screening_doms}
 \title{Extract measurements that can function as date zero}
 \usage{
-calculate_screening_doms(ind, ynames = c("hgt", "wfh", "hdc"), na.omit = TRUE)
+calculate_screening_doms(ind, ynames = c("hgt", "wgt", "hdc"), na.omit = TRUE)
 }
 \arguments{
 \item{ind}{An object of class \code{minihealth::individual}}
 
 \item{ynames}{Character vector identifying the measures to be
-screened. By default, \code{ynames = c("hgt", "wfh", "hdc")}.}
+screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}
 
 \item{na.omit}{A logical indicating whether records with a missing
 \code{x} (age) or \code{y} (yname) should be removed. Defaults to

@@ -18,7 +18,7 @@
 #' ind <- minihealth::donordata_to_individual(dnr = "smocc", id = 10022)
 #' growthscreener:::calculate_screening_doms(ind)
 calculate_screening_doms <- function(ind,
-                                     ynames = c("hgt", "wfh", "hdc"),
+                                     ynames = c("hgt", "wgt", "hdc"),
                                      na.omit = TRUE) {
   # prepare output
   if (!length(ynames)) return(NULL)
@@ -36,8 +36,8 @@ calculate_screening_doms <- function(ind,
       filter(.data$yname == !!yname & .data$xname == "age") %>%
       select(all_of(c("x", "y", "z")))
 
-    # for wfh, we also need hgt0 and hgt1
-    if (yname == "wfh") {
+    # for wgt, we also need hgt0 and hgt1
+    if (yname == "wgt") {
       h <- an %>%
         filter(.data$yname == "hgt" & .data$xname == "age") %>%
         rename(hgt = "y") %>%

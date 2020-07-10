@@ -1,4 +1,4 @@
-context("calculate_advice_wfh")
+context("calculate_advice_wgt")
 
 kids <- data.frame(
   dob  = c(NA, NA, as.Date("2018-07-31"), as.Date("2018-07-31"),
@@ -22,7 +22,7 @@ kids <- data.frame(
 results <- matrix(NA, nrow = nrow(kids), ncol = 3)
 colnames(results) <- c("k", "expected", "found")
 for (k in 1:nrow(kids)) {
-  found <- calculate_advice_wfh(sex  = kids[k, "sex"],
+  found <- calculate_advice_wgt(sex  = kids[k, "sex"],
                                 dob  = kids[k, "dob"],
                                 ga   = kids[k, "ga"],
                                 hgt0 = kids[k, "hgt0"],

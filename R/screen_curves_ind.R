@@ -2,7 +2,7 @@
 #'
 #' @param ind An object of class \code{minihealth::individual}
 #' @param ynames Character vector identifying the measures to be
-#' screened. By default, \code{ynames = c("hgt", "wfh", "hdc")}.
+#' screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.
 #' @param na.omit A logical indicating whether records with a missing
 #' \code{x} (age) or \code{y} (yname) should be removed. Defaults to
 #' \code{TRUE}.
@@ -12,7 +12,7 @@
 #' @return A data frame with the following columns
 #' \describe{
 #' \item{\code{Categorie}}{The category of the screening guidelines:
-#' \code{1000 = hgt}, \code{2000 = wfh}, \code{3000 = hdc}}
+#' \code{1000 = hgt}, \code{2000 = wgt}, \code{3000 = hdc}}
 #' \item{\code{CategorieOmschrijving}}{A string indicating the measure}
 #' \item{\code{Code}}{Integer message code}
 #' \item{\code{CodeOmschrijving}}{A string with the message}
@@ -25,7 +25,7 @@
 #' screen_curves_ind(ind)
 #' @export
 screen_curves_ind <- function(ind,
-                              ynames = c("hgt", "wfh", "hdc"),
+                              ynames = c("hgt", "wgt", "hdc"),
                               na.omit = TRUE,
                               recalculate_z = FALSE) {
 
@@ -70,7 +70,7 @@ screen_curves_ind <- function(ind,
                    y1 = da$y1,
                    dom0 = da$dom0[i],
                    y0 = da$y0[i]),
-                 wfh = calculate_advice_wfh(
+                 wgt = calculate_advice_wgt(
                    sex = slot(ind, "sex"),
                    dob = get_dob(ind),
                    ga = slot(ind, "ga"),
@@ -92,12 +92,12 @@ screen_curves_ind <- function(ind,
       }
       cati <- switch(yname,
                      hgt = 1000L,
-                     wfh = 2000L,
+                     wgt = 2000L,
                      hdc = 3000L,
                      NA_integer_)
       cato <- switch(yname,
                      hgt = "Lengte",
-                     wfh = "Gewicht",
+                     wgt = "Gewicht",
                      hdc = "Hoofdomtrek",
                      "Onbekend")
 
