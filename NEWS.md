@@ -1,3 +1,10 @@
+# growthscreener 1.5.0
+
+* Introduces `pick_reference_wgt()` to select weight reference depending on sex, age, ga and etn
+* Refreshes the sieve used for under- and overweight screening
+* Solves a bug in `calculate_screening_doms()` that prevented weight screening
+* For clarity, reverts the weight screening code from `wfh` to `wgt`
+
 # growthscreener 1.4.2
 
 * Updates to `roxygen 7.1.1`
