@@ -8,13 +8,14 @@ calculate_advice_wgt(
   sex = NA_character_,
   dob = as.Date(NA),
   ga = NA,
+  etn = NA,
   dom0 = as.Date(NA),
   y0 = NA,
   dom1 = as.Date(NA),
   y1 = NA,
   hgt1 = NA,
   hgt0 = NA,
-  d = NULL
+  test_gain = TRUE
 )
 }
 \arguments{
@@ -24,23 +25,27 @@ calculate_advice_wgt(
 
 \item{ga}{Gestational age, completed weeks (Integer or character)}
 
+\item{etn}{Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
+\code{"MA"} (moroccan) or \code{"HS"} (hindustani).
+The default is \code{"NL"}. Only used for target height.}
+
 \item{dom0}{Date of previous measurement (Date)}
 
-\item{y0}{Weight at previous measurement (kg)}
+\item{y0}{Height at previous measurement (cm)}
 
 \item{dom1}{Date of last measurement (Date)}
 
-\item{y1}{Weight at last measurement (kg)}
+\item{y1}{Height at last measurement (cm)}
 
 \item{hgt1}{Height at last measurement (cm)}
 
 \item{hgt0}{Height at previous measurement (cm)}
 
-\item{d}{Optional, list of derived variables, obtained by
-\code{calculate_helpers()}}
+\item{test_gain}{Logical. Should the increase or decrease in Z-scores be
+tested? The default is \code{TRUE}.}
 }
 \value{
-\code{calculate_advice_hgt} returns an integer, the \code{msgcode}
+\code{calculate_advice_wgt()} returns an integer, the \code{msgcode}
 }
 \description{
 This function traverses the decision tree of the "JGZ-Richtlijn overgewicht
@@ -53,19 +58,14 @@ last measurement, whereas \code{y0} can be one of the previous
 measurements. For more than two measurements, there are many
 pairs possible, and these pairs need not be consecutive.
 The \code{y0} measurement needs to be defined by the user,
-and is informally taken as an earlier measurement that maximumizes
-the referal probability.
+and is informally taken as an earlier measurement that maximizes
+the referral probability.
 }
 \examples{
 msg(calculate_advice_wgt())
-msgcode <- calculate_advice_wgt(sex = "male",
-                                dob = as.Date("2015-01-01"),
-                                dom1 = as.Date("2018-12-12"),
-                                y1 = 25, hgt1 = 120)
+msgcode <- calculate_advice_wgt(sex = "male", dob = as.Date("2015-01-01"),
+                                dom1 = as.Date("2018-12-12"), y1 = 25, hgt1 = 120)
 msg(msgcode)
-}
-\seealso{
-calculate_helpers
 }
 \author{
 Arjan Huizing, Stef van Buuren 2020
