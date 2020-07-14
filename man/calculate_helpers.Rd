@@ -25,8 +25,7 @@ calculate_helpers(
 }
 \arguments{
 \item{yname}{Character, variable to calculate Z-scores of. Can be one of
-\code{"hgt"}, \code{"wgt"}, \code{"hdc"}, \code{"bmi"} or \code{"wfh"}
-(weight for height).}
+\code{"hgt"}, \code{"wgt"}, \code{"hdc"} or \code{"bmi"}.}
 
 \item{lib}{library to search the reference in}
 
@@ -52,17 +51,15 @@ calculate_helpers(
 \item{y1}{\code{y} at last measurement}
 
 \item{hgt1}{\code{hgt} at previous measurement (cm), used when y is
-\code{wfh}}
+\code{wgt}}
 
 \item{dom0}{Date of previous measurement (Date)}
 
 \item{y0}{\code{y} at previous measurement}
 
-\item{hgt0}{\code{hgt} at last measurement (cm), used when y is \code{wfh}}
+\item{hgt0}{\code{hgt} at last measurement (cm), used when y is \code{wgt}}
 }
 \value{
-\code{calculate_advice_hgt} returns an integer, the \code{msgcode}
-
 \code{calculate_helpers()} returns a \code{list} with the following
 elements: \describe{ \item{\code{bw_z}}{Birth weight SDS}
 \item{\code{bl_z}}{Birth length SDS} \item{\code{th}}{Target height (cm)}
@@ -73,7 +70,7 @@ at \code{age0}} }
 }
 \description{
 \code{calculate_helpers()} provides an optional pre-calculation for
-\code{calculate_advice_hgt()}, \code{calculate_advice_wfh()} and
+\code{calculate_advice_hgt()}, \code{calculate_advice_wgt()} and
 \code{calculate_advice_hdc()}. The user may wish to divide up calculations
 into two steps if intermediate results are needed.
 }

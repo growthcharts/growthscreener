@@ -1,12 +1,11 @@
 #' Calculate values required for referral
 #'
 #' \code{calculate_helpers()} provides an optional pre-calculation for
-#' \code{calculate_advice_hgt()}, \code{calculate_advice_wfh()} and
+#' \code{calculate_advice_hgt()}, \code{calculate_advice_wgt()} and
 #' \code{calculate_advice_hdc()}. The user may wish to divide up calculations
 #' into two steps if intermediate results are needed.
 #' @param yname     Character, variable to calculate Z-scores of. Can be one of
-#'   \code{"hgt"}, \code{"wgt"}, \code{"hdc"}, \code{"bmi"} or \code{"wfh"}
-#'   (weight for height).
+#'   \code{"hgt"}, \code{"wgt"}, \code{"hdc"} or \code{"bmi"}.
 #' @param lib   library to search the reference in
 #' @param sex   Character, either \code{"male"} or \code{"female"}
 #' @param dob   Date of birth (class Date)
@@ -21,10 +20,9 @@
 #' @param y1    \code{y} at last measurement
 #' @param dom0  Date of previous measurement (Date)
 #' @param y0    \code{y} at previous measurement
-#' @param hgt0  \code{hgt} at last measurement (cm), used when y is \code{wfh}
+#' @param hgt0  \code{hgt} at last measurement (cm), used when y is \code{wgt}
 #' @param hgt1  \code{hgt} at previous measurement (cm), used when y is
-#'   \code{wfh}
-#' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
+#'   \code{wgt}
 #' @author Paula van Dommelen, Stef van Buuren, Arjan Huizing, 2020
 #' @return \code{calculate_helpers()} returns a \code{list} with the following
 #'   elements: \describe{ \item{\code{bw_z}}{Birth weight SDS}
@@ -53,7 +51,7 @@ calculate_helpers <- function(yname = "hgt", lib = "nl2009", sex = NA_character_
   y <- yname
   pop <- ifelse(ga < 37 & age1 < 4 & !is.na(ga) & !is.na(age1), ga, "NL")
 
-  if(yname == "wfh"){ # wfh is by hgt rather than by age.
+  if(yname == "wgt"){ # wfh is by hgt rather than by age.
     x1 <- hgt1
     x0 <- hgt0
     pop <- ""
