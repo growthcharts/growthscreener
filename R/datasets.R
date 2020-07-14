@@ -14,6 +14,6 @@
 #' @rdname datasets
 "messages"
 
-#' Table of BMI cut-off points (Cole, 2000 (overweight), 2007 (thinness))
+#' Table of BMI cut-off points (Cole, 2000 (overweight), 2007 (thinness), De Wilde)
 #' @rdname datasets
 "bmi_table"
