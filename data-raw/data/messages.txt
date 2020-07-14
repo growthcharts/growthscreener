@@ -42,6 +42,7 @@ msgcode	msg
 1080	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Zijn er duidelijke symptomen die samenhangen met aandoeningen die gepaard gaan met een grote lengte, met name achterstand in motorische en/of spraak/taal achterstand, gedragsproblemen en macrocefalie? Indien ja, Verwijzen naar huisarts/kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
 1081	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Zijn er duidelijke symptomen die samenhangen met aandoeningen die gepaard gaan met een grote lengte, met name achterstand in motorische en/of spraak/taal achterstand, gedragsproblemen en macrocefalie? Indien ja, Verwijzen naar huisarts/kinderarts. Indien nee, voer de eerdere meting in om te bepalen of een verwijzing nodig is.
 1082	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Zijn er duidelijke symptomen die samenhangen met aandoeningen die gepaard gaan met een grote lengte, met name achterstand in motorische en/of spraak/taal achterstand, gedragsproblemen en macrocefalie? Indien ja, Verwijzen naar huisarts/kinderarts. Indien nee, voer zowel de lengte van de moeder als de vader in om te bepalen of een verwijzing nodig is.
+2011	Het advies kan niet worden bepaald. Voer de datum van de voorlaatste meting in.
 2012	Het advies kan niet worden bepaald. Voer het gewicht in bij de voorlaatste meting.
 2013	Het advies kan niet worden bepaald. Voer de lengte in bij de voorlaatste meting.
 2014	Voer de lengte bij de huidige meeting in.
@@ -64,6 +65,7 @@ msgcode	msg
 2073	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Overgewicht, advies: Aandacht besteden aan gezonde voeding en levensstijl, naar eigen inzicht handelen.
 2074	Het advies volgens de JGZ-richtlijn ondergewicht is als volgt: Ondergewicht, advies: Is er sprake van een afwijkende voedingstoestand en/of klachten of symptomen die kunnen wijzen op onderliggende ziekte of problemen? Indien ja, Verwijzen naar kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
 2075	Het advies volgens de JGZ-richtlijn ondergewicht is als volgt: Sterke gewichtsafname (-1 SD), advies: Is er sprake van een afwijkende voedingstoestand en/of klachten of symptomen die kunnen wijzen op onderliggende ziekte of problemen? Indien ja, Verwijzen naar kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
+2076	Het advies volgens de JGZ-richtlijn ondergewicht is als volgt: Ernstig ondergewicht, advies: Is er sprake van een afwijkende voedingstoestand en/of klachten of symptomen die kunnen wijzen op onderliggende ziekte of problemen? Indien ja, Verwijzen naar kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
 3015	Voer de datum van de huidige meting in.
 3016	Voer de geboortedatum in.
 3017	Voer de gegevens in.
