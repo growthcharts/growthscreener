@@ -51,7 +51,7 @@ msgcode	msg
 2018	Voer het gewicht bij de huidige meting in.
 2019	Voer het geslacht in.
 2020	Voer etniciteit in.
-2021	De JGZ-richtlijn lengtegroei is bedoeld voor kinderen tot en met 18 jaar.
+2021	De JGZ-richtlijnen over- en ondergewicht zijn bedoeld voor kinderen tot en met 18 jaar.
 2022	Het kind is nog te kort om de gewicht naar lengte richtlijnen toe te passen.
 2023	Het kind is te lang om de gewicht naar lengte richtlijnen toe te passen. Reken om naar BMI.
 2031	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen.
