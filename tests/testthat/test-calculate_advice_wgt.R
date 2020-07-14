@@ -1,21 +1,21 @@
 context("calculate_advice_wgt")
 
 kids <- data.frame(
-  dob  = c(NA, NA, as.Date("2018-07-31"), as.Date("2018-07-31"),
+  dob  = c(NA, NA, as.Date("2018-07-31"), as.Date("2018-07-31"), as.Date("2018-07-31"),
            as.Date("2018-07-31"), as.Date("2018-07-31"),
            as.Date("2015-07-31"), as.Date("2015-07-31"), as.Date("2015-07-31")),
-  dom1 = c(NA, NA, NA, as.Date("2018-12-12"), as.Date("2019-12-12"),
+  dom1 = c(NA, NA, NA, as.Date("2018-12-12"), as.Date("2018-12-12"), as.Date("2019-12-12"),
            as.Date("2019-12-12"), as.Date("2018-12-12"),
            as.Date("2018-12-12"), as.Date("2018-12-12")),
-  dom0 = c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
-  y1   = c(NA, NA, NA, 6.0, 13, 10, 20, 13, 16),
-  y0   = c(NA, NA, NA, 5.4, NA, NA, NA, NA, 17),
-  sex  = c(NA_character_, "male", "male", "female", "female",
+  dom0 = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA),
+  y1   = c(NA, NA, NA, 6.0, 5.5, 13, 10, 20, 13, 16),
+  y0   = c(NA, NA, NA, 5.4, 5.4, NA, NA, NA, NA, 17),
+  sex  = c(NA_character_, "male", "male", "female", "female", "female",
            "female", "female", "female", "female"),
-  ga   = c(NA, NA, NA, NA, 33, 33, NA, NA, NA),
-  hgt0 = c(NA, NA, NA, 59, NA, NA, NA, NA, 102),
-  hgt1 = c(NA, NA, NA, 60, 85, 85, 105, 105, 105),
-  code = c(2019, 2016, 2015, 2071, 2073, 2012, 2045, 2074, 2075),
+  ga   = c(NA, NA, NA, NA, NA, 33, 33, NA, NA, NA),
+  hgt0 = c(NA, NA, NA, 59, 59, NA, NA, NA, NA, 102),
+  hgt1 = c(NA, NA, NA, 60, 65, 85, 85, 105, 105, 105),
+  code = c(2019, 2016, 2015, 2031, 2074, 2073, 2011, 2045, 2074, 2075),
   stringsAsFactors = FALSE)
 
 # apply algorithm to kids
