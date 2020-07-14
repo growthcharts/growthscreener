@@ -14,6 +14,7 @@
 #' remote in ages (e.g. period between 1 month and 14 years) is probably
 #' not that useful. In practice, we may be interested in setting the
 #' maximum period to, say, five years.
+#'
 #' @param sex   Character, either \code{"male"} or \code{"female"}
 #' @param dob   Date of birth (class Date)
 #' @param bw    Birth weight (grammes)
@@ -150,6 +151,6 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
     }
   }
 
-  # signal everthing is OK
+  # signal everything is OK
   return(1031)
 }
