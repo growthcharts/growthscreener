@@ -12,6 +12,8 @@ msgcode	msg
 1020	Voer etniciteit in.
 1021	De JGZ-richtlijn lengtegroei is bedoeld voor kinderen tot 18 jaar.
 1022	Het kind is nog te jong om een advies te kunnen geven.
+1024	Kan de standard deviatie score van de huidige meting niet bepalen.
+1025	Kan de standard deviatie score van de eerdere meting niet bepalen.
 1031	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen.
 1041	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de huidige lengte en de lengte bij geboorte onder de -2 SD vallen.
 1042	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de huidige lengte en het geboortgegewicht onder de -2 SD vallen.
@@ -55,6 +57,8 @@ msgcode	msg
 2021	De JGZ-richtlijnen over- en ondergewicht zijn bedoeld voor kinderen tot en met 18 jaar.
 2022	Het kind is nog te kort om de gewicht naar lengte richtlijnen toe te passen.
 2023	Het kind is te lang om de gewicht naar lengte richtlijnen toe te passen. Reken om naar BMI.
+2024	Kan de standard deviatie score van de huidige meting niet bepalen.
+2025	Kan de standard deviatie score van de eerdere meting niet bepalen.
 2031	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen.
 2042	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Obesitas, verwijzen naar huisarts/kinderarts.
 2044	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Obesitas, verwijzen naar huisarts/kinderarts na 3-6 maanden contact.
@@ -75,6 +79,8 @@ msgcode	msg
 3021	De richtlijn hoofdomtrek is bedoeld voor kinderen tot 1 jaar.
 3022	Het advies kan niet worden bepaald.  Voer de datum van de voorlaatste meting in.
 3023	Het advies kan niet worden bepaald. Voer de hoofdomtrek bij de voorlaatste meting in.
+3024	Kan de standard deviatie score van de huidige meting niet bepalen.
+3025	Kan de standard deviatie score van de eerdere meting niet bepalen.
 3031	In principe geen verwijzing nodig, naar eigen inzicht handelen.
 3041	Zeer grote hoofdomtrek (> 2,5 SDS), advies: Uit onderzoek blijkt dat een zeer grote hoofdomtrek kan duiden op hydrocephalus. Dit kan een overweging zijn om het kind te verwijzen.
 3042	Zeer grote toename in hoofdomtrek sinds voorlaatste meting (> 2,5 SDS), advies: Uit onderzoek blijkt dat een sterke toename in hoofdomtrek kan duiden op hydrocephalus. Dit kan een overweging zijn om het kind te verwijzen.
