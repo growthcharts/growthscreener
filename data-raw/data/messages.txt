@@ -12,32 +12,32 @@ msgcode	msg
 1020	Voer etniciteit in.
 1021	De JGZ-richtlijn lengtegroei is bedoeld voor kinderen tot 18 jaar.
 1022	Het kind is nog te jong om een advies te kunnen geven.
-1024	Kan de standard deviatie score van de huidige meting niet bepalen.
-1025	Kan de standard deviatie score van de eerdere meting niet bepalen.
+1024	Kan de SDS van de huidige meting niet bepalen.
+1025	Kan de SDS van de eerdere meting niet bepalen.
 1031	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen.
 1041	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de huidige lengte en de lengte bij geboorte onder de -2 SD vallen.
 1042	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de huidige lengte en het geboortgegewicht onder de -2 SD vallen.
-1043	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte < -2 SDS is en de lengte meer dan 1,6 SD afwijkt ten opzichte van de target height.
-1044	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte < -2,5 SD is.
-1045	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte < -3 SDS is en het geboortegewicht >= 2500 gram is.
-1046	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte > 2 SDS is en de lengte meer dan 2 SD afwijkt ten opzichte van de target height.
-1047	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte > 2,5 SD is.
-1048	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte > 3 SDS is.
-1049	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte herhaaldelijk < -2,5 SDS is en het geboorgewicht >= 2500 gram is.
-1050	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte herhaaldelijk > 2,5 SDS is.
+1043	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS < -2 is en de lengte meer dan 1,6 SD afwijkt ten opzichte van de target height.
+1044	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS < -2,5 is.
+1045	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS < -3 is en het geboortegewicht >= 2500 gram is.
+1046	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS > 2 is en de lengte meer dan 2 SD afwijkt ten opzichte van de target height.
+1047	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS > 2,5 is.
+1048	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS > 3 is.
+1049	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS herhaaldelijk < -2,5 is en het geboorgewicht >= 2500 gram is.
+1050	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS herhaaldelijk > 2,5 is.
 1051	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS < -3 en het geboortegewicht >= 2500 gram is.
 1052	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS > 3 is.
 1053	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte tussen de -2 en -1 SD valt en de lengte meer dan 2 SD afwijkt ten opzichte van de target height.
 1054	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat er sprake is van een groeiversnelling van meer dan 2 SD.
 1055	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat er sprake is van een lengteafbuiging van meer dan 2 SD.
-1061	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte < -3 SDS is en het geboortegewicht >= -2 SD gegeven de zwangerschapsduur.
-1062	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte herhaaldelijk < -2,5 SDS is en het geboorgewicht >= -2 SD gegeven de zwangerschapsduur.
-1071	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Als er naast een grote lengte (>2 SDS) ook sprake is van een laat beginnende puberteitsontwikkeling en/of een traag voortschrijdende puberteitsontwikkeling, dan Verwijzen naar de huisarts/kinderarts. Bij ongerustheid over de verwachte eindlengte, kan een lange adolescent worden verwezen naar de huisarts/kinderarts als de puberteit nog niet is voltooid bij een lengte van minimaal 170 cm. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
-1072	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Als er naast een grote lengte (>2 SDS) ook sprake is van een laat beginnende puberteitsontwikkeling en/of een traag voortschrijdende puberteitsontwikkeling, dan Verwijzen naar de huisarts/kinderarts. Bij ongerustheid over de verwachte eindlengte, kan een lange adolescent worden verwezen naar de huisarts/kinderarts als de puberteit nog niet is voltooid bij een lengte van minimaal 185 cm. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
-1073	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Als er naast een grote lengte (>2 SDS) ook sprake is van een laat beginnende puberteitsontwikkeling en/of een traag voortschrijdende puberteitsontwikkeling, dan Verwijzen naar de huisarts/kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
+1061	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS < -3 is en de geboortegewicht SDS >= -2 gegeven de zwangerschapsduur.
+1062	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar huisarts/kinderarts, omdat de lengte SDS herhaaldelijk < -2,5 is en de geboorgewicht SDS >= -2 gegeven de zwangerschapsduur.
+1071	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Als er naast een grote lengte (>2 SD) ook sprake is van een laat beginnende puberteitsontwikkeling en/of een traag voortschrijdende puberteitsontwikkeling, dan Verwijzen naar de huisarts/kinderarts. Bij ongerustheid over de verwachte eindlengte, kan een lange adolescent worden verwezen naar de huisarts/kinderarts als de puberteit nog niet is voltooid bij een lengte van minimaal 170 cm. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
+1072	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Als er naast een grote lengte (>2 SD) ook sprake is van een laat beginnende puberteitsontwikkeling en/of een traag voortschrijdende puberteitsontwikkeling, dan Verwijzen naar de huisarts/kinderarts. Bij ongerustheid over de verwachte eindlengte, kan een lange adolescent worden verwezen naar de huisarts/kinderarts als de puberteit nog niet is voltooid bij een lengte van minimaal 185 cm. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
+1073	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Als er naast een grote lengte (>2 SD) ook sprake is van een laat beginnende puberteitsontwikkeling en/of een traag voortschrijdende puberteitsontwikkeling, dan Verwijzen naar de huisarts/kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
 1074	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Bij ongerustheid over de verwachte eindlengte, kan een lange adolescent worden verwezen naar de huisarts/kinderarts als de puberteit nog niet is voltooid bij een lengte van minimaal 170 cm.
 1075	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Bij ongerustheid over de verwachte eindlengte, kan een lange adolescent worden verwezen naar de huisarts/kinderarts als de puberteit nog niet is voltooid bij een lengte van minimaal 185 cm.
-1076	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Is de afbuiging minder dan 1,5 SDS? Herhaal dan de meting na 6 maanden en controleer dan of de lengte verder is afgenomen met meer dan 0,5 SDS. Voer ook het gewicht en de lengte bij geboorte in. Is de afbuiging al meer dan 1,5 SDS gedurende drie metingen en is de lengte in het afgelopen half jaar met 0,5 SD verder afgenomen, dan verwijzen naar huisarts/kinderarts.
+1076	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Is de afbuiging minder dan 1,5 SD? Herhaal dan de meting na 6 maanden en controleer dan of de lengte verder is afgenomen met meer dan 0,5 SD. Voer ook het gewicht en de lengte bij geboorte in. Is de afbuiging al meer dan 1,5 SD gedurende drie metingen en is de lengte in het afgelopen half jaar met 0,5 SD verder afgenomen, dan verwijzen naar huisarts/kinderarts.
 1077	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Zijn er duidelijke andere symptomen die samenhangen met aandoeningen die gepaard gaan met een grote lengte? Met name achterstanden in de ontwikkeling, gedragsproblemen en macrocefalie (groot hoofd). Indien ja, Verwijzen naar huisarts/kinderarts. Indien nee, in principe geen verwijzing nodig, naar eigen inzicht handelen.
 1078	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Zijn er duidelijke symptomen die samenhangen met aandoeningen die gepaard gaan met een grote lengte, met name achterstand in motorische en/of spraak/taal achterstand, gedragsproblemen en macrocefalie? Het is ook van groot belang om de puberteitskenmerken te onderzoeken, want pubertas praecox is een van de meest voorkomende oorzaken van groeiversnelling van kinderen <8 (meisjes) of <9 (jongens) jaar. Indien ja, Verwijzen naar huisarts/kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
 1079	Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Zijn er duidelijke symptomen die samenhangen met aandoeningen die gepaard gaan met een grote lengte, met name achterstand in motorische en/of spraak/taal achterstand, gedragsproblemen en macrocefalie? Het is ook van groot belang om de puberteitskenmerken te onderzoeken, want pubertas praecox is een van de meest voorkomende oorzaken van groeiversnelling van kinderen <8 (meisjes) of <9 (jongens) jaar. Indien ja, Verwijzen naar huisarts/kinderarts. Indien nee, voer zowel de lengte van de moeder als de vader in om te bepalen of een verwijzing nodig is.
@@ -57,8 +57,8 @@ msgcode	msg
 2021	De JGZ-richtlijnen over- en ondergewicht zijn bedoeld voor kinderen tot en met 18 jaar.
 2022	Het kind is nog te kort om de gewicht naar lengte richtlijnen toe te passen.
 2023	Het kind is te lang om de gewicht naar lengte richtlijnen toe te passen. Reken om naar BMI.
-2024	Kan de standard deviatie score van de huidige meting niet bepalen.
-2025	Kan de standard deviatie score van de eerdere meting niet bepalen.
+2024	Kan de SDS van de huidige meting niet bepalen.
+2025	Kan de SDS van de eerdere meting niet bepalen.
 2031	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen.
 2042	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Obesitas, verwijzen naar huisarts/kinderarts.
 2044	Het advies volgens de JGZ-richtlijn overgewicht is als volgt: Obesitas, verwijzen naar huisarts/kinderarts na 3-6 maanden contact.
@@ -79,11 +79,11 @@ msgcode	msg
 3021	De richtlijn hoofdomtrek is bedoeld voor kinderen tot 1 jaar.
 3022	Het advies kan niet worden bepaald.  Voer de datum van de voorlaatste meting in.
 3023	Het advies kan niet worden bepaald. Voer de hoofdomtrek bij de voorlaatste meting in.
-3024	Kan de standard deviatie score van de huidige meting niet bepalen.
-3025	Kan de standard deviatie score van de eerdere meting niet bepalen.
+3024	Kan de SDS van de huidige meting niet bepalen.
+3025	Kan de SDS van de eerdere meting niet bepalen.
 3031	In principe geen verwijzing nodig, naar eigen inzicht handelen.
-3041	Zeer grote hoofdomtrek (> 2,5 SDS), advies: Uit onderzoek blijkt dat een zeer grote hoofdomtrek kan duiden op hydrocephalus. Dit kan een overweging zijn om het kind te verwijzen.
-3042	Zeer grote toename in hoofdomtrek sinds voorlaatste meting (> 2,5 SDS), advies: Uit onderzoek blijkt dat een sterke toename in hoofdomtrek kan duiden op hydrocephalus. Dit kan een overweging zijn om het kind te verwijzen.
-3043	Zeer kleine hoofdomtrek (< -2 SDS), advies: Uit onderzoek blijkt dat een zeer kleine hoofdomtrek kan duiden op microcefalie. Dit kan een overweging zijn om het kind te verwijzen.
-3044	Snelle toename van de hoofdomtrek sinds voorlaatste meting (> 0,5 SDS), advies: In de gaten houden, naar eigen inzicht handelen.
-3045	Afbuigende hoofdomtrek sinds voorlaatste meting (< -0,5 SDS), advies: In de gaten houden, naar eigen inzicht handelen.
+3041	Zeer grote hoofdomtrek (> 2,5 SD), advies: Uit onderzoek blijkt dat een zeer grote hoofdomtrek kan duiden op hydrocephalus. Dit kan een overweging zijn om het kind te verwijzen.
+3042	Zeer grote toename in hoofdomtrek sinds voorlaatste meting (> 2,5 SD), advies: Uit onderzoek blijkt dat een sterke toename in hoofdomtrek kan duiden op hydrocephalus. Dit kan een overweging zijn om het kind te verwijzen.
+3043	Zeer kleine hoofdomtrek (< -2 SD), advies: Uit onderzoek blijkt dat een zeer kleine hoofdomtrek kan duiden op microcefalie. Dit kan een overweging zijn om het kind te verwijzen.
+3044	Snelle toename van de hoofdomtrek sinds voorlaatste meting (> 0,5 SD), advies: In de gaten houden, naar eigen inzicht handelen.
+3045	Afbuigende hoofdomtrek sinds voorlaatste meting (< -0,5 SD), advies: In de gaten houden, naar eigen inzicht handelen.
