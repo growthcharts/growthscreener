@@ -70,11 +70,11 @@ calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
     }
 
     # low weight
-    if (z1 < -2.0) return(2074)
+    if (!is.na(z1) && z1 < -2.0) return(2074)
 
     # fast decrease 1SD
     if (test_gain) {
-      if (!is.na(z0) && (z1 - z0) < -1.0) return(2075)
+      if (!is.na(z0) && !is.na(z1) && (z1 - z0) < -1.0) return(2075)
     }
   }
 
