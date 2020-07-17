@@ -29,6 +29,8 @@
 #' @param y1    Height at last measurement (cm)
 #' @param dom0  Date of previous measurement (Date)
 #' @param y0    Height at previous measurement (cm)
+#' @param test_gain Logical. Should the increase or decrease in Z-scores be
+#' tested? The default is \code{TRUE}.
 #' @param d     Optional, list of derived variables, obtained by
 #'              \code{calculate_helpers()}
 #' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
@@ -47,10 +49,11 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
                                  etn = "NL", hgtf = NA, hgtm = NA,
                                  dom1 = as.Date(NA), y1 = NA,
                                  dom0 = as.Date(NA), y0 = NA,
+                                 test_gain = TRUE,
                                  d = NULL) {
 
   if (is.null(d)){
-    lib <- ifelse(ga < 37 & !is.na(ga), "preterm", "nl2009")
+    lib <- ifelse(!is.na(ga) && ga < 37, "preterm", "nl2009")
     d <- calculate_helpers(yname = "hgt", lib = lib, sex = sex, dob = dob, bw = bw,
                            bl = bl, ga = ga, etn = etn, hgtf = hgtf, hgtm = hgtm,
                            dom1 = dom1, y1 = y1, dom0 = dom0, y0 = y0)
@@ -75,9 +78,11 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
   # outside age range
   if (age1 >= 18.0) return(1021)
   if (age1 < 0.0833) return(1022)
+  if (is.na(z1)) return(1024)
 
   # check single measurement
   if (age1 < 3.0) {
+
     # short
     if (z1 < -2.5 & is.na(bw)) return(1013)
     if (z1 < -2.5 & is.na(ga)) return(1010)
@@ -86,7 +91,7 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
 
     # tall
     if (z1 > 3.0) return(1048)
-    if (z1 > 2.5 & is.na(z0)) return(1011)
+    if (z1 > 2.5 && is.na(z0) && test_gain) return(1011)
     if (z1 > 1.0) return(1077)
   }
 
@@ -112,10 +117,11 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
         ((age1 < 8.0 & sex == "female") | (age1 < 9.0 & sex == "male"))) return(1079)
     if (z1 > 1.0) return(1081)
 
-    if (is.na(z0)) return(1011)
+    if (is.na(z0) && test_gain) return(1011)
   }
 
   if (age1 >= 10.0 & age1 < 18.0) {
+
     # short
     if (z1 < -2.5) return(1044)
 
@@ -129,26 +135,27 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
   }
 
   # check for gain z1 - z0
-  if (!is.na(z0)) {
-    if (age1 < 3.0) {
-      # short
-      if (z1 < -2.5 & z0 < -2.5 & is.na(bw)) return(1013)
-      if (z1 < -2.5 & z0 < -2.5 & ga < 37 & bw >= 2500) return(1049)
-      if (z1 < -2.5 & z0 < -2.5 & bw_z >= -2) return(1062)
+  if (age1 < 3.0 && test_gain) {
+    if (is.na(z0)) return(1025)
 
-      # tall
-      if (z1 > 2.5 & z0 > 2.5) return(1050)
-    }
+    # short
+    if (z1 < -2.5 & z0 < -2.5 & is.na(bw)) return(1013)
+    if (z1 < -2.5 & z0 < -2.5 & ga < 37 & bw >= 2500) return(1049)
+    if (z1 < -2.5 & z0 < -2.5 & bw_z >= -2) return(1062)
 
-    if (age1 >= 3.0 & age1 < 10.0) {
-      # short
-      if ((z1 - z0) < -2.0) return(1055)
-      if (!is.na(th_z))
-        if (z1 >= -2.0 & (z1 - z0) < -1.0 & (z1 - th_z) < -1.0) return(1076)
+    # tall
+    if (z1 > 2.5 & z0 > 2.5) return(1050)
+  }
 
-      # tall
-      if ((z1 - z0) > 2.0) return(1054)
-    }
+  if (age1 >= 3.0 && age1 < 10.0 && test_gain) {
+    if (is.na(z0)) return(1025)
+    # short
+    if ((z1 - z0) < -2.0) return(1055)
+    if (!is.na(th_z))
+      if (z1 >= -2.0 & (z1 - z0) < -1.0 & (z1 - th_z) < -1.0) return(1076)
+
+    # tall
+    if ((z1 - z0) > 2.0) return(1054)
   }
 
   # signal everything is OK

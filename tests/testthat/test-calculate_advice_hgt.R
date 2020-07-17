@@ -25,8 +25,8 @@ kids <- data.frame(
            NA, NA, NA),
   hgtm = c(170, NA, NA, NA, NA, NA, NA, NA, NA, NA,
            NA, NA, NA),
-  code = c(1031, 1019, 1019, 1016, 1015, 1018, 1031, 1031, 1013, 1045,
-           1061, 1031, 1048),
+  code = c(1031, 1019, 1019, 1016, 1015, 1018, 1025, 1025, 1013, 1045,
+           1061, 1025, 1048),
   stringsAsFactors = FALSE)
 
 # apply algorithm to kids
