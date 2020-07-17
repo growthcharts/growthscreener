@@ -12,6 +12,7 @@ calculate_advice_hdc(
   y1 = NA,
   dom0 = as.Date(NA),
   y0 = NA,
+  test_gain = TRUE,
   d = NULL
 )
 }
@@ -30,11 +31,15 @@ calculate_advice_hdc(
 
 \item{y0}{Head circumference at previous measurement (cm)}
 
+\item{test_gain}{Logical. Should the increase or decrease in Z-scores be
+tested? The default is \code{TRUE}.}
+
 \item{d}{Optional, list of derived variables, obtained by
 \code{calculate_helpers()}}
 }
 \value{
-\code{calculate_advice_hgt} returns an integer, the \code{msgcode}
+\code{calculate_advice_hdc} returns an integer, the \code{msgcode},
+between 3000-3999.
 }
 \description{
 This function traverses a decision tree for head circumference for children
@@ -47,7 +52,7 @@ last measurement, whereas \code{y0} can be one of the previous
 measurements. For more than two measurements, there are many
 pairs possible, and these pairs need not be consecutive.
 The \code{y0} measurement needs to be defined by the user,
-and is informally taken as an earlier measurement that maximumizes
+and is informally taken as an earlier measurement that maximizes
 the referal probability.
 }
 \examples{
@@ -62,5 +67,5 @@ msg(msgcode)
 calculate_helpers
 }
 \author{
-Arjan Huizing, 2020
+Arjan Huizing, Stef van Buuren, 2020
 }

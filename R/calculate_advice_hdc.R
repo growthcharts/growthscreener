@@ -9,20 +9,15 @@
 #' measurements. For more than two measurements, there are many
 #' pairs possible, and these pairs need not be consecutive.
 #' The \code{y0} measurement needs to be defined by the user,
-#' and is informally taken as an earlier measurement that maximumizes
+#' and is informally taken as an earlier measurement that maximizes
 #' the referal probability.
 #'
-#' @param sex   Character, either \code{"male"} or \code{"female"}
-#' @param dob   Date of birth (class Date)
-#' @param ga    Gestational age, completed weeks (Integer or character)
-#' @param dom1  Date of last measurement (Date)
 #' @param y1    Head circumference at last measurement (cm)
-#' @param dom0  Date of previous measurement (Date)
 #' @param y0    Head circumference at previous measurement (cm)
-#' @param d     Optional, list of derived variables, obtained by
-#'   \code{calculate_helpers()}
-#' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
-#' @author Arjan Huizing, 2020
+#' @inheritParams calculate_advice_hgt
+#' @return \code{calculate_advice_hdc} returns an integer, the \code{msgcode},
+#' between 3000-3999.
+#' @author Arjan Huizing, Stef van Buuren, 2020
 #' @seealso calculate_helpers
 #' @rdname advice_hdc
 #' @examples
@@ -37,14 +32,14 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
                                  ga = NA,
                                  dom1 = as.Date(NA), y1 = NA,
                                  dom0 = as.Date(NA), y0 = NA,
+                                 test_gain = TRUE,
                                  d = NULL) {
 
   if (is.null(d)){
-    lib <- ifelse(ga < 37 & !is.na(ga), "preterm", "nl1997")
+    lib <- ifelse(!is.na(ga) && ga < 37 , "preterm", "nl1997")
     d <- calculate_helpers(yname = "hdc", lib = lib, sex = sex, dob = dob, ga = ga,
                            dom1 = dom1, y1 = y1, dom0 = dom0, y0 = y0)
   }
-
 
   age1 <- d$age1
   age0 <- d$age0
@@ -63,24 +58,27 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
   if (age1 >= 1.0) return(3021)
 
   # check single measurement
-  if(z1 > 2.5) return(3041)
-  if(z1 < -2) return(3043)
+  if (is.na(z1)) return(3024)
+  if (z1 > 2.5) return(3041)
+  if (z1 < -2) return(3043)
 
   # check for change z1 - z0
-    # perhaps add a filter so that we dont always need z0 values for a '31'
-  if(is.na(dom0)) return(3022)
-  if(is.na(y0)) return(3023)
+  if (test_gain) {
+    if (is.na(dom0)) return(3022)
+    if (is.na(y0)) return(3023)
+    if (is.na(z0)) return(3025)
 
-  if((z1 - z0) > 2.5) return(3042)
+    if ((z1 - z0) > 2.5) return(3042)
 
-  # increase (within 0.5 yrs)
-  if(age1 - age0 <= 0.5){
-    if((z1 - z0) > 0.5) return(3044)
+    # increase (within 0.5 yrs)
+    if (age1 - age0 <= 0.5){
+      if ((z1 - z0) > 0.5) return(3044)
+    }
+
+    # decrease
+    if ((z1 - z0) < -0.5) return(3045)
   }
-  # decrease
-  if((z1 - z0) < -0.5) return(3045)
 
-
-  # signal everthing is OK
+  # signal everything is OK
   return(3031)
 }
