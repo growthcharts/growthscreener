@@ -1,3 +1,14 @@
+# growthscreener 1.6.0
+
+* This version improves consistency in sieves and messages
+* Adds checks on missing data for `z1` in some edge cases where needed
+* Adds messages `**24` and `**25` for edge cases where the Z-score cannot be calculated, even if all information is available
+* Adds a `test_gain` argument to screening function that we may use to disable any checking on gain scores `z1 - z0` (e.g. when there is only one observation for a child)
+* Uses stricter scalar comparison operators `&&` and `||`
+* Makes `SD` and `SDS` consistent in messages
+* Replaces text "voorlaatste" to the more generic "eerdere"
+* Adds test code that runs all `json` files in `jamestest`
+
 # growthscreener 1.5.0
 
 * Introduces `pick_reference_wgt()` to select weight reference depending on sex, age, ga and etn
