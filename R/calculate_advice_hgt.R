@@ -84,10 +84,10 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
   if (age1 < 3.0) {
 
     # short
-    if (z1 < -2.5 & is.na(bw)) return(1013)
-    if (z1 < -2.5 & is.na(ga)) return(1010)
-    if (z1 < -3.0 & ga >= 37 & bw >= 2500) return(1045)
-    if (z1 < -3.0 & bw_z >= -2) return(1061)
+    if (z1 < -2.5 && is.na(bw)) return(1013)
+    if (z1 < -2.5 && is.na(ga)) return(1010)
+    if (z1 < -3.0 && ga >= 37 && bw >= 2500) return(1045)
+    if (z1 < -3.0 && bw_z >= -2) return(1061)
 
     # tall
     if (z1 > 3.0) return(1048)
@@ -95,43 +95,43 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
     if (z1 > 1.0) return(1077)
   }
 
-  if (age1 >= 3.0 & age1 < 10.0) {
+  if (age1 >= 3.0 && age1 < 10.0) {
 
     # short
     if (z1 < -2.5) return(1044)
-    if (z1 < -2.0 & !is.na(bw_z)) if (bw_z < -2.0) return(1042)
-    if (z1 < -2.0 & !is.na(bl_z)) if (bl_z < -2.0) return(1041)
+    if (z1 < -2.0 && !is.na(bw_z)) if (bw_z < -2.0) return(1042)
+    if (z1 < -2.0 && !is.na(bl_z)) if (bl_z < -2.0) return(1041)
     if (!is.na(th_z)) {
-      if (z1 <  -2.0 & (z1 - th_z) < -1.6) return(1043)
-      if (z1 >= -2.0 & z1 < -1.0 & (z1 - th_z) < -2.0) return(1053)
+      if (z1 <  -2.0 && (z1 - th_z) < -1.6) return(1043)
+      if (z1 >= -2.0 && z1 < -1.0 && (z1 - th_z) < -2.0) return(1053)
     }
-    if (z1 < -2.0 & is.na(bw)) return(1013)
-    if (z1 < -2.0 & is.na(bl)) return(1012)
-    if (z1 < -1.0 & is.na(th_z)) return(1014)
+    if (z1 < -2.0 && is.na(bw)) return(1013)
+    if (z1 < -2.0 && is.na(bl)) return(1012)
+    if (z1 < -1.0 && is.na(th_z)) return(1014)
 
     # tall
     if (z1 > 2.5) return(1047)
-    if (!is.na(th_z)) if (z1 > 2.0 & (z1 - th_z) > 2.0) return(1046)
-    if (z1 > 2.0 & is.na(th_z)) return(1082)
-    if (z1 > 1.0 &
-        ((age1 < 8.0 & sex == "female") | (age1 < 9.0 & sex == "male"))) return(1079)
+    if (!is.na(th_z)) if (z1 > 2.0 && (z1 - th_z) > 2.0) return(1046)
+    if (z1 > 2.0 && is.na(th_z)) return(1082)
+    if (z1 > 1.0 &&
+        ((age1 < 8.0 && sex == "female") || (age1 < 9.0 && sex == "male"))) return(1079)
     if (z1 > 1.0) return(1081)
 
     if (is.na(z0) && test_gain) return(1011)
   }
 
-  if (age1 >= 10.0 & age1 < 18.0) {
+  if (age1 >= 10.0 && age1 < 18.0) {
 
     # short
     if (z1 < -2.5) return(1044)
 
     # tall
     if (z1 > 2.5) return(1047)
-    if (z1 > 2.0 & sex == "female" & y1 >= 170) return(1071)
-    if (z1 > 2.0 & sex == "male" & y1 >= 185) return(1072)
+    if (z1 > 2.0 && sex == "female" && y1 >= 170) return(1071)
+    if (z1 > 2.0 && sex == "male" && y1 >= 185) return(1072)
     if (z1 > 2.0) return(1073)
-    if (sex == "female" & y1 >= 170.0) return(1074)
-    if (sex == "male" & y1 >= 185.0) return(1075)
+    if (sex == "female" && y1 >= 170.0) return(1074)
+    if (sex == "male" && y1 >= 185.0) return(1075)
   }
 
   # check for gain z1 - z0
@@ -139,12 +139,12 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
     if (is.na(z0)) return(1025)
 
     # short
-    if (z1 < -2.5 & z0 < -2.5 & is.na(bw)) return(1013)
-    if (z1 < -2.5 & z0 < -2.5 & ga < 37 & bw >= 2500) return(1049)
-    if (z1 < -2.5 & z0 < -2.5 & bw_z >= -2) return(1062)
+    if (z1 < -2.5 && z0 < -2.5 && is.na(bw)) return(1013)
+    if (z1 < -2.5 && z0 < -2.5 && ga < 37 && bw >= 2500) return(1049)
+    if (z1 < -2.5 && z0 < -2.5 && bw_z >= -2) return(1062)
 
     # tall
-    if (z1 > 2.5 & z0 > 2.5) return(1050)
+    if (z1 > 2.5 && z0 > 2.5) return(1050)
   }
 
   if (age1 >= 3.0 && age1 < 10.0 && test_gain) {
@@ -152,7 +152,7 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
     # short
     if ((z1 - z0) < -2.0) return(1055)
     if (!is.na(th_z))
-      if (z1 >= -2.0 & (z1 - z0) < -1.0 & (z1 - th_z) < -1.0) return(1076)
+      if (z1 >= -2.0 && (z1 - z0) < -1.0 && (z1 - th_z) < -1.0) return(1076)
 
     # tall
     if ((z1 - z0) > 2.0) return(1054)

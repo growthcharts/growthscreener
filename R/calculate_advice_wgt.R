@@ -15,8 +15,6 @@
 #' @inheritParams calculate_advice_hgt
 #' @param hgt1    Height at last measurement (cm)
 #' @param hgt0    Height at previous measurement (cm)
-#' @param test_gain Logical. Should the increase or decrease in Z-scores be
-#' tested? The default is \code{TRUE}.
 #' @return \code{calculate_advice_wgt()} returns an integer, the \code{msgcode}
 #' @author Arjan Huizing, Stef van Buuren 2020
 #' @rdname advice_wgt

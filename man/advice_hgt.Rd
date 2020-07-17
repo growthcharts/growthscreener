@@ -17,6 +17,7 @@ calculate_advice_hgt(
   y1 = NA,
   dom0 = as.Date(NA),
   y0 = NA,
+  test_gain = TRUE,
   d = NULL
 )
 }
@@ -46,6 +47,9 @@ The default is \code{"NL"}. Only used for target height.}
 \item{dom0}{Date of previous measurement (Date)}
 
 \item{y0}{Height at previous measurement (cm)}
+
+\item{test_gain}{Logical. Should the increase or decrease in Z-scores be
+tested? The default is \code{TRUE}.}
 
 \item{d}{Optional, list of derived variables, obtained by
 \code{calculate_helpers()}}
