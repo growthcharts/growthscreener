@@ -44,7 +44,7 @@ msgcode
 #> [1] 1045
 cat(fold(msg(msgcode)))
 #> Het advies volgens de JGZ-richtlijn lengtegroei is als volgt: Verwijzen naar
-#> huisarts/kinderarts, omdat de lengte < -3 SDS is en het geboortegewicht >= 2500
+#> huisarts/kinderarts, omdat de lengte SDS < -3 is en het geboortegewicht >= 2500
 #> gram is.
 
 # some more details
@@ -73,8 +73,8 @@ The package implements the following guidelines:
   - **Beslisboom Hoofdomtrek**: A decision tree for head circumference
     for children below the age of 1 year.
 
-There are 43 different messages for height, 21 messages for weight and
-15 messages for head circumference. To see them all:
+There are 45 different messages for height, 26 messages for weight and
+17 messages for head circumference. To see them all:
 
 ``` r
 messages
