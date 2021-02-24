@@ -61,12 +61,12 @@ calculate_helpers <- function(yname = "hgt", lib = "nl2009", sex = NA_character_
   }
 
   ref <- try(find.reference(yname == y & sex == s & sub == pop,
-                        libname = lib, select = TRUE, exact = TRUE),
+                            libname = lib, select = TRUE, exact = TRUE),
              silent = TRUE)
-  z1 <- y2z(y = y1, x = x1, sex = sex, sub = etn,
-            ref = ref)
-  z0 <- y2z(y = y0, x = x0, sex = sex, sub = etn,
-            ref = ref)
+  z1 <- clopus::y2z(y = y1, x = x1, sex = sex, sub = etn,
+                    ref = ref)
+  z0 <- clopus::y2z(y = y0, x = x0, sex = sex, sub = etn,
+                    ref = ref)
 
   list(bw_z = bw_z, bl_z = bl_z, th = th, th_z = th_z,
        age1 = age1, age0 = age0, z1 = z1, z0 = z0)
