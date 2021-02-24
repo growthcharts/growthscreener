@@ -1,3 +1,7 @@
+# growthscreener 1.6.1
+
+* Explicit declaration of `clopus`
+
 # growthscreener 1.6.0
 
 * This version improves consistency in sieves and messages
