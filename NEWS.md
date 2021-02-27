@@ -1,3 +1,7 @@
+# growthscreener 1.7.0 
+
+* Major rewrite to replace the `clopus` by the `centile` package for clearer, easier and extendable reference selection and calculation
+
 # growthscreener 1.6.1
 
 * Explicit declaration of `clopus`
