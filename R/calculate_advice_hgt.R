@@ -31,17 +31,17 @@
 #' @param y0    Height at previous measurement (cm)
 #' @param test_gain Logical. Should the increase or decrease in Z-scores be
 #' tested? The default is \code{TRUE}.
-#' @param d     Optional, list of derived variables, obtained by
-#'              \code{calculate_helpers()}
+#' @param verbose Set to \code{TRUE} to obtain warnings on reference finding.
 #' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
-#' @author Paula van Dommelen, Stef van Buuren, 2019
-#' @seealso calculate_helpers
+#' @author Paula van Dommelen, Stef van Buuren, 2021
 #' @rdname advice_hgt
 #' @examples
 #' msg(calculate_advice_hgt())
 #' msgcode <- calculate_advice_hgt(sex = "male",
 #'                                 dob = as.Date("2018-07-31"),
-#'                                 dom1 = as.Date("2018-12-12"), y1 = 64)
+#'                                 dom1 = as.Date("2018-12-12"),
+#'                                 y1 = 64, ga = 35,
+#'                                 test_gain = FALSE)
 #' msg(msgcode)
 #' @export
 calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
@@ -50,22 +50,30 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
                                  dom1 = as.Date(NA), y1 = NA,
                                  dom0 = as.Date(NA), y0 = NA,
                                  test_gain = TRUE,
-                                 d = NULL) {
+                                 verbose = FALSE) {
 
-  if (is.null(d)){
-    lib <- ifelse(!is.na(ga) && ga < 37, "preterm", "nl2009")
-    d <- calculate_helpers(yname = "hgt", lib = lib, sex = sex, dob = dob, bw = bw,
-                           bl = bl, ga = ga, etn = etn, hgtf = hgtf, hgtm = hgtm,
-                           dom1 = dom1, y1 = y1, dom0 = dom0, y0 = y0)
+  bw_z <- calculate_birth_z(bw, sex, ga, yname = "wgt")
+  bl_z <- calculate_birth_z(bl, sex, ga, yname = "hgt")
+  th_z <- calculate_th(hgtf, hgtm, sex = sex, etn = etn)[2L]
+  age1 <- as.integer(dom1 - dob)/365.25
+  age0 <- as.integer(dom0 - dob)/365.25
+
+  # select reference
+  pt <- !is.na(ga) && ga < 37 && !is.na(age1) && age1 < 4
+  year <- ifelse(pt, "2012", "2009")
+  sub <- ifelse(pt, ga, "nl")
+  refcode <- centile::make_refcode(name = "nl", year = year, yname = "hgt",
+                                   sex = sex, sub = sub)
+
+  # calculate z1 and z0
+  reftab <- centile::load_reference(refcode, pkg = "jamesyzy", verbose = verbose)
+  if (is.null(reftab)) {
+    z1 <- z0 <- NA_real_
+  } else {
+    z <- centile::y2z(y = c(y1, y0), x = c(age1, age0), refcode = reftab)
+    z1 <- z[1L]
+    z0 <- z[2L]
   }
-
-  bw_z <- d$bw_z
-  bl_z <- d$bl_z
-  th_z <- d$th_z
-  age1 <- d$age1
-  age0 <- d$age0
-  z1   <- d$z1
-  z0   <- d$z0
 
   # start the sieve
 

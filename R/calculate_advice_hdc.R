@@ -33,18 +33,27 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
                                  dom1 = as.Date(NA), y1 = NA,
                                  dom0 = as.Date(NA), y0 = NA,
                                  test_gain = TRUE,
-                                 d = NULL) {
+                                 verbose = FALSE) {
 
-  if (is.null(d)){
-    lib <- ifelse(!is.na(ga) && ga < 37 , "preterm", "nl1997")
-    d <- calculate_helpers(yname = "hdc", lib = lib, sex = sex, dob = dob, ga = ga,
-                           dom1 = dom1, y1 = y1, dom0 = dom0, y0 = y0)
+  age1 <- as.integer(dom1 - dob)/365.25
+  age0 <- as.integer(dom0 - dob)/365.25
+
+  # select reference
+  pt <- !is.na(ga) && ga < 37 && !is.na(age1) && age1 < 4
+  year <- ifelse(pt, "2012", "1997")
+  sub <- ifelse(pt, ga, "nl")
+  refcode <- centile::make_refcode(name = "nl", year = year, yname = "hdc",
+                                   sex = sex, sub = sub)
+
+  # calculate z1 and z0
+  reftab <- centile::load_reference(refcode, pkg = "jamesyzy", verbose = verbose)
+  if (is.null(reftab)) {
+    z1 <- z0 <- NA_real_
+  } else {
+    z <- centile::y2z(y = c(y1, y0), x = c(age1, age0), refcode = reftab)
+    z1 <- z[1L]
+    z0 <- z[2L]
   }
-
-  age1 <- d$age1
-  age0 <- d$age0
-  z1   <- d$z1
-  z0   <- d$z0
 
   # start the sieve
 

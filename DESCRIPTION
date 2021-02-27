@@ -19,16 +19,16 @@ Description: Unusual child growth may be a sign of an underlying
     evaluate the growth pattern of a child relative to Dutch 
     guidelines.
 Depends: 
-    R (>= 3.5.0)
+    R (>= 3.5.0),
+    jamesyzy
 Imports: 
-    clopus (>= 0.43.0),
+    centile,
     dplyr,
     lubridate,
     minihealth (>= 0.64.0),
     methods,
     tidyselect
 Remotes: 
-    stefvanbuuren/clopus,
     stefvanbuuren/minihealth
 License: AGPL-3 + file LICENSE
 Encoding: UTF-8

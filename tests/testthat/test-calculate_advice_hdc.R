@@ -1,5 +1,3 @@
-context("calculate_advice_hdc")
-
 kids <- data.frame(
   dob  = c(NA, NA, as.Date("2018-07-31"), as.Date("2018-07-31"),
            as.Date("2018-07-31"), as.Date("2018-07-31"),

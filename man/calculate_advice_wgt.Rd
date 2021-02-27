@@ -15,7 +15,8 @@ calculate_advice_wgt(
   y1 = NA,
   hgt1 = NA,
   hgt0 = NA,
-  test_gain = TRUE
+  test_gain = TRUE,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ The default is \code{"NL"}. Only used for target height.}
 
 \item{test_gain}{Logical. Should the increase or decrease in Z-scores be
 tested? The default is \code{TRUE}.}
+
+\item{verbose}{Set to \code{TRUE} to obtain warnings on reference finding.}
 }
 \value{
 \code{calculate_advice_wgt()} returns an integer, the \code{msgcode}

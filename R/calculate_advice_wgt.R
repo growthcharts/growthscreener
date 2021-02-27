@@ -17,19 +17,19 @@
 #' @param hgt0    Height at previous measurement (cm)
 #' @return \code{calculate_advice_wgt()} returns an integer, the \code{msgcode}
 #' @author Arjan Huizing, Stef van Buuren 2020
-#' @rdname advice_wgt
 #' @examples
 #' msg(calculate_advice_wgt())
 #' msgcode <- calculate_advice_wgt(sex = "male", dob = as.Date("2015-01-01"),
 #'                                 dom1 = as.Date("2018-12-12"), y1 = 25, hgt1 = 120)
 #' msg(msgcode)
 #' @export
-calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
-                                 ga = NA, etn = NA,
-                                 dom0 = as.Date(NA),
-                                 y0 = NA, dom1 = as.Date(NA), y1 = NA,
-                                 hgt1 = NA, hgt0 = NA,
-                                 test_gain = TRUE) {
+calculate_advice_wgt  <- function(sex = NA_character_, dob = as.Date(NA),
+                                  ga = NA, etn = NA,
+                                  dom0 = as.Date(NA),
+                                  y0 = NA, dom1 = as.Date(NA), y1 = NA,
+                                  hgt1 = NA, hgt0 = NA,
+                                  test_gain = TRUE,
+                                  verbose = FALSE) {
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(2019)
@@ -48,12 +48,17 @@ calculate_advice_wgt <- function(sex = NA_character_, dob = as.Date(NA),
   # obtain Z-values
   pick <- pick_reference_wgt(age1, sex, ga, etn)
   if (is.null(pick)) {
-    z0 <- rep(NA, length(y0))
-    z1 <- rep(NA, length(y1))
+    z0 <- rep(NA_real_, length(y0))
+    z1 <- rep(NA_real_, length(y1))
   } else {
-    ref <- eval(parse(text = pick$call))
-    z0 <- clopus::y2z(y = pick$ty(y0), x = hgt0, ref = ref)
-    z1 <- clopus::y2z(y = pick$ty(y1), x = hgt1, ref = ref)
+    reftable <- centile::load_reference(refcode = pick, pkg = "jamesyzy", verbose = verbose)
+    if (is.null(reftable)) {
+      z0 <- rep(NA_real_, length(y0))
+      z1 <- rep(NA_real_, length(y0))
+    } else {
+      z0 <- centile::y2z(y = y0, x = hgt0, refcode = reftable)
+      z1 <- centile::y2z(y = y1, x = hgt1, refcode = reftable)
+    }
   }
 
   # start sieve

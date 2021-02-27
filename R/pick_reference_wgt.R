@@ -43,10 +43,10 @@ pick_reference_wgt <- function(age = NA,
                                sex = NA_character_,
                                ga = NA,
                                etn = NA_character_) {
-  age <- as.numeric(age[1])
-  sex <- as.character(sex[1])
-  ga <- as.numeric(ga[1])
-  etn <- as.character(etn[1])
+  age <- as.numeric(age[1L])
+  sex <- as.character(sex[1L])
+  ga <- as.numeric(ga[1L])
+  etn <- as.character(etn[1L])
 
   if (is.na(age) || age < 0) return(NULL)
   if (!sex %in% c("male", "female")) return(NULL)
@@ -75,14 +75,12 @@ pick_reference_wgt <- function(age = NA,
 
   # later years: weight for height
   if (!is.na(etn) && etn == "HS" && !is.na(ga) && ga >= 37) {
-    if (sex == "male") return(list(call = "clopus::nlhs[['nl1976wfh.mwfhHS']]", ty = function(y) log10(y), yname = "wfh"))
-    if (sex == "female") return(list(call = "clopus::nlhs[['nl1976wfh.fwfhHS']]", ty = function(y) log10(y), yname = "wfh"))
+    return(paste("nl_1976_wfh", sex, "hs", sep = "_"))
   }
   if (is.na(ga) || ga >= 37) {
-    if (sex == "male") return(list(call = "clopus::nl1980[['nl1980.mwfhNLA']]", ty = function(y) log10(y), yname = "wfh"))
-    if (sex == "female") return(list(call = "clopus::nl1980[['nl1980.fwfhNLA']]", ty = function(y) log10(y), yname = "wfh"))
+    return(paste("nl_1980_wfh", sex, "nla", sep = "_"))
   }
-  if (sex == "male") return(list(call = "clopus::preterm[['pt2012wfh.mwfh']]", ty = function(y) log1p(y), yname = "wfh"))
-  if (sex == "female") return(list(call = "clopus::preterm[['pt2012wfh.fwfh']]", ty = function(y) log1p(y), yname = "wfh"))
-  return(NULL)
+
+  # WFH until 120 cm
+  paste("nl_2012_wfh", sex, "", sep = "_")
 }

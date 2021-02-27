@@ -17,3 +17,7 @@
 #' Table of BMI cut-off points (Cole, 2000 (overweight), 2007 (thinness), De Wilde)
 #' @rdname datasets
 "bmi_table"
+
+#' Example of an object of class \code{individual} from the \code{minihealth} package
+#' @rdname datasets
+"individual"

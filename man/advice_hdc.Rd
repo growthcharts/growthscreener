@@ -13,7 +13,7 @@ calculate_advice_hdc(
   dom0 = as.Date(NA),
   y0 = NA,
   test_gain = TRUE,
-  d = NULL
+  verbose = FALSE
 )
 }
 \arguments{
@@ -34,8 +34,7 @@ calculate_advice_hdc(
 \item{test_gain}{Logical. Should the increase or decrease in Z-scores be
 tested? The default is \code{TRUE}.}
 
-\item{d}{Optional, list of derived variables, obtained by
-\code{calculate_helpers()}}
+\item{verbose}{Set to \code{TRUE} to obtain warnings on reference finding.}
 }
 \value{
 \code{calculate_advice_hdc} returns an integer, the \code{msgcode},

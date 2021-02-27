@@ -18,7 +18,7 @@ calculate_advice_hgt(
   dom0 = as.Date(NA),
   y0 = NA,
   test_gain = TRUE,
-  d = NULL
+  verbose = FALSE
 )
 }
 \arguments{
@@ -51,8 +51,7 @@ The default is \code{"NL"}. Only used for target height.}
 \item{test_gain}{Logical. Should the increase or decrease in Z-scores be
 tested? The default is \code{TRUE}.}
 
-\item{d}{Optional, list of derived variables, obtained by
-\code{calculate_helpers()}}
+\item{verbose}{Set to \code{TRUE} to obtain warnings on reference finding.}
 }
 \value{
 \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
@@ -78,12 +77,11 @@ maximum period to, say, five years.
 msg(calculate_advice_hgt())
 msgcode <- calculate_advice_hgt(sex = "male",
                                 dob = as.Date("2018-07-31"),
-                                dom1 = as.Date("2018-12-12"), y1 = 64)
+                                dom1 = as.Date("2018-12-12"),
+                                y1 = 64, ga = 35,
+                                test_gain = FALSE)
 msg(msgcode)
 }
-\seealso{
-calculate_helpers
-}
 \author{
-Paula van Dommelen, Stef van Buuren, 2019
+Paula van Dommelen, Stef van Buuren, 2021
 }
