@@ -20,7 +20,7 @@ May be a vector. Converted to numeric.}
 \item{dec}{Number of decimals for rounding}
 }
 \value{
-\preformatted{ Numeric vector of \code{length(bw)} elements with
+\preformatted{ Numeric vector of `length(bw)` elements with
          standard deviation scores relative to Dutch birth
          weight references
 }

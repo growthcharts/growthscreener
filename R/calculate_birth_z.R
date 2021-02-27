@@ -2,12 +2,12 @@
 #'
 #' @param y     Birth weight (grammes) or birth length (cm).
 #'              May be a vector. Converted to numeric.
-#' @param sex   Character, either \code{"M"} (male) or \code{"F"} (female)
+#' @param sex   Character, either `"M"` (male) or `"F"` (female)
 #' @param ga    Gestational age, completed week (Integer or character)
-#' @param yname Either \code{"wgt"} (for birth weight) or \code{"hgt"}
+#' @param yname Either `"wgt"` (for birth weight) or `"hgt"`
 #'              (for birth length)
 #' @param dec   Number of decimals for rounding
-#' @return      Numeric vector of \code{length(bw)} elements with
+#' @return      Numeric vector of `length(bw)` elements with
 #'              standard deviation scores relative to Dutch birth
 #'              weight references
 #' @author      Stef van Buuren, 2019

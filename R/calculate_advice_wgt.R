@@ -4,18 +4,18 @@
 #' 2012" and "JGZ-Richtlijn Ondergewicht 2019"
 #'
 #' The decision tree assesses both single and paired measurements.
-#' The last observations (\code{y1}) is generally taken as the
-#' last measurement, whereas \code{y0} can be one of the previous
+#' The last observations (`y1`) is generally taken as the
+#' last measurement, whereas `y0` can be one of the previous
 #' measurements. For more than two measurements, there are many
 #' pairs possible, and these pairs need not be consecutive.
-#' The \code{y0} measurement needs to be defined by the user,
+#' The `y0` measurement needs to be defined by the user,
 #' and is informally taken as an earlier measurement that maximizes
 #' the referral probability.
 #'
 #' @inheritParams calculate_advice_hgt
 #' @param hgt1    Height at last measurement (cm)
 #' @param hgt0    Height at previous measurement (cm)
-#' @return \code{calculate_advice_wgt()} returns an integer, the \code{msgcode}
+#' @return `calculate_advice_wgt()` returns an integer, the `msgcode`
 #' @author Arjan Huizing, Stef van Buuren 2020
 #' @examples
 #' msg(calculate_advice_wgt())

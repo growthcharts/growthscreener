@@ -1,24 +1,24 @@
 #' Screen growth curves according to JGZ guidelines
 #'
-#' @param ind An object of class \code{minihealth::individual}
+#' @param ind An object of class `minihealth::individual`
 #' @param ynames Character vector identifying the measures to be
-#' screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.
+#' screened. By default, `ynames = c("hgt", "wgt", "hdc")`.
 #' @param na.omit A logical indicating whether records with a missing
-#' \code{x} (age) or \code{y} (yname) should be removed. Defaults to
-#' \code{TRUE}.
+#' `x` (age) or `y` (yname) should be removed. Defaults to
+#' `TRUE`.
 #' @param recalculate_z A logical indicating whether Z-scores should be
 #' recalculated. Currently not functional. Z-scores are always
 #' recalculated.
 #' @return A data frame with the following columns
 #' \describe{
-#' \item{\code{Categorie}}{The category of the screening guidelines:
-#' \code{1000 = hgt}, \code{2000 = wgt}, \code{3000 = hdc}}
-#' \item{\code{CategorieOmschrijving}}{A string indicating the measure}
-#' \item{\code{Code}}{Integer message code}
-#' \item{\code{CodeOmschrijving}}{A string with the message}
-#' \item{\code{Versie}}{Version of \code{growthscreener} package}
-#' \item{\code{Leeftijd0}}{First date of the evaluation pair}
-#' \item{\code{Leeftijd1}}{Second date of the evaluation pair}
+#' \item{`Categorie`}{The category of the screening guidelines:
+#' `1000 = hgt`, `2000 = wgt`, `3000 = hdc`}
+#' \item{`CategorieOmschrijving`}{A string indicating the measure}
+#' \item{`Code`}{Integer message code}
+#' \item{`CodeOmschrijving`}{A string with the message}
+#' \item{`Versie`}{Version of `growthscreener` package}
+#' \item{`Leeftijd0`}{First date of the evaluation pair}
+#' \item{`Leeftijd1`}{Second date of the evaluation pair}
 #' }
 #' @examples
 #' screen_curves_ind(individual)

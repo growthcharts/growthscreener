@@ -7,36 +7,36 @@
 #' The Z-score calculation relies on normative references. The exact reference
 #' used depends on the age of the child, sex, gestational age and ethnicity.
 #'
-#' The underweight guideline prescribes \code{wgt} references for ages 0-1 years,
-#' \code{wfh} references for ages 1-2 years. The overweight guidelines prescribes
-#' \code{wfh} references for ages 0-2 years. For consistency and simplicity, the
+#' The underweight guideline prescribes `wgt` references for ages 0-1 years,
+#' `wfh` references for ages 1-2 years. The overweight guidelines prescribes
+#' `wfh` references for ages 0-2 years. For consistency and simplicity, the
 #' suggestion of the overweight guidelines is followed for both under- and
 #' overweight. For ages > 2.0,  international and ethnic
 #' specific (for HS) BMI-cut offs are use.
-#' For preterms (ga < 37) Dutch preterm \code{wgt} and \code{wfh} references
+#' For preterms (ga < 37) Dutch preterm `wgt` and `wfh` references
 #' are used. The function does not return BMI references.
 #'
-#' Missing data policy: if \code{age} or \code{sex} are missing, the function
-#' returns \code{NULL}. If \code{ga} is missing, the function assumes term birth.
-#' If \code{etn} is missing the function assumes Dutch ethnicity.
+#' Missing data policy: if `age` or `sex` are missing, the function
+#' returns `NULL`. If `ga` is missing, the function assumes term birth.
+#' If `etn` is missing the function assumes Dutch ethnicity.
 #'
 #' @param age   Scalar, most recent decimal age (in years).
-#' @param sex   Character, either \code{"male"} or \code{"female"}
+#' @param sex   Character, either `"male"` or `"female"`
 #' @param ga    Gestational age, completed weeks (Integer or character)
-#' @param etn   Ethnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
-#'   \code{"MA"} (moroccan) or \code{"HS"} (hindustani).
+#' @param etn   Ethnicity, one of `"NL"` (dutch), `"TU"` (turkish),
+#'   `"MA"` (moroccan) or `"HS"` (hindustani).
 #' @author Stef van Buuren, 2020
-#' @return A list or \code{NULL}. Element \code{call} contains
-#' an executable string to the proper reference. Element \code{ty} is a function
-#' to be applied to the measurement before calculating the Z-score. Element \code{yname}
-#' is the type of measurement. The function returns \code{NULL} if it cannot
+#' @return A list or `NULL`. Element `call` contains
+#' an executable string to the proper reference. Element `ty` is a function
+#' to be applied to the measurement before calculating the Z-score. Element `yname`
+#' is the type of measurement. The function returns `NULL` if it cannot
 #' determine a proper reference (e.g. for missing age or sex).
 #' @references
 #' Dutch guideline overweight 2012:
-#' \url{https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/overgewicht}
+#' <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/overgewicht>
 #'
 #' Dutch guidline underweight 2019:
-#' \url{https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/ondergewicht-2019}
+#' <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/ondergewicht-2019>
 #' @examples
 #' growthscreener:::pick_reference_wgt(age = 0.5, sex = "male")
 pick_reference_wgt <- function(age = NA,

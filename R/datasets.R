@@ -18,6 +18,6 @@
 #' @rdname datasets
 "bmi_table"
 
-#' Example of an object of class \code{individual} from the \code{minihealth} package
+#' Example of an object of class `individual` from the `minihealth` package
 #' @rdname datasets
 "individual"

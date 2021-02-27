@@ -4,18 +4,18 @@
 #' below the age of 1.
 #'
 #' The decision tree assesses both single and paired measurements.
-#' The last observations (\code{y1}) is generally taken as the
-#' last measurement, whereas \code{y0} can be one of the previous
+#' The last observations (`y1`) is generally taken as the
+#' last measurement, whereas `y0` can be one of the previous
 #' measurements. For more than two measurements, there are many
 #' pairs possible, and these pairs need not be consecutive.
-#' The \code{y0} measurement needs to be defined by the user,
+#' The `y0` measurement needs to be defined by the user,
 #' and is informally taken as an earlier measurement that maximizes
 #' the referal probability.
 #'
 #' @param y1    Head circumference at last measurement (cm)
 #' @param y0    Head circumference at previous measurement (cm)
 #' @inheritParams calculate_advice_hgt
-#' @return \code{calculate_advice_hdc} returns an integer, the \code{msgcode},
+#' @return `calculate_advice_hdc` returns an integer, the `msgcode`,
 #' between 3000-3999.
 #' @author Arjan Huizing, Stef van Buuren, 2020
 #' @seealso calculate_helpers

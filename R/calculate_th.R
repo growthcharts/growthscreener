@@ -2,9 +2,9 @@
 #'
 #' @param hgtf  Length of biological father (cm)
 #' @param hgtm  Length of biological mother (cm)
-#' @param sex   Character, either \code{"male"} or \code{"female"}
-#' @param etn   Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
-#'              \code{"MA"} (moroccan) or \code{"HS"} (hindustani).
+#' @param sex   Character, either `"male"` or `"female"`
+#' @param etn   Etnicity, one of `"NL"` (dutch), `"TU"` (turkish),
+#'              `"MA"` (moroccan) or `"HS"` (hindustani).
 #' @param dec   Integer vector, length 2, indicating rounding for
 #'              th and th_z, respectively
 #' @return      Numeric, length 2: target height (cm) and target height

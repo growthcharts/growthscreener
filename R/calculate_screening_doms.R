@@ -1,18 +1,18 @@
 #' Extract measurements that can function as date zero
 #'
-#' This function scans the \code{ind} object, and finds the observation
-#' pairs used by the \code{calculate_advice_xxx()} functions.
+#' This function scans the `ind` object, and finds the observation
+#' pairs used by the `calculate_advice_xxx()` functions.
 #' @inheritParams screen_curves_ind
-#' @return A list with \code{length(ynames)} elements. Each list element
-#' is another \code{list} with elements \code{dom0} (back-calculated
-#' dates of measurement, vector, reverse time), \code{age0} (decimal age),
-#' \code{y0} (measurement), \code{z0} (Z-score equivalent) and
-#' - for weight - \code{h0}, as well as similar quantities \code{dom1},
-#' \code{age1}, \code{y1}, \code{z1} and \code{h1} for the upper part
+#' @return A list with `length(ynames)` elements. Each list element
+#' is another `list` with elements `dom0` (back-calculated
+#' dates of measurement, vector, reverse time), `age0` (decimal age),
+#' `y0` (measurement), `z0` (Z-score equivalent) and
+#' - for weight - `h0`, as well as similar quantities `dom1`,
+#' `age1`, `y1`, `z1` and `h1` for the upper part
 #' of the pair.
-#' @details This function implements the \code{"x1_last"} strategy for
+#' @details This function implements the `"x1_last"` strategy for
 #' choosing pairs. This strategy selects the last observation as
-#' \code{x1} and forms pairs with every earlier observation.
+#' `x1` and forms pairs with every earlier observation.
 #' @note Internal function. Not to be called directly.
 #' @examples
 #' growthscreener:::calculate_screening_doms(individual)

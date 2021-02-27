@@ -4,25 +4,25 @@
 #' "JGZ-Richtlijn Lengtegroei 2019".
 #'
 #' The decision tree assesses both single and paired measurements.
-#' The last observations (\code{y1}) is generally taken as the
-#' last measurement, whereas \code{y0} can be one of the previous
+#' The last observations (`y1`) is generally taken as the
+#' last measurement, whereas `y0` can be one of the previous
 #' measurements. For more than two measurements, there are many
 #' pairs possible, and these pairs need not be consecutive.
-#' The \code{y0} measurement needs to be defined by the user,
+#' The `y0` measurement needs to be defined by the user,
 #' and is informally taken as an earlier measurement that maximumizes
 #' the referal probability. On the other hand, defining pairs that are
 #' remote in ages (e.g. period between 1 month and 14 years) is probably
 #' not that useful. In practice, we may be interested in setting the
 #' maximum period to, say, five years.
 #'
-#' @param sex   Character, either \code{"male"} or \code{"female"}
+#' @param sex   Character, either `"male"` or `"female"`
 #' @param dob   Date of birth (class Date)
 #' @param bw    Birth weight (grammes)
 #' @param bl    Birth length (cm)
 #' @param ga    Gestational age, completed weeks (Integer or character)
-#' @param etn   Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
-#'              \code{"MA"} (moroccan) or \code{"HS"} (hindustani).
-#'              The default is \code{"NL"}. Only used for target height.
+#' @param etn   Etnicity, one of `"NL"` (dutch), `"TU"` (turkish),
+#'              `"MA"` (moroccan) or `"HS"` (hindustani).
+#'              The default is `"NL"`. Only used for target height.
 #' @param hgtf  Height of father (cm)
 #' @param hgtm  Height of mother (cm)
 #' @param dom1  Date of last measurement (Date)
@@ -30,9 +30,9 @@
 #' @param dom0  Date of previous measurement (Date)
 #' @param y0    Height at previous measurement (cm)
 #' @param test_gain Logical. Should the increase or decrease in Z-scores be
-#' tested? The default is \code{TRUE}.
-#' @param verbose Set to \code{TRUE} to obtain warnings on reference finding.
-#' @return \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
+#' tested? The default is `TRUE`.
+#' @param verbose Set to `TRUE` to obtain warnings on reference finding.
+#' @return `calculate_advice_hgt` returns an integer, the `msgcode`
 #' @author Paula van Dommelen, Stef van Buuren, 2021
 #' @rdname advice_hgt
 #' @examples
