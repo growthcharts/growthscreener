@@ -11,10 +11,10 @@ calculate_th(hgtf, hgtm, sex = NULL, etn = NULL, dec = c(1L, 3L))
 
 \item{hgtm}{Length of biological mother (cm)}
 
-\item{sex}{Character, either \code{"M"} (male) or \code{"F"} (female)}
+\item{sex}{Character, either \code{"male"} or \code{"female"}}
 
-\item{etn}{Etnicity, one of \code{"N"} (dutch), \code{"T"} (turkish),
-\code{"M"} (moroccan) or \code{"H"} (hindustani).}
+\item{etn}{Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
+\code{"MA"} (moroccan) or \code{"HS"} (hindustani).}
 
 \item{dec}{Integer vector, length 2, indicating rounding for
 th and th_z, respectively}
@@ -29,7 +29,7 @@ th and th_z, respectively}
 Calculate target height SDS
 }
 \examples{
-calculate_th(180, 170, "M", "N")
+calculate_th(180, 170, "male", "NL")
 }
 \author{
 \preformatted{ Stef van Buuren, 2019

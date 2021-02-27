@@ -2,9 +2,9 @@
 #'
 #' @param hgtf  Length of biological father (cm)
 #' @param hgtm  Length of biological mother (cm)
-#' @param sex   Character, either \code{"M"} (male) or \code{"F"} (female)
-#' @param etn   Etnicity, one of \code{"N"} (dutch), \code{"T"} (turkish),
-#'              \code{"M"} (moroccan) or \code{"H"} (hindustani).
+#' @param sex   Character, either \code{"male"} or \code{"female"}
+#' @param etn   Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
+#'              \code{"MA"} (moroccan) or \code{"HS"} (hindustani).
 #' @param dec   Integer vector, length 2, indicating rounding for
 #'              th and th_z, respectively
 #' @return      Numeric, length 2: target height (cm) and target height
@@ -12,7 +12,7 @@
 #'              living in The Netherlands
 #' @author      Stef van Buuren, 2019
 #' @examples
-#' calculate_th(180, 170, "M", "N")
+#' calculate_th(180, 170, "male", "NL")
 #' @export
 calculate_th <- function(hgtf, hgtm,
                          sex = NULL, etn = NULL,
