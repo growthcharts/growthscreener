@@ -42,6 +42,7 @@ A data frame with the following columns
 Screen growth curves according to JGZ guidelines
 }
 \examples{
+library(clopus)
 ind <- minihealth::donordata_to_individual(dnr = "smocc", id = 10022)
 screen_curves_ind(ind)
 }

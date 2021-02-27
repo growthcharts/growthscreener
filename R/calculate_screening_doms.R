@@ -15,6 +15,7 @@
 #' \code{x1} and forms pairs with every earlier observation.
 #' @note Internal function. Not to be called directly.
 #' @examples
+#' library(clopus)
 #' ind <- minihealth::donordata_to_individual(dnr = "smocc", id = 10022)
 #' growthscreener:::calculate_screening_doms(ind)
 calculate_screening_doms <- function(ind,

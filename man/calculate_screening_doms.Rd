@@ -40,6 +40,7 @@ choosing pairs. This strategy selects the last observation as
 Internal function. Not to be called directly.
 }
 \examples{
+library(clopus)
 ind <- minihealth::donordata_to_individual(dnr = "smocc", id = 10022)
 growthscreener:::calculate_screening_doms(ind)
 }

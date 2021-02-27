@@ -21,6 +21,7 @@
 #' \item{\code{Leeftijd1}}{Second date of the evaluation pair}
 #' }
 #' @examples
+#' library(clopus)
 #' ind <- minihealth::donordata_to_individual(dnr = "smocc", id = 10022)
 #' screen_curves_ind(ind)
 #' @export
