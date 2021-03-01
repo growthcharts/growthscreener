@@ -30,7 +30,9 @@ Imports:
     methods,
     tidyselect
 Remotes: 
-    stefvanbuuren/minihealth
+    stefvanbuuren/minihealth,
+    growthcharts/centile,
+    growthcharts/nlreferences
 License: AGPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
