@@ -51,7 +51,7 @@ calculate_advice_wgt  <- function(sex = NA_character_, dob = as.Date(NA),
     z0 <- rep(NA_real_, length(y0))
     z1 <- rep(NA_real_, length(y1))
   } else {
-    reftable <- centile::load_reference(refcode = pick, pkg = "jamesyzy", verbose = verbose)
+    reftable <- centile::load_reference(refcode = pick, pkg = "nlreferences", verbose = verbose)
     if (is.null(reftable)) {
       z0 <- rep(NA_real_, length(y0))
       z1 <- rep(NA_real_, length(y0))

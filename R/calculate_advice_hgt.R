@@ -66,7 +66,7 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
                                    sex = sex, sub = sub)
 
   # calculate z1 and z0
-  reftab <- centile::load_reference(refcode, pkg = "jamesyzy", verbose = verbose)
+  reftab <- centile::load_reference(refcode, pkg = "nlreferences", verbose = verbose)
   if (is.null(reftab)) {
     z1 <- z0 <- NA_real_
   } else {

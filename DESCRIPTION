@@ -1,6 +1,6 @@
 Package: growthscreener
 Title: Finding Children with Unusual Growth Patterns
-Version: 1.7.0
+Version: 1.8.0
 Authors@R: 
     c(person(given = "Paula",
            family = "van Dommelen",
@@ -20,7 +20,7 @@ Description: Unusual child growth may be a sign of an underlying
     guidelines.
 Depends: 
     R (>= 3.5.0),
-    jamesyzy
+    nlreferences
 Imports: 
     centile,
     dplyr,
