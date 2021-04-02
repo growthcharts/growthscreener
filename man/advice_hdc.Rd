@@ -6,11 +6,10 @@
 \usage{
 calculate_advice_hdc(
   sex = NA_character_,
-  dob = as.Date(NA),
   ga = NA,
-  dom1 = as.Date(NA),
+  dom1 = NA_integer_,
   y1 = NA,
-  dom0 = as.Date(NA),
+  dom0 = NA_integer_,
   y0 = NA,
   test_gain = TRUE,
   verbose = FALSE
@@ -19,15 +18,13 @@ calculate_advice_hdc(
 \arguments{
 \item{sex}{Character, either \code{"male"} or \code{"female"}}
 
-\item{dob}{Date of birth (class Date)}
-
 \item{ga}{Gestational age, completed weeks (Integer or character)}
 
-\item{dom1}{Date of last measurement (Date)}
+\item{dom1}{Age at last measurement (days)}
 
 \item{y1}{Head circumference at last measurement (cm)}
 
-\item{dom0}{Date of previous measurement (Date)}
+\item{dom0}{Age at previous measurement (days)}
 
 \item{y0}{Head circumference at previous measurement (cm)}
 
@@ -57,9 +54,8 @@ the referal probability.
 \examples{
 msg(calculate_advice_hdc())
 msgcode <- calculate_advice_hdc(sex = "female",
-                                dob = as.Date("2015-09-01"),
-                                dom1 = as.Date("2016-05-01"), y1 = 40,
-                                dom0 = as.Date("2015-12-01"), y0 = 36)
+                                dom1 = 243, y1 = 40,
+                                dom0 = 91, y0 = 36)
 msg(msgcode)
 }
 \seealso{

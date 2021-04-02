@@ -1,8 +1,8 @@
 #' Extract measurements that can function as date zero
 #'
-#' This function scans the `ind` object, and finds the observation
+#' This function scans the `tgt` object, and finds the observation
 #' pairs used by the `calculate_advice_xxx()` functions.
-#' @inheritParams screen_curves_ind
+#' @inheritParams screen_curves_tgt
 #' @return A list with `length(ynames)` elements. Each list element
 #' is another `list` with elements `dom0` (back-calculated
 #' dates of measurement, vector, reverse time), `age0` (decimal age),
@@ -15,8 +15,8 @@
 #' `x1` and forms pairs with every earlier observation.
 #' @note Internal function. Not to be called directly.
 #' @examples
-#' growthscreener:::calculate_screening_doms(individual)
-calculate_screening_doms <- function(ind,
+#' growthscreener:::calculate_screening_doms(target)
+calculate_screening_doms <- function(tgt,
                                      ynames = c("hgt", "wgt", "hdc"),
                                      na.omit = TRUE) {
   # prepare output
@@ -24,24 +24,24 @@ calculate_screening_doms <- function(ind,
   result <- vector("list", length(ynames))
   names(result) <- ynames
 
-  # fetch anthro data
-  an <- data.frame(ind)
-
   # loop over ynames
   for (yname in ynames) {
 
     # extract measures
-    d <- an %>%
+    d <- tgt %>%
       filter(.data$yname == !!yname & .data$xname == "age") %>%
       select(all_of(c("x", "y", "z")))
 
     # for wgt, we also need hgt0 and hgt1
     if (yname == "wgt") {
-      h <- an %>%
+      h <- tgt %>%
         filter(.data$yname == "hgt" & .data$xname == "age") %>%
         rename(hgt = "y") %>%
         select(all_of(c("x", "hgt")))
       d <- left_join(d, h, by = "x")
+    } else {
+      d <- d %>%
+        mutate(hgt = NA_real_)
     }
 
     # remove NA's and sort
@@ -72,10 +72,9 @@ calculate_screening_doms <- function(ind,
       h0 <- rev(d$hgt[-nr])
     }
 
-    # transform to dom's
-    dob <- get_dob(ind)
-    dom1 <- dob + round(age1 * 365.25)
-    dom0 <- dob + round(age0 * 365.25)
+    # transform to dom's (age in days)
+    dom1 <- round(age1 * 365.25)
+    dom0 <- round(age0 * 365.25)
 
     result[[yname]] <- list(dom0 = dom0, dom1 = dom1,
                             age0 = age0, age1 = age1,

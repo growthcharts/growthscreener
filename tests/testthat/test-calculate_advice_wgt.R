@@ -1,10 +1,5 @@
 kids <- data.frame(
-  dob  = c(NA, NA, as.Date("2018-07-31"), as.Date("2018-07-31"), as.Date("2018-07-31"),
-           as.Date("2018-07-31"), as.Date("2018-07-31"),
-           as.Date("2015-07-31"), as.Date("2015-07-31"), as.Date("2015-07-31")),
-  dom1 = c(NA, NA, NA, as.Date("2018-12-12"), as.Date("2018-12-12"), as.Date("2019-12-12"),
-           as.Date("2019-12-12"), as.Date("2018-12-12"),
-           as.Date("2018-12-12"), as.Date("2018-12-12")),
+  dom1 = c(NA, NA, NA, 134, 134, 499, 499, 1230, 1230, 1230),
   dom0 = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA),
   y1   = c(NA, NA, NA, 6.0, 5.5, 13, 10, 20, 13, 16),
   y0   = c(NA, NA, NA, 5.4, 5.4, NA, NA, NA, NA, 17),
@@ -13,7 +8,7 @@ kids <- data.frame(
   ga   = c(NA, NA, NA, NA, NA, 33, 33, NA, NA, NA),
   hgt0 = c(NA, NA, NA, 59, 59, NA, NA, NA, NA, 102),
   hgt1 = c(NA, NA, NA, 60, 65, 85, 85, 105, 105, 105),
-  code = c(2019, 2016, 2015, 2031, 2074, 2073, 2011, 2045, 2074, 2075),
+  code = c(2019, 2015, 2015, 2031, 2074, 2073, 2011, 2045, 2074, 2075),
   stringsAsFactors = FALSE)
 
 # apply algorithm to kids
@@ -21,7 +16,6 @@ results <- matrix(NA, nrow = nrow(kids), ncol = 3)
 colnames(results) <- c("k", "expected", "found")
 for (k in 1:nrow(kids)) {
   found <- calculate_advice_wgt(sex  = kids[k, "sex"],
-                                dob  = kids[k, "dob"],
                                 ga   = kids[k, "ga"],
                                 hgt0 = kids[k, "hgt0"],
                                 hgt1 = kids[k, "hgt1"],

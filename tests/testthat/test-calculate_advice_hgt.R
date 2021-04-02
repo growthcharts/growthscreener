@@ -1,9 +1,6 @@
 kids <- data.frame(
-  dob  = c(as.Date("2018-07-31"), NA, NA, NA, as.Date("2018-07-31"), as.Date("2018-07-31"), as.Date("2018-07-31"), as.Date("2018-07-31"), as.Date("2018-07-31"), as.Date("2018-07-31"),
-           as.Date("2018-07-31"), as.Date("2018-07-31"), as.Date("2018-07-31")),
-  dom1 = c(as.Date("2018-12-12"), NA, NA, NA, NA, as.Date("2018-12-12"), as.Date("2018-12-12"), as.Date("2018-12-12"), as.Date("2018-12-12"), as.Date("2018-12-12"),
-           as.Date("2018-12-12"), as.Date("2018-12-12"), as.Date("2018-12-12")),
-  dom0 = c(as.Date("2019-03-01"), NA, NA, NA, NA, NA, NA, NA, NA, NA,
+  dom1 = c(134, NA, NA, NA, NA, 134, 134, 134, 134, 134, 134, 134, 134),
+  dom0 = c(213, NA, NA, NA, NA, NA, NA, NA, NA, NA,
            NA, NA, NA),
   y1   = c(64, NA, NA, NA, NA, NA, 64, 64, 40, 40,
            40, 40, 75),
@@ -23,7 +20,7 @@ kids <- data.frame(
            NA, NA, NA),
   hgtm = c(170, NA, NA, NA, NA, NA, NA, NA, NA, NA,
            NA, NA, NA),
-  code = c(1031, 1019, 1019, 1016, 1015, 1018, 1025, 1025, 1013, 1045,
+  code = c(1031, 1019, 1019, 1015, 1015, 1018, 1025, 1025, 1013, 1045,
            1061, 1025, 1048),
   stringsAsFactors = FALSE)
 
@@ -32,7 +29,6 @@ results <- matrix(NA, nrow = nrow(kids), ncol = 3)
 colnames(results) <- c("k", "expected", "found")
 for (k in 1:nrow(kids)) {
   found <- calculate_advice_hgt(sex  = kids[k, "sex"],
-                                dob  = kids[k, "dob"],
                                 bw   = kids[k, "bw"],
                                 bl   = kids[k, "bl"],
                                 ga   = kids[k, "ga"],

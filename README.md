@@ -36,10 +36,7 @@ library(growthscreener)
 #> Loading required package: nlreferences
 
 # a very short girl, 4 months old
-msgcode <- calculate_advice_hgt(sex = "female", bw = 3250, ga = 40,
-                                dob = as.Date("2018-07-31"),
-                                dom1 = as.Date("2018-12-12"), 
-                                y1 = 55)
+msgcode <- calculate_advice_hgt(sex = "female", bw = 3250, ga = 40, dom1 = 134, y1 = 55)
 msgcode
 #> [1] 1045
 cat(fold(msg(msgcode)))

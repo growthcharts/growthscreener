@@ -4,10 +4,10 @@
 \alias{calculate_screening_doms}
 \title{Extract measurements that can function as date zero}
 \usage{
-calculate_screening_doms(ind, ynames = c("hgt", "wgt", "hdc"), na.omit = TRUE)
+calculate_screening_doms(tgt, ynames = c("hgt", "wgt", "hdc"), na.omit = TRUE)
 }
 \arguments{
-\item{ind}{An object of class \code{minihealth::individual}}
+\item{tgt}{A tibble with a person attribute}
 
 \item{ynames}{Character vector identifying the measures to be
 screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}
@@ -28,7 +28,7 @@ of the pair.
 }
 }
 \description{
-This function scans the \code{ind} object, and finds the observation
+This function scans the \code{tgt} object, and finds the observation
 pairs used by the \code{calculate_advice_xxx()} functions.
 }
 \details{
@@ -40,5 +40,5 @@ choosing pairs. This strategy selects the last observation as
 Internal function. Not to be called directly.
 }
 \examples{
-growthscreener:::calculate_screening_doms(individual)
+growthscreener:::calculate_screening_doms(target)
 }

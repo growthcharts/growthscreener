@@ -6,16 +6,15 @@
 \usage{
 calculate_advice_hgt(
   sex = NA_character_,
-  dob = as.Date(NA),
   bw = NA,
   bl = NA,
   ga = NA,
   etn = "NL",
   hgtf = NA,
   hgtm = NA,
-  dom1 = as.Date(NA),
+  dom1 = NA_integer_,
   y1 = NA,
-  dom0 = as.Date(NA),
+  dom0 = NA_integer_,
   y0 = NA,
   test_gain = TRUE,
   verbose = FALSE
@@ -23,8 +22,6 @@ calculate_advice_hgt(
 }
 \arguments{
 \item{sex}{Character, either \code{"male"} or \code{"female"}}
-
-\item{dob}{Date of birth (class Date)}
 
 \item{bw}{Birth weight (grammes)}
 
@@ -40,11 +37,11 @@ The default is \code{"NL"}. Only used for target height.}
 
 \item{hgtm}{Height of mother (cm)}
 
-\item{dom1}{Date of last measurement (Date)}
+\item{dom1}{Age at last measurement (days)}
 
 \item{y1}{Height at last measurement (cm)}
 
-\item{dom0}{Date of previous measurement (Date)}
+\item{dom0}{Age at previous measurement (days)}
 
 \item{y0}{Height at previous measurement (cm)}
 
@@ -76,8 +73,7 @@ maximum period to, say, five years.
 \examples{
 msg(calculate_advice_hgt())
 msgcode <- calculate_advice_hgt(sex = "male",
-                                dob = as.Date("2018-07-31"),
-                                dom1 = as.Date("2018-12-12"),
+                                dom1 = 134,
                                 y1 = 64, ga = 35,
                                 test_gain = FALSE)
 msg(msgcode)

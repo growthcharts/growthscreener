@@ -8,7 +8,7 @@
 \alias{nl5.hgt}
 \alias{messages}
 \alias{bmi_table}
-\alias{individual}
+\alias{target}
 \title{Table of Dutch birth weight references}
 \format{
 An object of class \code{data.frame} with 36 rows and 8 columns.
@@ -21,7 +21,7 @@ An object of class \code{data.frame} with 88 rows and 2 columns.
 
 An object of class \code{data.frame} with 132 rows and 6 columns.
 
-An object of class \code{individual} of length 1.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 58 rows and 8 columns.
 }
 \usage{
 ref.nl5defSGAgewicht
@@ -34,7 +34,7 @@ messages
 
 bmi_table
 
-individual
+target
 }
 \description{
 Table of Dutch birth weight references
@@ -47,6 +47,6 @@ Table of return message and return code
 
 Table of BMI cut-off points (Cole, 2000 (overweight), 2007 (thinness), De Wilde)
 
-Example of an object of class \code{individual} from the \code{minihealth} package
+Example of an object of class \code{target} created by thge \code{bdsreader} package
 }
 \keyword{datasets}

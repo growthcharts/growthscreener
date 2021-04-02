@@ -1,17 +1,12 @@
 kids <- data.frame(
-  dob  = c(NA, NA, as.Date("2018-07-31"), as.Date("2018-07-31"),
-           as.Date("2018-07-31"), as.Date("2018-07-31"),
-           as.Date("2018-07-31"), as.Date("2018-07-31"), as.Date("2018-07-31")),
-  dom1 = c(NA, NA, NA, as.Date("2019-12-12"), as.Date("2018-12-12"),
-           as.Date("2018-12-12"), as.Date("2018-12-12"),
-           as.Date("2018-12-12"), as.Date("2018-12-12")),
-  dom0 = c(NA, NA, NA, NA, NA, NA, NA, as.Date("2018-11-12"), as.Date("2018-11-12")),
+  dom1 = c(NA, NA, NA, 499, 134, 134, 134, 134, 134),
+  dom0 = c(NA, NA, NA, NA, NA, NA, NA, 104, 104),
   y1   = c(NA, NA, NA, 43, 47, 35, 43, 43, 43),
   y0   = c(NA, NA, NA, NA, NA, NA, 41, 41, 42),
   sex  = c(NA_character_, "male", "male", "female", "female",
            "female", "female", "female", "female"),
   ga   = c(NA, NA, NA, NA, 33, 33, NA, NA, NA),
-  code = c(3019, 3016, 3015, 3021, 3041, 3043, 3022, 3044, 3031),
+  code = c(3019, 3015, 3015, 3021, 3041, 3043, 3022, 3044, 3031),
   stringsAsFactors = FALSE)
 
 # apply algorithm to kids
@@ -19,7 +14,6 @@ results <- matrix(NA, nrow = nrow(kids), ncol = 3)
 colnames(results) <- c("k", "expected", "found")
 for (k in 1:nrow(kids)) {
   found <- calculate_advice_hdc(sex  = kids[k, "sex"],
-                                dob  = kids[k, "dob"],
                                 ga   = kids[k, "ga"],
                                 dom1 = kids[k, "dom1"],
                                 y1   = kids[k, "y1"],
@@ -31,4 +25,3 @@ for (k in 1:nrow(kids)) {
 test_that("expected equals found", {
   expect_equal(results[, "expected"], results[, "found"])
 })
-

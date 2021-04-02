@@ -19,28 +19,26 @@
 #' @author Arjan Huizing, Stef van Buuren 2020
 #' @examples
 #' msg(calculate_advice_wgt())
-#' msgcode <- calculate_advice_wgt(sex = "male", dob = as.Date("2015-01-01"),
-#'                                 dom1 = as.Date("2018-12-12"), y1 = 25, hgt1 = 120)
+#' msgcode <- calculate_advice_wgt(sex = "male", dom1 = 1441, y1 = 25, hgt1 = 120)
 #' msg(msgcode)
 #' @export
-calculate_advice_wgt  <- function(sex = NA_character_, dob = as.Date(NA),
+calculate_advice_wgt  <- function(sex = NA_character_,
                                   ga = NA, etn = NA,
-                                  dom0 = as.Date(NA),
-                                  y0 = NA, dom1 = as.Date(NA), y1 = NA,
+                                  dom0 = NA_integer_,
+                                  y0 = NA, dom1 = NA_integer_, y1 = NA,
                                   hgt1 = NA, hgt0 = NA,
                                   test_gain = TRUE,
                                   verbose = FALSE) {
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(2019)
-  if (is.na(dob)) return(2016)
   if (is.na(dom1)) return(2015)
   if (is.na(y1)) return(2018)
   if (is.na(hgt1)) return(2014)
 
   # check applicability
-  age1 <- round(as.integer(dom1 - dob)/365.25, 4)
-  age0 <- round(as.integer(dom0 - dob)/365.25, 4)
+  age1 <- round(dom1/365.25, 4)
+  age0 <- round(dom0/365.25, 4)
   if (age1 >= 19.0) return(2021)
   if (age1 < 2.0 && hgt1 < 35) return(2022)
   if (age1 < 2.0 && hgt1 > 120) return(2023)

@@ -16,7 +16,6 @@
 #' maximum period to, say, five years.
 #'
 #' @param sex   Character, either `"male"` or `"female"`
-#' @param dob   Date of birth (class Date)
 #' @param bw    Birth weight (grammes)
 #' @param bl    Birth length (cm)
 #' @param ga    Gestational age, completed weeks (Integer or character)
@@ -25,9 +24,9 @@
 #'              The default is `"NL"`. Only used for target height.
 #' @param hgtf  Height of father (cm)
 #' @param hgtm  Height of mother (cm)
-#' @param dom1  Date of last measurement (Date)
+#' @param dom1  Age at last measurement (days)
 #' @param y1    Height at last measurement (cm)
-#' @param dom0  Date of previous measurement (Date)
+#' @param dom0  Age at previous measurement (days)
 #' @param y0    Height at previous measurement (cm)
 #' @param test_gain Logical. Should the increase or decrease in Z-scores be
 #' tested? The default is `TRUE`.
@@ -38,25 +37,24 @@
 #' @examples
 #' msg(calculate_advice_hgt())
 #' msgcode <- calculate_advice_hgt(sex = "male",
-#'                                 dob = as.Date("2018-07-31"),
-#'                                 dom1 = as.Date("2018-12-12"),
+#'                                 dom1 = 134,
 #'                                 y1 = 64, ga = 35,
 #'                                 test_gain = FALSE)
 #' msg(msgcode)
 #' @export
-calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
+calculate_advice_hgt <- function(sex = NA_character_,
                                  bw = NA, bl = NA, ga = NA,
                                  etn = "NL", hgtf = NA, hgtm = NA,
-                                 dom1 = as.Date(NA), y1 = NA,
-                                 dom0 = as.Date(NA), y0 = NA,
+                                 dom1 = NA_integer_, y1 = NA,
+                                 dom0 = NA_integer_, y0 = NA,
                                  test_gain = TRUE,
                                  verbose = FALSE) {
 
   bw_z <- calculate_birth_z(bw, sex, ga, yname = "wgt")
   bl_z <- calculate_birth_z(bl, sex, ga, yname = "hgt")
   th_z <- calculate_th(hgtf, hgtm, sex = sex, etn = etn)[2L]
-  age1 <- as.integer(dom1 - dob)/365.25
-  age0 <- as.integer(dom0 - dob)/365.25
+  age1 <- round(dom1/365.25, 4)
+  age0 <- round(dom0/365.25, 4)
 
   # select reference
   pt <- !is.na(ga) && ga < 37 && !is.na(age1) && age1 < 4
@@ -79,7 +77,6 @@ calculate_advice_hgt <- function(sex = NA_character_, dob = as.Date(NA),
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(1019)
-  if (is.na(dob)) return(1016)
   if (is.na(dom1)) return(1015)
   if (is.na(y1)) return(ifelse(age1 < 18.0, 1018, 1021))
 

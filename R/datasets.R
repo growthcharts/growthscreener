@@ -18,6 +18,6 @@
 #' @rdname datasets
 "bmi_table"
 
-#' Example of an object of class `individual` from the `minihealth` package
+#' Example of an object of class `target` created by thge `bdsreader` package
 #' @rdname datasets
-"individual"
+"target"

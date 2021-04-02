@@ -23,20 +23,19 @@
 #' @examples
 #' msg(calculate_advice_hdc())
 #' msgcode <- calculate_advice_hdc(sex = "female",
-#'                                 dob = as.Date("2015-09-01"),
-#'                                 dom1 = as.Date("2016-05-01"), y1 = 40,
-#'                                 dom0 = as.Date("2015-12-01"), y0 = 36)
+#'                                 dom1 = 243, y1 = 40,
+#'                                 dom0 = 91, y0 = 36)
 #' msg(msgcode)
 #' @export
-calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
+calculate_advice_hdc <- function(sex = NA_character_,
                                  ga = NA,
-                                 dom1 = as.Date(NA), y1 = NA,
-                                 dom0 = as.Date(NA), y0 = NA,
+                                 dom1 = NA_integer_, y1 = NA,
+                                 dom0 = NA_integer_, y0 = NA,
                                  test_gain = TRUE,
                                  verbose = FALSE) {
 
-  age1 <- as.integer(dom1 - dob)/365.25
-  age0 <- as.integer(dom0 - dob)/365.25
+  age1 <- round(dom1/365.25, 4)
+  age0 <- round(dom0/365.25, 4)
 
   # select reference
   pt <- !is.na(ga) && ga < 37 && !is.na(age1) && age1 < 4
@@ -59,7 +58,6 @@ calculate_advice_hdc <- function(sex = NA_character_, dob = as.Date(NA),
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(3019)
-  if (is.na(dob)) return(3016)
   if (is.na(dom1)) return(3015)
   if (is.na(y1)) return(ifelse(age1 < 1.0, 3018, 3021))
 

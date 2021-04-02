@@ -23,14 +23,14 @@ Depends:
     R (>= 3.5.0),
     nlreferences
 Imports: 
+    bdsreader,
     centile,
     dplyr,
     lubridate,
-    minihealth (>= 0.64.0),
     methods,
     tidyselect
 Remotes: 
-    stefvanbuuren/minihealth,
+    growthcharts/bdsreader,
     growthcharts/centile,
     growthcharts/nlreferences
 License: AGPL-3 + file LICENSE
