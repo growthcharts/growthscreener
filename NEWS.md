@@ -1,6 +1,6 @@
 # growthscreener 1.9.0 
 
-* **Breaking changew**: 
+* **Breaking changes**: 
 * Replaces the `minihealth` package by `bdsreader`
 * Replaces the `jamestest` package by `jamesdemodata`
 
