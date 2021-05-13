@@ -24,7 +24,7 @@ The following statements will install the `growthscreener` package
 
 ``` r
 install.packages("remotes")
-remotes::install_github("stefvanbuuren/growthscreener")
+remotes::install_github("growthcharts/growthscreener")
 ```
 
 ## Example
