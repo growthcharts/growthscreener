@@ -1,6 +1,6 @@
 # client3.json
 fn  <- system.file("extdata", "allegrosultum", "client3.json", package = "jamesdemodata")
-tgt <- bdsreader::read_bds(fn, version = 1)
+tgt <- bdsreader::read_bds(fn, format = 1)
 test_that("screens client3.json", {
   expect_silent(screen_curves_tgt(tgt))
 })
@@ -8,7 +8,7 @@ test_that("screens client3.json", {
 
 # 2 problematic json files identified by Allegro Sultum - Feb 2020
 fn  <- system.file("extdata", "bds_v1.0", "test", "not_a_vector.json", package = "jamesdemodata")
-tgt <- bdsreader::read_bds(fn, version = 1)
+tgt <- bdsreader::read_bds(fn, format = 1)
 test_that("screens not_a_vector.json", {
   expect_silent(screen_curves_tgt(tgt))
 })
@@ -23,7 +23,7 @@ for (lib in libs) {
     if (file == file.path(path, "allegrosultum/antwoordbericht.json")) next
     if (file == file.path(path, "test/test14.json")) next
     if (file == file.path(path, "test/test8.json")) next
-    tgt <- bdsreader::read_bds(file, version = 1)
+    tgt <- bdsreader::read_bds(file, format = 1)
     test_that(paste(file, "passes"), {
       expect_silent(screen_curves_tgt(tgt))
     })
