@@ -8,7 +8,7 @@
 msg <- function(msgcode) {
   mess <- growthscreener::messages
   result <- character(length(msgcode))
-  if (length(result) == 0) return(return)
+  if (length(result) == 0) return(result)
   for (i in 1L:length(msgcode)) {
     m <- mess[mess[, "msgcode"] == msgcode[i], "msg"]
     if (length(m) == 0) m <- ""
