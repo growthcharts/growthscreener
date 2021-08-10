@@ -17,7 +17,7 @@ Authors@R:
 Description: Unusual child growth may be a sign of an underlying 
     disease or condition. This package implements functions that 
     evaluate the growth pattern of a child relative to Dutch 
-    guidelines. The package contains tools to detect unusual 
+    guidelines. Contains tools to detect unusual 
     growth in height, weight and head circumference.
 Depends: 
     R (>= 3.5.0),
