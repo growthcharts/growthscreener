@@ -1,3 +1,9 @@
+# growthscreener 1.10.0 
+
+* Relies now on new `auto_format` functionality from `bdsreader`
+* Solves some smaller bugs
+* Define stricter dependencies
+
 # growthscreener 1.9.0 
 
 * **Breaking changes**: 

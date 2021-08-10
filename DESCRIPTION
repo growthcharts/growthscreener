@@ -1,6 +1,6 @@
 Package: growthscreener
 Title: Finding Children with Unusual Growth Patterns
-Version: 1.9.0
+Version: 1.10.0
 Authors@R: 
     c(person(given = "Paula",
            family = "van Dommelen",
@@ -21,16 +21,16 @@ Description: Unusual child growth may be a sign of an underlying
     growth in height, weight and head circumference.
 Depends: 
     R (>= 3.5.0),
-    nlreferences
+    nlreferences (>= 0.12.1)
 Imports: 
-    bdsreader,
-    centile,
+    bdsreader (>= 0.9.2),
+    centile (>= 0.12.1),
     dplyr,
     lubridate,
     methods,
     tidyselect
 Suggests: 
-    jamesdemodata,
+    jamesdemodata (>= 0.7.0),
     jsonlite,
     testthat (>= 2.1.0)
 Remotes: 
