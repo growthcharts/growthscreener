@@ -1,3 +1,7 @@
+# # growthscreener 1.11.0 
+
+- Adds `list_screeners()` to produce overview of screeners
+
 # growthscreener 1.10.0 
 
 * Relies now on new `auto_format` functionality from `bdsreader`
