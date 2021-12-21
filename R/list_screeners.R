@@ -1,7 +1,6 @@
 #' List the available screeners for JGZ guidelines
 #'
-#' @param ynames Character vector identifying the measures to be
-#' screened. By default, `ynames = c("hgt", "wgt", "hdc")`.
+#' @inheritParams screen_curves_tgt
 #' @return A data frame with the following columns
 #' \describe{
 #' \item{`Versie`}{Version of `growthscreener` package}
@@ -13,7 +12,7 @@
 #' \item{`CodeOmschrijving`}{A string with the message}
 #' }
 #' @export
-list_screeners <- function(ynames = c("hgt", "wgt", "hdc")) {
+list_screeners <- function(ynames = c("hgt", "wgt", "hdc"), ...) {
 
   mess <- growthscreener::messages
   mess$Categorie <- 1000 * trunc(mess[["msgcode"]] / 1000)

@@ -4,11 +4,13 @@
 \alias{list_screeners}
 \title{List the available screeners for JGZ guidelines}
 \usage{
-list_screeners(ynames = c("hgt", "wgt", "hdc"))
+list_screeners(ynames = c("hgt", "wgt", "hdc"), ...)
 }
 \arguments{
 \item{ynames}{Character vector identifying the measures to be
 screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}
+
+\item{...}{Not used, but required for extendibility}
 }
 \value{
 A data frame with the following columns
