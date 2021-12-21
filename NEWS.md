@@ -1,4 +1,8 @@
-# # growthscreener 1.11.0 
+# growthscreener 1.12.0 
+
+- Adds `\dots` argument to `screen_curves_ind()`, `screen_curves_tgt()` and `list_screeners()` for extendibility
+
+# growthscreener 1.11.0 
 
 - Adds `list_screeners()` to produce overview of screeners
 
