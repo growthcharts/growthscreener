@@ -20,7 +20,8 @@
 screen_curves_ind <- function(ind,
                               ynames = c("hgt", "wgt", "hdc"),
                               na.omit = TRUE,
-                              recalculate_z = FALSE) {
+                              recalculate_z = FALSE,
+                              ...) {
 
   if (inherits(ind, "individual")) {
     stop("Sorry: Objects of class individual are no longer supported.")
@@ -29,5 +30,6 @@ screen_curves_ind <- function(ind,
   screen_curves_tgt(tgt = ind,
                     ynames = ynames,
                     na.omit = na.omit,
-                    recalculate_z = recalculate_z)
+                    recalculate_z = recalculate_z,
+                    ...)
 }

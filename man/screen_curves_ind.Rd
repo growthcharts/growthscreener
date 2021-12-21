@@ -8,7 +8,8 @@ screen_curves_ind(
   ind,
   ynames = c("hgt", "wgt", "hdc"),
   na.omit = TRUE,
-  recalculate_z = FALSE
+  recalculate_z = FALSE,
+  ...
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}
 \item{recalculate_z}{A logical indicating whether Z-scores should be
 recalculated. Currently not functional. Z-scores are always
 recalculated.}
+
+\item{...}{Not used, but required for extendibility}
 }
 \value{
 A data frame with the following columns

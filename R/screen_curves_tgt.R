@@ -9,6 +9,7 @@
 #' @param recalculate_z A logical indicating whether Z-scores should be
 #' recalculated. Currently not functional. Z-scores are always
 #' recalculated.
+#' @param \dots Not used, but required for extendibility
 #' @return A data frame with the following columns
 #' \describe{
 #' \item{`Categorie`}{The category of the screening guidelines:
@@ -26,7 +27,8 @@
 screen_curves_tgt <- function(tgt,
                               ynames = c("hgt", "wgt", "hdc"),
                               na.omit = TRUE,
-                              recalculate_z = FALSE) {
+                              recalculate_z = FALSE,
+                              ...) {
 
   if (is.null(tgt) || !hasName(attributes(tgt), "person") || !length(ynames))
     return(data.frame(
