@@ -13,7 +13,7 @@ screen_curves_tgt(
 )
 }
 \arguments{
-\item{tgt}{A tibble with a person attribute}
+\item{tgt}{Object of class \code{bdsreader::target}.}
 
 \item{ynames}{Character vector identifying the measures to be
 screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}

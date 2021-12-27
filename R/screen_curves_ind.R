@@ -1,6 +1,6 @@
 #' Screen growth curves according to JGZ guidelines
 #'
-#' @param ind A tibble with a person attribute. Support for
+#' @param ind Object of class `bdsreader::target`. Support for
 #' `minihealth::individual` object is deprecated.
 #' @inheritParams screen_curves_tgt
 #' @return A data frame with the following columns

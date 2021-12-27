@@ -1,5 +1,5 @@
 #' @import nlreferences
-#' @importFrom bdsreader      persondata
+#' @importFrom bdsreader      persondata timedata
 #' @importFrom centile        y2z
 #' @importFrom dplyr          %>% .data arrange bind_rows filter
 #'                            left_join mutate recode rename select

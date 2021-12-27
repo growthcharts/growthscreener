@@ -1,6 +1,6 @@
 #' Screen growth curves according to JGZ guidelines
 #'
-#' @param tgt A tibble with a person attribute
+#' @param tgt Object of class `bdsreader::target`.
 #' @param ynames Character vector identifying the measures to be
 #' screened. By default, `ynames = c("hgt", "wgt", "hdc")`.
 #' @param na.omit A logical indicating whether records with a missing
@@ -30,7 +30,7 @@ screen_curves_tgt <- function(tgt,
                               recalculate_z = FALSE,
                               ...) {
 
-  if (is.null(tgt) || !hasName(attributes(tgt), "person") || !length(ynames))
+  if (is.null(tgt) || !inherits(tgt, "target") || !length(ynames))
     return(data.frame(
       Categorie = integer(0),
       CategorieOmschrijving = character(0),
@@ -42,9 +42,10 @@ screen_curves_tgt <- function(tgt,
       stringsAsFactors = FALSE)
     )
   child <- persondata(tgt)
+  time <- timedata(tgt)
 
   # determine screening doms and ages
-  domlist <- calculate_screening_doms(tgt, ynames, na.omit = na.omit)
+  domlist <- calculate_screening_doms(time, ynames, na.omit = na.omit)
 
   # prepare output
   result <- vector("list", length(ynames))
@@ -106,8 +107,8 @@ screen_curves_tgt <- function(tgt,
         Code = as.integer(msgcodes),
         CodeOmschrijving = msg(msgcodes),
         Versie = rep(as.character(packageVersion("growthscreener")), n),
-        Leeftijd0 = format(attr(tgt, "person")$dob + da$dom0, "%Y%m%d"),
-        Leeftijd1 = rep(format(attr(tgt, "person")$dob + da$dom1, "%Y%m%d"), n),
+        Leeftijd0 = format(child[["dob"]] + da$dom0, "%Y%m%d"),
+        Leeftijd1 = rep(format(child[["dob"]] + da$dom1, "%Y%m%d"), n),
         stringsAsFactors = FALSE)
     }
   }

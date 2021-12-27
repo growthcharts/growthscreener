@@ -13,7 +13,7 @@ screen_curves_ind(
 )
 }
 \arguments{
-\item{ind}{A tibble with a person attribute. Support for
+\item{ind}{Object of class \code{bdsreader::target}. Support for
 \code{minihealth::individual} object is deprecated.}
 
 \item{ynames}{Character vector identifying the measures to be
