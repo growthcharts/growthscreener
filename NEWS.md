@@ -1,3 +1,7 @@
+# growthscreener 1.13.0
+
+- Adds support for the new `target` class of the `bdsreader` package
+
 # growthscreener 1.12.0 
 
 - Adds `\dots` argument to `screen_curves_ind()`, `screen_curves_tgt()` and `list_screeners()` for extendibility
