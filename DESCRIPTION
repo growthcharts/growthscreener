@@ -23,7 +23,7 @@ Depends:
     R (>= 3.5.0),
     nlreferences (>= 0.12.1)
 Imports: 
-    bdsreader (>= 0.16.0),
+    bdsreader (>= 0.16.1),
     centile (>= 0.12.1),
     dplyr,
     lubridate,

@@ -19,6 +19,9 @@
 calculate_screening_doms <- function(tgt,
                                      ynames = c("hgt", "wgt", "hdc"),
                                      na.omit = TRUE) {
+  stopifnot(is.list(tgt))
+  time <- timedata(tgt)
+
   # prepare output
   if (!length(ynames)) return(NULL)
   result <- vector("list", length(ynames))
@@ -28,13 +31,13 @@ calculate_screening_doms <- function(tgt,
   for (yname in ynames) {
 
     # extract measures
-    d <- tgt %>%
+    d <- time %>%
       filter(.data$yname == !!yname & .data$xname == "age") %>%
       select(all_of(c("x", "y", "z")))
 
     # for wgt, we also need hgt0 and hgt1
     if (yname == "wgt") {
-      h <- tgt %>%
+      h <- time %>%
         filter(.data$yname == "hgt" & .data$xname == "age") %>%
         rename(hgt = "y") %>%
         select(all_of(c("x", "hgt")))

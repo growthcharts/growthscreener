@@ -21,7 +21,7 @@ An object of class \code{data.frame} with 88 rows and 2 columns.
 
 An object of class \code{data.frame} with 132 rows and 6 columns.
 
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 58 rows and 8 columns.
+An object of class \code{list} of length 2.
 }
 \usage{
 ref.nl5defSGAgewicht

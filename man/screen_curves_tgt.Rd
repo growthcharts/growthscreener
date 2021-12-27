@@ -13,7 +13,7 @@ screen_curves_tgt(
 )
 }
 \arguments{
-\item{tgt}{Object of class \code{bdsreader::target}.}
+\item{tgt}{A list with elements \code{psn} and \code{xyz}}
 
 \item{ynames}{Character vector identifying the measures to be
 screened. By default, \code{ynames = c("hgt", "wgt", "hdc")}.}

@@ -13,7 +13,8 @@ screen_curves_ind(
 )
 }
 \arguments{
-\item{ind}{Object of class \code{bdsreader::target}. Support for
+\item{ind}{A list with elements \code{psn} and \code{xyz}, e.g. as created
+by \code{\link[bdsreader:read_bds]{bdsreader::read_bds()}}. Support for the
 \code{minihealth::individual} object is deprecated.}
 
 \item{ynames}{Character vector identifying the measures to be

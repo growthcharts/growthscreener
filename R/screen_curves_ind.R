@@ -1,6 +1,7 @@
 #' Screen growth curves according to JGZ guidelines
 #'
-#' @param ind Object of class `bdsreader::target`. Support for
+#' @param ind A list with elements `psn` and `xyz`, e.g. as created
+#'  by [bdsreader::read_bds()]. Support for the
 #' `minihealth::individual` object is deprecated.
 #' @inheritParams screen_curves_tgt
 #' @return A data frame with the following columns
