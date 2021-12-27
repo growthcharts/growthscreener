@@ -1,3 +1,7 @@
+# growthscreener 1.14.0
+
+- Siplify data structure to list with elements `psn` and `xyz`
+
 # growthscreener 1.13.0
 
 - Adds support for the new `target` class of the `bdsreader` package
