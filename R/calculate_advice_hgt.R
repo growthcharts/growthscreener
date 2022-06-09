@@ -24,10 +24,9 @@
 #'              The default is `"NL"`. Only used for target height.
 #' @param hgtf  Height of father (cm)
 #' @param hgtm  Height of mother (cm)
-#' @param dom1  Age at last measurement (days)
-#' @param y1    Height at last measurement (cm)
-#' @param dom0  Age at previous measurement (days)
-#' @param y0    Height at previous measurement (cm)
+#' @param dob   Date of birth (ddmmYYYY)
+#' @param date  Vector with dates of measurements
+#' @param y     Vector with height measurements (cm)
 #' @param test_gain Logical. Should the increase or decrease in Z-scores be
 #' tested? The default is `TRUE`.
 #' @param verbose Set to `TRUE` to obtain warnings on reference finding.
@@ -36,25 +35,30 @@
 #' @rdname advice_hgt
 #' @examples
 #' msg(calculate_advice_hgt())
-#' msgcode <- calculate_advice_hgt(sex = "male",
-#'                                 dom1 = 134,
-#'                                 y1 = 64, ga = 35,
+#' msgcode <- calculate_advice_hgt(sex = "male", dob = "01012020",
+#'                                 date = c("01022020", "01062020"),
+#'                                 y = c(54, 68),
+#'                                 ga = 35,
 #'                                 test_gain = FALSE)
 #' msg(msgcode)
 #' @export
 calculate_advice_hgt <- function(sex = NA_character_,
                                  bw = NA, bl = NA, ga = NA,
                                  etn = "NL", hgtf = NA, hgtm = NA,
-                                 dom1 = NA_integer_, y1 = NA,
-                                 dom0 = NA_integer_, y0 = NA,
+                                 dob = NA_character_, date = NA_character_, y = NA,
                                  test_gain = TRUE,
                                  verbose = FALSE) {
 
+  # birth Z-scores
   bw_z <- calculate_birth_z(bw, sex, ga, yname = "wgt")
   bl_z <- calculate_birth_z(bl, sex, ga, yname = "hgt")
   th_z <- calculate_th(hgtf, hgtm, sex = sex, etn = etn)[2L]
-  age1 <- round(dom1/365.25, 4)
-  age0 <- round(dom0/365.25, 4)
+
+  # convert date to age
+  dob <- as.Date(gsub("(-)|(/)", "", dob), "%d%m%Y")
+  date <- as.Date(gsub("(-)|(/)", "", date), "%d%m%Y")
+  age <- as.numeric(round((date - dob)/365.25, 4))
+  age1 <- max(age, na.rm = TRUE)
 
   # select reference
   pt <- !is.na(ga) && ga < 37 && !is.na(age1) && age1 < 4
@@ -63,22 +67,22 @@ calculate_advice_hgt <- function(sex = NA_character_,
   refcode <- centile::make_refcode(name = "nl", year = year, yname = "hgt",
                                    sex = sex, sub = sub)
 
-  # calculate z1 and z0
+  # calculate z-scores
   reftab <- centile::load_reference(refcode, pkg = "nlreferences", verbose = verbose)
   if (is.null(reftab)) {
-    z1 <- z0 <- NA_real_
+    z1 <- z <- NA_real_
   } else {
-    z <- centile::y2z(y = c(y1, y0), x = c(age1, age0), refcode = reftab)
-    z1 <- z[1L]
-    z0 <- z[2L]
+    z <- centile::y2z(y = y, x = age, refcode = reftab)
+    z1 <- z[which.max(age)]
+    z0 <- z[-which.max(age)]
   }
 
   # start the sieve
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(1019)
-  if (is.na(dom1)) return(1015)
-  if (is.na(y1)) return(ifelse(age1 < 18.0, 1018, 1021))
+  if (all(is.na(date))) return(1015)
+  if (all(is.na(y))) return(ifelse(age1 < 18.0, 1018, 1021))
 
   # outside age range
   if (age1 >= 18.0) return(1021)
@@ -96,7 +100,7 @@ calculate_advice_hgt <- function(sex = NA_character_,
 
     # tall
     if (z1 > 3.0) return(1048)
-    if (z1 > 2.5 && is.na(z0) && test_gain) return(1011)
+    if (z1 > 2.5 && all(is.na(z0)) && test_gain) return(1011)
     if (z1 > 1.0) return(1077)
   }
 
@@ -122,7 +126,7 @@ calculate_advice_hgt <- function(sex = NA_character_,
         ((age1 < 8.0 && sex == "female") || (age1 < 9.0 && sex == "male"))) return(1079)
     if (z1 > 1.0) return(1081)
 
-    if (is.na(z0) && test_gain) return(1011)
+    if (all(is.na(z0)) && test_gain) return(1011)
   }
 
   if (age1 >= 10.0 && age1 < 18.0) {
@@ -141,26 +145,41 @@ calculate_advice_hgt <- function(sex = NA_character_,
 
   # check for gain z1 - z0
   if (age1 < 3.0 && test_gain) {
-    if (is.na(z0)) return(1025)
+    if (all(is.na(z0))) return(1025)
 
-    # short
-    if (z1 < -2.5 && z0 < -2.5 && is.na(bw)) return(1013)
-    if (z1 < -2.5 && z0 < -2.5 && ga < 37 && bw >= 2500) return(1049)
-    if (z1 < -2.5 && z0 < -2.5 && bw_z >= -2) return(1062)
+    # Repeated measure needs to be after half a year, but within one year.
+    repeated <- age1 - age <= 1 & age1 - age > 0.5
 
-    # tall
-    if (z1 > 2.5 && z0 > 2.5) return(1050)
+    if(any(repeated)){
+      # short
+      zrep <- min(z[repeated], na.rm = TRUE) # repeated low Z
+      if (z1 < -2.5 && zrep < -2.5 && is.na(bw)) return(1013)
+      if (z1 < -2.5 && zrep < -2.5 && ga < 37 && bw >= 2500) return(1049)
+      if (z1 < -2.5 && zrep < -2.5 && bw_z >= -2) return(1062)
+
+      # tall
+      zrep <- max(z[repeated], na.rm = TRUE) # repeated high Z
+      if (z1 > 2.5 && z0 > 2.5) return(1050)
+    }
   }
 
   if (age1 >= 3.0 && age1 < 10.0 && test_gain) {
-    if (is.na(z0)) return(1025)
-    # short
-    if ((z1 - z0) < -2.0) return(1055)
-    if (!is.na(th_z))
-      if (z1 >= -2.0 && (z1 - z0) < -1.0 && (z1 - th_z) < -1.0) return(1076)
+    if (all(is.na(z0))) return(1025)
 
-    # tall
-    if ((z1 - z0) > 2.0) return(1054)
+    # Repeated measure any age above 3 years
+    repeated <- age >= 3.0 & age != age[which.max(age)]
+
+    if(any(repeated)){
+      # short
+      zrep <- max(z[repeated], na.rm = TRUE) # largest difference
+      if ((z1 - zrep) < -2.0) return(1055)
+      if (!is.na(th_z))
+        if (z1 >= -2.0 && (z1 - zrep) < -1.0 && (z1 - th_z) < -1.0) return(1076)
+
+      # tall
+      zrep <- min(z[repeated], na.rm = TRUE) # largest difference
+      if ((z1 - z0) > 2.0) return(1054)
+    }
   }
 
   # signal everything is OK
