@@ -26,7 +26,7 @@ calculate_advice_devlang <- function(dob = NA_integer_,
                                      dat_vw44 = NA, vw44 = NA,
                                      dat_vw45 = NA, vw45 = NA,
                                      dat_vw46 = NA, vw46 = NA,
-                                     verbose = FALSE) {
+                                     verbose = FALSE, force = FALSE) {
 
   dob <- as.Date(gsub("(-)|(/)", "", dob), "%d%m%Y")
 
@@ -48,14 +48,62 @@ calculate_advice_devlang <- function(dob = NA_integer_,
   if (age1 > 3.3333) return(3004)
   if ((age1 >= 2.3333 && age1 < 2.4166) | (age1 >= 2.8333 && age1 < 2.9166)) return(3005)
 
-  # determine vW moment
+  # vW to dichotomous variable
   df <- df %>%
-    select(case_when(
-      age1 >= 1.9166 && age < 2.3333 ~ c("age", "vw41", "vw42"),
-      age1 >= 2.4166 && age < 2.8333 ~ c("age", "vw41", "vw42", "vw43", "vw44"),
-      age1 >= 2.9166 && age < 3.3333 ~ c("age", "vw45", "vw46"),
-      TRUE ~ c("age")
-    ))
+    mutate_at(vars(starts_with("vw")), function(x) ifelse(x == "2", 0, ifelse(x %in% c("1", "3"), 1, NA_real_)))
+
 
   # start the sieve
+  if (age1 >= 1.9166 && age1 < 2.3333) {
+    # age 2
+    df <- df %>%
+      filter(age >= 1.9166 & age < 2.3333 & !is.na(age)) %>%
+      arrange(-age) %>%
+      fill(vw41, vw42, .direction = "up") %>%
+      head(1) %>%
+      mutate(score = vw41 + vw42)
+    if(is.na(df$score)) return(3011)
+    if(df$score == 0) return(3041)
+    if(df$score == 1) return(3042)
+  }
+
+
+  if (age1 >= 2.4166 && age1 < 2.8333) {
+    # age 2.5 - check if neccesary
+    df <- df %>%
+      filter(age >= 1.9166 & age < 2.3333 & !is.na(age)) %>%
+      arrange(-age) %>%
+      fill(vw41, vw42, .direction = "up") %>%
+      head(1) %>%
+      mutate(score_2 = vw41 + vw42)
+
+    if(is.na(df$score)) return(3012)
+
+    # age 2.5
+    if(score_2 < 2) {
+      df <- df %>%
+        filter(age >= 2.4166 & age < 2.8333 & !is.na(age)) %>%
+        arrange(-age) %>%
+        fill(vw41, vw43, vw44, .direction = "up") %>%
+        head(1) %>%
+        mutate(score = vw41 + vw43 + vw44)
+      if(is.na(df$score)) return(3011)
+      if(df$score < 3) return(3041)
+    }
+  }
+
+  if (age1 >= 2.8333 && age1 < 3.3333) {
+    # age 3
+    df <- df %>%
+      filter(age >= 2.8333 & age < 3.3333 & !is.na(age)) %>%
+      arrange(-age) %>%
+      fill(vw45, vw46, .direction = "up") %>%
+      head(1) %>%
+      mutate(score = vw45 + vw46)
+    if(is.na(df$score)) return(3011)
+    if(df$score == 0) return(3041)
+    if(df$score == 1) return(3043)
+  }
+  # signal everything is alright
+  return(3031)
 }
