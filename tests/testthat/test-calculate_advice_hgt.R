@@ -1,11 +1,22 @@
-kids <- data.frame(
-  dom1 = c(134, NA, NA, NA, NA, 134, 134, 134, 134, 134, 134, 134, 134),
-  dom0 = c(213, NA, NA, NA, NA, NA, NA, NA, NA, NA,
-           NA, NA, NA),
-  y1   = c(64, NA, NA, NA, NA, NA, 64, 64, 40, 40,
-           40, 40, 75),
-  y0   = c(60, NA, NA, NA, NA, NA, NA, NA, NA, NA,
-           NA, NA, NA),
+
+# create dates from age in days
+dob <- "01-01-2020"
+calculate_date <- function(dob, date) {
+  x <- as.Date(unlist(dob), format = "%d-%m-%Y") + date
+  format(x, format = "%d-%m-%Y")
+}
+
+# create tibble with observations and expected outcome
+kids <- tibble(
+  dob = dob,
+  date = list(
+    c(134, 213),
+    NA, NA, NA, NA, 134, 134, 134, 134, 134, 134, 134, 134
+  ),
+  y = list(
+    c(60, 64),
+    NA, NA, NA, NA, NA, 64, 64, 40, 40, 40, 40, 75
+  ),
   sex  = c("male", NA_character_, "X", "female", "female", "female", "female", "female", "female", "female",
            "female", "female", "female"),
   bw   = c(3000, NA, NA, NA, NA, NA, NA, NA, NA, 3000,
@@ -32,13 +43,13 @@ for (k in 1:nrow(kids)) {
                                 bw   = kids[k, "bw"],
                                 bl   = kids[k, "bl"],
                                 ga   = kids[k, "ga"],
-                                etn  = kids[k, "etn"],
+                                etn  = unlist(kids[k, "etn"]),
                                 hgtf = kids[k, "hgtf"],
                                 hgtm = kids[k, "hgtm"],
-                                dom1 = kids[k, "dom1"],
-                                y1   = kids[k, "y1"],
-                                dom0 = kids[k, "dom0"],
-                                y0   = kids[k, "y0"])
+                                dob = kids[k, "dob"],
+                                date = calculate_date(kids[k, "dob"],
+                                                      unlist(kids[k, "date"])),
+                                y   = unlist(kids[k, "y"]))
   results[k, ] <- c(k, kids$code[k], found)
 }
 

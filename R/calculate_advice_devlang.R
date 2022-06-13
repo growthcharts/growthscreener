@@ -40,13 +40,13 @@ calculate_advice_devlang <- function(dob = NA_integer_,
     mutate(age = as.numeric(round((date - dob)/365.25, 4)))
 
   # return early if data is insufficient
-  if (is.na(dob)) return(3001)
-  if (all(is.na(df$date))) return(3002)
+  if (is.na(dob)) return(4001)
+  if (all(is.na(df$date))) return(4002)
 
   age1 <- max(df$age, na.rm = TRUE)
-  if (age1 < 1.9166) return(3003)
-  if (age1 > 3.3333) return(3004)
-  if ((age1 >= 2.3333 && age1 < 2.4166) | (age1 >= 2.8333 && age1 < 2.9166)) return(3005)
+  if (age1 < 1.9166) return(4003)
+  if (age1 > 3.3333) return(4004)
+  if ((age1 >= 2.3333 && age1 < 2.4166) | (age1 >= 2.8333 && age1 < 2.9166)) return(4005)
 
   # vW to dichotomous variable
   df <- df %>%
@@ -62,9 +62,9 @@ calculate_advice_devlang <- function(dob = NA_integer_,
       fill(vw41, vw42, .direction = "up") %>%
       head(1) %>%
       mutate(score = vw41 + vw42)
-    if(is.na(df$score)) return(3011)
-    if(df$score == 0) return(3041)
-    if(df$score == 1) return(3042)
+    if(is.na(df$score)) return(4011)
+    if(df$score == 0) return(4041)
+    if(df$score == 1) return(4042)
   }
 
 
@@ -77,7 +77,7 @@ calculate_advice_devlang <- function(dob = NA_integer_,
       head(1) %>%
       mutate(score_2 = vw41 + vw42)
 
-    if(is.na(df$score)) return(3012)
+    if(is.na(df$score)) return(4012)
 
     # age 2.5
     if(score_2 < 2) {
@@ -87,8 +87,8 @@ calculate_advice_devlang <- function(dob = NA_integer_,
         fill(vw41, vw43, vw44, .direction = "up") %>%
         head(1) %>%
         mutate(score = vw41 + vw43 + vw44)
-      if(is.na(df$score)) return(3011)
-      if(df$score < 3) return(3041)
+      if(is.na(df$score)) return(4011)
+      if(df$score < 3) return(4041)
     }
   }
 
@@ -100,10 +100,10 @@ calculate_advice_devlang <- function(dob = NA_integer_,
       fill(vw45, vw46, .direction = "up") %>%
       head(1) %>%
       mutate(score = vw45 + vw46)
-    if(is.na(df$score)) return(3011)
-    if(df$score == 0) return(3041)
-    if(df$score == 1) return(3043)
+    if(is.na(df$score)) return(4011)
+    if(df$score == 0) return(4041)
+    if(df$score == 1) return(4043)
   }
   # signal everything is alright
-  return(3031)
+  return(4031)
 }

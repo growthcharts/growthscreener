@@ -50,13 +50,15 @@ calculate_advice_wgt  <- function(sex = NA_character_,
     left_join(data.frame(age = age_hgt, hgt = hgt), by = "age")
   df1 <- df[which.max(df$age), ] # subset today
 
+  # start the sieve
+
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(2019)
   if (all(is.na(df$age))) return(2015)
   if (is.na(df1$y)) return(2018)
-  if (is.na(df1$hgt)) return(2014)
+  if (is.na(df1$hgt) && df1$age >= 1.0) return(2014)
 
-  # check applicability
+  # outside age range
   if (df1$age >= 19.0) return(2021)
   if (df1$age < 2.0 && df1$hgt < 35) return(2022)
   if (df1$age < 2.0 && df1$hgt > 120) return(2023)
@@ -76,11 +78,9 @@ calculate_advice_wgt  <- function(sex = NA_character_,
       df1$z <- centile::y2z(y = df1$y, x = df1$hgt, refcode = reftable)
     }
   }
-
   df0 <- df[-which.max(df$age), ] # subset out today
 
-  # start sieve
-
+  # apply decision tree
   if (df1$age < 1.0) {
 
     # low weight
@@ -108,7 +108,7 @@ calculate_advice_wgt  <- function(sex = NA_character_,
     }
   }
 
-  if (age1 >= 2.0) {
+  if (df1$age >= 2.0) {
 
     bmi <- df1$y/(df1$hgt/100)^2
     bmi_table <- growthscreener::bmi_table
@@ -128,7 +128,7 @@ calculate_advice_wgt  <- function(sex = NA_character_,
     # high weight (bmi)
     if (bmi > cutoff_obesity) return(2044)
     if (bmi > cutoff_overweight) {
-      if (age1 < 5.0) return(2045)
+      if (df1$age < 5.0) return(2045)
       return(2046)
     }
 

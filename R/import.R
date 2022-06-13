@@ -8,6 +8,6 @@
 #' @importFrom rlang          .data
 #' @importFrom stats          approx
 #' @importFrom tidyselect     all_of starts_with
-#' @importFrom tidyr          fill
+#' @importFrom tidyr          fill tibble
 #' @importFrom utils          hasName packageVersion
 NULL

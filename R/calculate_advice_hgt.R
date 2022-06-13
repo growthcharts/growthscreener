@@ -49,6 +49,8 @@ calculate_advice_hgt <- function(sex = NA_character_,
                                  test_gain = TRUE,
                                  verbose = FALSE) {
 
+  etn <- "NL" # nieuwe groeistudie nodig voordat etn gebruikt kan worden
+
   # birth Z-scores
   bw_z <- calculate_birth_z(bw, sex, ga, yname = "wgt")
   bl_z <- calculate_birth_z(bl, sex, ga, yname = "hgt")
@@ -81,6 +83,7 @@ calculate_advice_hgt <- function(sex = NA_character_,
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(1019)
+  if (is.na(dob)) return(1016)
   if (all(is.na(date))) return(1015)
   if (all(is.na(y))) return(ifelse(age1 < 18.0, 1018, 1021))
 
