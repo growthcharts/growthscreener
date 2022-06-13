@@ -88,6 +88,9 @@ calculate_advice_wgt  <- function(sex = NA_character_,
 
     # fast decrease 1SD - for any previous measurement
     if (test_gain) {
+      if (nrow(df0) < 1 | all(is.na(df0$y))) return(2012)
+      #if (all(is.na(df0$age))) return(2011) -> Old version doesnt check, should we add this?
+      if (all(is.na(df0$hgt))) return(2013)
       if (any(!is.na(df0$z) & !is.na(df1$z) & (df1$z - df0$z) < -1.0)) return(2075)
     }
   }
@@ -104,6 +107,9 @@ calculate_advice_wgt  <- function(sex = NA_character_,
 
     # decreasing - any previous measurement
     if (test_gain) {
+      if (nrow(df0) < 1 | all(is.na(df0$y))) return(2012)
+      if (all(is.na(df0$age))) return(2011)
+      if (all(is.na(df0$hgt))) return(2013)
       if (any(!is.na(df0$z) & (df1$z - df0$z) < -1.0)) return(2075)
     }
   }
