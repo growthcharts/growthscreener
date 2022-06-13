@@ -1,22 +1,22 @@
 #' Referral advice for language development
 #'
 #' This function traverses a decision tree for language development based on the
-#' van Wiechen questionnaire.
+#' van Wiechen questionnaire for child development.
 #'
 #'
 #' @param y1    Head circumference at last measurement (cm)
 #' @param y0    Head circumference at previous measurement (cm)
 #' @inheritParams calculate_advice_hgt
-#' @return `calculate_advice_hdc` returns an integer, the `msgcode`, between
+#' @return `calculate_advice_devlang` returns an integer, the `msgcode`, between
 #'   3000-3999.
 #' @author Arjan Huizing, Stef van Buuren, 2020
 #' @seealso calculate_helpers
-#' @rdname advice_hdc
+#' @rdname advice_devlang
 #' @examples
-#' msg(calculate_advice_hdc())
-#' msgcode <- calculate_advice_hdc(sex = "female",
-#'                                 dom1 = 243, y1 = 40,
-#'                                 dom0 = 91, y0 = 36)
+#' msg(calculate_advice_devlang())
+#' msgcode <- calculate_advice_devlang(dob = "01012020",
+#'                                 dat_vw41 = "01012022", vw41 = 2,
+#'                                 dat_vw42 = "01012022", vw42 = 1)
 #' msg(msgcode)
 #' @export
 calculate_advice_devlang <- function(dob = NA_integer_,

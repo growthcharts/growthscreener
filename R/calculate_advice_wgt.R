@@ -21,7 +21,7 @@
 #' @author Arjan Huizing, Stef van Buuren 2020
 #' @examples
 #' msg(calculate_advice_wgt())
-#' msgcode <- calculate_advice_hgt(sex = "male", dob = "01012020",
+#' msgcode <- calculate_advice_wgt(sex = "male", dob = "01012020",
 #'                                 date = c("01022020", "01062020"),
 #'                                 date_hgt = c("01022020", "01062020"),
 #'                                 y = c(5.4, 6.8),
