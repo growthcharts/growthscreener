@@ -1,21 +1,16 @@
-
-# create dates from age in days
-dob <- "01-01-2020"
-calculate_date <- function(dob, date) {
-  x <- as.Date(unlist(dob), format = "%d-%m-%Y") + date
-  format(x, format = "%d-%m-%Y")
-}
-
+# create tibble with observations and expected outcome
 kids <- tibble(
-  dob = dob,
-  date = list(
-    NA, NA, NA, c(NA, 134), c(NA, 134), 499, 499, 1230, 1230, c(NA, 1230)
+  dob = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, "01012020"),
+  dom = list(
+    NA, NA, NA, c(NA, 0.3669), c(NA, 0.3669),
+    1.3662, 1.3662, 3.3676, 3.3676, c(NA, 3.3676)
   ),
   y = list(
     NA, NA, NA, c(5.4, 6.0), c(5.4, 5.5), 13, 10, 20, 13, c(17, 16)
   ),
-  date_hgt = list(
-    NA, NA, NA, c(NA, 134), c(NA, 134), c(NA, 499), c(NA, 499), c(NA, 1230), c(NA, 1230), c(NA, 1230)
+  dom_hgt = list(
+    NA, NA, NA, c(NA, 0.3669), c(NA, 0.3669), c(NA, 1.3662), c(NA, 1.3662),
+    c(NA, 3.3676), c(NA, 3.3676), c(NA, 3.3676)
   ),
   hgt = list(
     NA, NA, NA, c(59, 60), c(59, 65), c(NA, 85), c(NA, 85), c(NA, 105), c(NA, 105), c(102, 105)
@@ -33,11 +28,9 @@ for (k in 1:nrow(kids)) {
   found <- calculate_advice_wgt(sex  = unlist(kids[k, "sex"]),
                                 ga   = kids[k, "ga"],
                                 dob = kids[k, "dob"],
-                                date = calculate_date(kids[k, "dob"],
-                                                      unlist(kids[k, "date"])),
+                                dom = unlist(kids[k, "dom"]),
                                 y   = unlist(kids[k, "y"]),
-                                date_hgt = calculate_date(kids[k, "dob"],
-                                                      unlist(kids[k, "date_hgt"])),
+                                dom_hgt = unlist(kids[k, "dom_hgt"]),
                                 hgt   = unlist(kids[k, "hgt"]))
   results[k, ] <- c(k, kids$code[k], found)
 }

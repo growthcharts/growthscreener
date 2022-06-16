@@ -1,17 +1,9 @@
-
-# create dates from age in days
-dob <- "01-01-2020"
-calculate_date <- function(dob, date) {
-  x <- as.Date(unlist(dob), format = "%d-%m-%Y") + date
-  format(x, format = "%d-%m-%Y")
-}
-
 # create tibble with observations and expected outcome
 kids <- tibble(
-  dob = dob,
-  date = list(
-    c(134, 213),
-    NA, NA, NA, NA, 134, 134, 134, 134, 134, 134, 134, 134
+  dob = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "01012020"),
+  dom = list(
+    c(0.3669, 0.5832),
+    NA, NA, NA, NA, 0.3669, 0.3669, 0.3669, 0.3669, 0.3669, 0.3669, 0.3669, "14052020"
   ),
   y = list(
     c(60, 64),
@@ -47,8 +39,7 @@ for (k in 1:nrow(kids)) {
                                 hgtf = kids[k, "hgtf"],
                                 hgtm = kids[k, "hgtm"],
                                 dob = kids[k, "dob"],
-                                date = calculate_date(kids[k, "dob"],
-                                                      unlist(kids[k, "date"])),
+                                dom = unlist(kids[k, "dom"]),
                                 y   = unlist(kids[k, "y"]))
   results[k, ] <- c(k, kids$code[k], found)
 }

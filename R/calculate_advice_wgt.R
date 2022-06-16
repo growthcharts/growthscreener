@@ -5,25 +5,24 @@
 #'
 #' Oldest age assumed to be current
 #'
-#' The decision tree assesses both single and paired measurements.
-#' The last observations (`y1`) is generally taken as the
-#' last measurement, whereas `y0` can be one of the previous
-#' measurements. For more than two measurements, there are many
-#' pairs possible, and these pairs need not be consecutive.
-#' The `y0` measurement needs to be defined by the user,
-#' and is informally taken as an earlier measurement that maximizes
-#' the referral probability.
+#' The decision tree assesses both single and paired measurements. The last
+#' observations (`y1`) is generally taken as the last measurement, whereas `y0`
+#' can be one of the previous measurements. For more than two measurements,
+#' there are many pairs possible, and these pairs need not be consecutive. The
+#' `y0` measurement needs to be defined by the user, and is informally taken as
+#' an earlier measurement that maximizes the referral probability.
 #'
 #' @inheritParams calculate_advice_hgt
-#' @param date_hgt Vector with dates relating to the height measurement
+#' @param dom_hgt Vector with date of measurement relating to height. Either
+#'   supplied as age in decimal years or a date in the format `ddmmYYYY`.
 #' @param hgt Vector with height measurements (cm)
 #' @return `calculate_advice_wgt()` returns an integer, the `msgcode`
 #' @author Arjan Huizing, Stef van Buuren 2020
 #' @examples
 #' msg(calculate_advice_wgt())
 #' msgcode <- calculate_advice_wgt(sex = "male", dob = "01012020",
-#'                                 date = c("01022020", "01062020"),
-#'                                 date_hgt = c("01022020", "01062020"),
+#'                                 dom = c("01022020", "01062020"),
+#'                                 dom_hgt = c("01022020", "01062020"),
 #'                                 y = c(5.4, 6.8),
 #'                                 hgt = c(54, 60),
 #'                                 ga = 35,
@@ -32,18 +31,15 @@
 #' @export
 calculate_advice_wgt  <- function(sex = NA_character_,
                                   ga = NA, etn = NA,
-                                  date = NA_integer_, y = NA,
-                                  date_hgt = NA_integer_, hgt = NA,
+                                  dom = NA_integer_, y = NA,
+                                  dom_hgt = NA_integer_, hgt = NA,
                                   dob = NA_character_,
                                   test_gain = TRUE,
                                   verbose = FALSE) {
 
   # convert date to age
-  dob <- as.Date(gsub("(-)|(/)", "", dob), "%d%m%Y")
-  date <- as.Date(gsub("(-)|(/)", "", date), "%d%m%Y")
-  date_hgt <- as.Date(gsub("(-)|(/)", "", date_hgt), "%d%m%Y")
-  age <- as.numeric(round((date - dob)/365.25, 4))
-  age_hgt <- as.numeric(round((date_hgt - dob)/365.25, 4))
+  if (any(nchar(dom) >= 8 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
+  if (any(nchar(dom_hgt) >= 8 & !is.na(dom_hgt))) age_hgt <- date2age(dob, dom_hgt) else age_hgt <- dom_hgt
 
   # sort wgt and hgt observations
   df <- data.frame(age = age, y = y) %>%

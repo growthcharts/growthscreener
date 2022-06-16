@@ -1,34 +1,34 @@
 #' Referral advice for body height
 #'
-#' This function traverses the decision tree of the
-#' "JGZ-Richtlijn Lengtegroei 2019".
+#' This function traverses the decision tree of the "JGZ-Richtlijn Lengtegroei
+#' 2019".
 #'
-#' The decision tree assesses both single and paired measurements.
-#' The last observations (`y1`) is generally taken as the
-#' last measurement, whereas `y0` can be one of the previous
-#' measurements. For more than two measurements, there are many
-#' pairs possible, and these pairs need not be consecutive.
-#' The `y0` measurement needs to be defined by the user,
-#' and is informally taken as an earlier measurement that maximumizes
-#' the referal probability. On the other hand, defining pairs that are
-#' remote in ages (e.g. period between 1 month and 14 years) is probably
-#' not that useful. In practice, we may be interested in setting the
-#' maximum period to, say, five years.
+#' The decision tree assesses both single and paired measurements. The last
+#' observations (`y1`) is generally taken as the last measurement, whereas `y0`
+#' can be one of the previous measurements. For more than two measurements,
+#' there are many pairs possible, and these pairs need not be consecutive. The
+#' `y0` measurement needs to be defined by the user, and is informally taken as
+#' an earlier measurement that maximumizes the referal probability. On the other
+#' hand, defining pairs that are remote in ages (e.g. period between 1 month and
+#' 14 years) is probably not that useful. In practice, we may be interested in
+#' setting the maximum period to, say, five years.
 #'
 #' @param sex   Character, either `"male"` or `"female"`
 #' @param bw    Birth weight (grammes)
 #' @param bl    Birth length (cm)
 #' @param ga    Gestational age, completed weeks (Integer or character)
-#' @param etn   Etnicity, one of `"NL"` (dutch), `"TU"` (turkish),
-#'              `"MA"` (moroccan) or `"HS"` (hindustani).
-#'              The default is `"NL"`. Only used for target height.
+#' @param etn   Etnicity, one of `"NL"` (dutch), `"TU"` (turkish), `"MA"`
+#'   (moroccan) or `"HS"` (hindustani). Currently not functional, always uses
+#'   `"NL"`. Only used for target height.
 #' @param hgtf  Height of father (cm)
 #' @param hgtm  Height of mother (cm)
-#' @param dob   Date of birth (ddmmYYYY)
-#' @param date  Vector with dates of measurements
+#' @param dob   Date of birth (ddmmYYYY). Required if `dom` is supplied as a
+#'   date string.
+#' @param dom  Vector with dates of measurements. Either supplied as age in
+#'   decimal years or a date in the format `ddmmYYYY`.
 #' @param y     Vector with height measurements (cm)
 #' @param test_gain Logical. Should the increase or decrease in Z-scores be
-#' tested? The default is `TRUE`.
+#'   tested? The default is `TRUE`.
 #' @param verbose Set to `TRUE` to obtain warnings on reference finding.
 #' @return `calculate_advice_hgt` returns an integer, the `msgcode`
 #' @author Paula van Dommelen, Stef van Buuren, 2021
@@ -36,7 +36,7 @@
 #' @examples
 #' msg(calculate_advice_hgt())
 #' msgcode <- calculate_advice_hgt(sex = "male", dob = "01012020",
-#'                                 date = c("01022020", "01062020"),
+#'                                 dom = c("01022020", "01062020"),
 #'                                 y = c(54, 68),
 #'                                 ga = 35,
 #'                                 test_gain = FALSE)
@@ -45,7 +45,7 @@
 calculate_advice_hgt <- function(sex = NA_character_,
                                  bw = NA, bl = NA, ga = NA,
                                  etn = "NL", hgtf = NA, hgtm = NA,
-                                 dob = NA_character_, date = NA_character_, y = NA,
+                                 dob = NA_character_, dom = NA_character_, y = NA,
                                  test_gain = TRUE,
                                  verbose = FALSE) {
 
@@ -57,10 +57,8 @@ calculate_advice_hgt <- function(sex = NA_character_,
   th_z <- calculate_th(hgtf, hgtm, sex = sex, etn = etn)[2L]
 
   # convert date to age
-  dob <- as.Date(gsub("(-)|(/)", "", dob), "%d%m%Y")
-  date <- as.Date(gsub("(-)|(/)", "", date), "%d%m%Y")
-  age <- as.numeric(round((date - dob)/365.25, 4))
-  age1 <- max(age, na.rm = TRUE)
+  if (any(nchar(dom) >= 8 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
+  age1 <- ifelse(!all(is.na(age)), max(age, na.rm=T), NA)
 
   # select reference
   pt <- !is.na(ga) && ga < 37 && !is.na(age1) && age1 < 4
@@ -83,8 +81,9 @@ calculate_advice_hgt <- function(sex = NA_character_,
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(1019)
-  if (is.na(dob)) return(1016)
-  if (all(is.na(date))) return(1015)
+  if (all(is.na(dom))) return(1015)
+  if (all(nchar(dom) >= 8) & is.na(dob)) return(1016)
+  if (!is.numeric(age)) return(1015)
   if (all(is.na(y))) return(ifelse(age1 < 18.0, 1018, 1021))
 
   # outside age range

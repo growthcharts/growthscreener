@@ -15,29 +15,34 @@
 #' @examples
 #' msg(calculate_advice_devlang())
 #' msgcode <- calculate_advice_devlang(dob = "01012020",
-#'                                 dat_vw41 = "01012022", vw41 = 2,
-#'                                 dat_vw42 = "01012022", vw42 = 1)
+#'                                 dom_vw41 = "01012022", vw41 = 2,
+#'                                 dom_vw42 = "01012022", vw42 = 1)
 #' msg(msgcode)
 #' @export
 calculate_advice_devlang <- function(dob = NA_integer_,
-                                     dat_vw41 = NA, vw41 = NA,
-                                     dat_vw42 = NA, vw42 = NA,
-                                     dat_vw43 = NA, vw43 = NA,
-                                     dat_vw44 = NA, vw44 = NA,
-                                     dat_vw45 = NA, vw45 = NA,
-                                     dat_vw46 = NA, vw46 = NA,
+                                     dom_vw41 = NA, vw41 = NA,
+                                     dom_vw42 = NA, vw42 = NA,
+                                     dom_vw43 = NA, vw43 = NA,
+                                     dom_vw44 = NA, vw44 = NA,
+                                     dom_vw45 = NA, vw45 = NA,
+                                     dom_vw46 = NA, vw46 = NA,
                                      verbose = FALSE, force = FALSE) {
 
-  dob <- as.Date(gsub("(-)|(/)", "", dob), "%d%m%Y")
+  # convert ages - probably a more elegant way of doing this ..
+  age_vw41 <- ifelse(all(nchar(dom_vw41) >= 8), date2age(dob, dom_vw41), dom_vw41)
+  age_vw42 <- ifelse(all(nchar(dom_vw42) >= 8), date2age(dob, dom_vw42), dom_vw42)
+  age_vw43 <- ifelse(all(nchar(dom_vw43) >= 8), date2age(dob, dom_vw43), dom_vw43)
+  age_vw44 <- ifelse(all(nchar(dom_vw44) >= 8), date2age(dob, dom_vw44), dom_vw44)
+  age_vw45 <- ifelse(all(nchar(dom_vw45) >= 8), date2age(dob, dom_vw45), dom_vw45)
+  age_vw46 <- ifelse(all(nchar(dom_vw46) >= 8), date2age(dob, dom_vw46), dom_vw46)
 
   # create data.frame with vW responses
-  df <- data.frame(date = as.Date(gsub("(-)|(/)", "", dat_vw41), "%d%m%Y"), vw41) %>%
-    full_join(data.frame(date = as.Date(gsub("(-)|(/)", "", dat_vw42), "%d%m%Y"), vw42), by = "date") %>%
-    full_join(data.frame(date = as.Date(gsub("(-)|(/)", "", dat_vw43), "%d%m%Y"), vw43), by = "date") %>%
-    full_join(data.frame(date = as.Date(gsub("(-)|(/)", "", dat_vw44), "%d%m%Y"), vw44), by = "date") %>%
-    full_join(data.frame(date = as.Date(gsub("(-)|(/)", "", dat_vw45), "%d%m%Y"), vw45), by = "date") %>%
-    full_join(data.frame(date = as.Date(gsub("(-)|(/)", "", dat_vw46), "%d%m%Y"), vw46), by = "date") %>%
-    mutate(age = as.numeric(round((date - dob)/365.25, 4)))
+  df <- data.frame(age = age_vw41, vw41) %>%
+    full_join(data.frame(age = age_vw42, vw42), by = "age") %>%
+    full_join(data.frame(age = age_vw43, vw43), by = "age") %>%
+    full_join(data.frame(age = age_vw44, vw44), by = "age") %>%
+    full_join(data.frame(age = age_vw45, vw45), by = "age") %>%
+    full_join(data.frame(age = age_vw46, vw46), by = "age")
 
   # return early if data is insufficient
   if (is.na(dob)) return(4001)
