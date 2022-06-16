@@ -1,16 +1,19 @@
 #' Referral advice for language development
 #'
-#' This function traverses a decision tree for language development based on the
-#' van Wiechen questionnaire for child development.
+#' This function traverses the decision tree "JGZ-Richtlijn taalontwikkeling
+#' 2012", which is based on the van Wiechen questionnaire for child development.
 #'
+#' The observation corresponding to the oldest age is taken is the current
+#' measurement.
 #'
-#' @param y1    Head circumference at last measurement (cm)
-#' @param y0    Head circumference at previous measurement (cm)
-#' @inheritParams calculate_advice_hgt
+#' @param dob Date of birth (`ddmmYYYY`). Required if `dom` is supplied as a
+#'   date string.
+#' @param dom_vw41  Date of measurement for van Wiechen item 41. Either a vector
+#'   of age in decimal years or a date in the format `ddmmYYYY`
+#' @param vw41 Outcome of the van Wiechen item.
 #' @return `calculate_advice_devlang` returns an integer, the `msgcode`, between
-#'   3000-3999.
+#'   4000-4999.
 #' @author Arjan Huizing, Stef van Buuren, 2020
-#' @seealso calculate_helpers
 #' @rdname advice_devlang
 #' @examples
 #' msg(calculate_advice_devlang())

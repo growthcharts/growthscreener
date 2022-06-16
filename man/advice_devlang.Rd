@@ -5,49 +5,50 @@
 \title{Referral advice for language development}
 \usage{
 calculate_advice_devlang(
-  dob = NA_integer_,
-  dat_vw41 = NA,
+  dob = NA_character_,
+  dom_vw41 = NA,
   vw41 = NA,
-  dat_vw42 = NA,
+  dom_vw42 = NA,
   vw42 = NA,
-  dat_vw43 = NA,
+  dom_vw43 = NA,
   vw43 = NA,
-  dat_vw44 = NA,
+  dom_vw44 = NA,
   vw44 = NA,
-  dat_vw45 = NA,
+  dom_vw45 = NA,
   vw45 = NA,
-  dat_vw46 = NA,
+  dom_vw46 = NA,
   vw46 = NA,
   verbose = FALSE,
   force = FALSE
 )
 }
 \arguments{
-\item{dob}{Date of birth (ddmmYYYY)}
+\item{dob}{Date of birth (\code{ddmmYYYY}). Required if \code{dom} is supplied as a
+date string.}
 
-\item{verbose}{Set to \code{TRUE} to obtain warnings on reference finding.}
+\item{dom_vw41}{Date of measurement for van Wiechen item 41. Either a vector
+of age in decimal years or a date in the format \code{ddmmYYYY}}
 
-\item{y1}{Head circumference at last measurement (cm)}
-
-\item{y0}{Head circumference at previous measurement (cm)}
+\item{vw41}{Outcome of the van Wiechen item.}
 }
 \value{
 \code{calculate_advice_devlang} returns an integer, the \code{msgcode}, between
-3000-3999.
+4000-4999.
 }
 \description{
-This function traverses a decision tree for language development based on the
-van Wiechen questionnaire.
+This function traverses the decision tree "JGZ-Richtlijn taalontwikkeling
+2012", which is based on the van Wiechen questionnaire for child development.
+}
+\details{
+The observation corresponding to the oldest age is taken is the current
+measurement.
 }
 \examples{
 msg(calculate_advice_devlang())
 msgcode <- calculate_advice_devlang(dob = "01012020",
-                                dat_vw41 = "01012022", vw41 = 2,
-                                dat_vw42 = "01012022", vw42 = 1)
+                                dom_vw41 = "01012022", vw41 = 2,
+                                dom_vw42 = "01012022", vw42 = 1)
 msg(msgcode)
-}
-\seealso{
-calculate_helpers
 }
 \author{
 Arjan Huizing, Stef van Buuren, 2020

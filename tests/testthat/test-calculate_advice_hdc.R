@@ -1,8 +1,10 @@
-kids <- data.frame(
-  dom1 = c(NA, NA, NA, 499, 134, 134, 134, 134, 134),
-  dom0 = c(NA, NA, NA, NA, NA, NA, NA, 104, 104),
-  y1   = c(NA, NA, NA, 43, 47, 35, 43, 43, 43),
-  y0   = c(NA, NA, NA, NA, NA, NA, 41, 41, 42),
+kids <- tibble(
+  dom = list(
+    NA, NA, NA, 1.3662, 0.3669, 0.3669, 0.3669, c(0.2847, 0.3669), c(0.2847, 0.3669)
+  ),
+  y = list(
+    NA, NA, NA, 43, 47, 35, c(41, 43), c(41, 43), c(42, 43)
+  ),
   sex  = c(NA_character_, "male", "male", "female", "female",
            "female", "female", "female", "female"),
   ga   = c(NA, NA, NA, NA, 33, 33, NA, NA, NA),
@@ -15,10 +17,8 @@ colnames(results) <- c("k", "expected", "found")
 for (k in 1:nrow(kids)) {
   found <- calculate_advice_hdc(sex  = kids[k, "sex"],
                                 ga   = kids[k, "ga"],
-                                dom1 = kids[k, "dom1"],
-                                y1   = kids[k, "y1"],
-                                dom0 = kids[k, "dom0"],
-                                y0   = kids[k, "y0"])
+                                dom = unlist(kids[k, "dom"]),
+                                y   = unlist(kids[k, "y"]))
   results[k, ] <- c(k, kids$code[k], found)
 }
 

@@ -3,15 +3,9 @@
 #' This function traverses the decision tree of the "JGZ-Richtlijn Lengtegroei
 #' 2019".
 #'
-#' The decision tree assesses both single and paired measurements. The last
-#' observations (`y1`) is generally taken as the last measurement, whereas `y0`
-#' can be one of the previous measurements. For more than two measurements,
-#' there are many pairs possible, and these pairs need not be consecutive. The
-#' `y0` measurement needs to be defined by the user, and is informally taken as
-#' an earlier measurement that maximumizes the referal probability. On the other
-#' hand, defining pairs that are remote in ages (e.g. period between 1 month and
-#' 14 years) is probably not that useful. In practice, we may be interested in
-#' setting the maximum period to, say, five years.
+#' The decision tree assesses both single and paired measurements. The
+#' observation corresponding to the oldest age is taken is the current
+#' measurement.
 #'
 #' @param sex   Character, either `"male"` or `"female"`
 #' @param bw    Birth weight (grammes)
@@ -22,7 +16,7 @@
 #'   `"NL"`. Only used for target height.
 #' @param hgtf  Height of father (cm)
 #' @param hgtm  Height of mother (cm)
-#' @param dob   Date of birth (ddmmYYYY). Required if `dom` is supplied as a
+#' @param dob   Date of birth (`ddmmYYYY`). Required if `dom` is supplied as a
 #'   date string.
 #' @param dom  Vector with dates of measurements. Either supplied as age in
 #'   decimal years or a date in the format `ddmmYYYY`.
@@ -82,7 +76,7 @@ calculate_advice_hgt <- function(sex = NA_character_,
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(1019)
   if (all(is.na(dom))) return(1015)
-  if (all(nchar(dom) >= 8) & is.na(dob)) return(1016)
+  if (any(nchar(dom) >= 8) & is.na(dob)) return(1016)
   if (!is.numeric(age)) return(1015)
   if (all(is.na(y))) return(ifelse(age1 < 18.0, 1018, 1021))
 

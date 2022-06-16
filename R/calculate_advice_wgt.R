@@ -3,14 +3,9 @@
 #' This function traverses the decision tree of the "JGZ-Richtlijn overgewicht
 #' 2012" and "JGZ-Richtlijn Ondergewicht 2019"
 #'
-#' Oldest age assumed to be current
-#'
-#' The decision tree assesses both single and paired measurements. The last
-#' observations (`y1`) is generally taken as the last measurement, whereas `y0`
-#' can be one of the previous measurements. For more than two measurements,
-#' there are many pairs possible, and these pairs need not be consecutive. The
-#' `y0` measurement needs to be defined by the user, and is informally taken as
-#' an earlier measurement that maximizes the referral probability.
+#' The decision tree assesses both single and paired measurements. The
+#' observation corresponding to the oldest age is taken is the current
+#' measurement.
 #'
 #' @inheritParams calculate_advice_hgt
 #' @param dom_hgt Vector with date of measurement relating to height. Either
@@ -18,6 +13,7 @@
 #' @param hgt Vector with height measurements (cm)
 #' @return `calculate_advice_wgt()` returns an integer, the `msgcode`
 #' @author Arjan Huizing, Stef van Buuren 2020
+#' @rdname advice_wgt
 #' @examples
 #' msg(calculate_advice_wgt())
 #' msgcode <- calculate_advice_wgt(sex = "male", dob = "01012020",
@@ -51,7 +47,7 @@ calculate_advice_wgt  <- function(sex = NA_character_,
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(2019)
   if (all(is.na(dom))) return(2015)
-  if (all(nchar(dom) >= 8) & is.na(dob)) return(2016)
+  if (any(nchar(dom) >= 8) & is.na(dob)) return(2016)
   if (all(is.na(df$age))) return(2015)
   if (is.na(df1$y)) return(2018)
   if (is.na(df1$hgt) && df1$age >= 1.0) return(2014)
