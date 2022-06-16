@@ -50,6 +50,8 @@ calculate_advice_wgt  <- function(sex = NA_character_,
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(2019)
+  if (all(is.na(dom))) return(2015)
+  if (all(nchar(dom) >= 8) & is.na(dob)) return(2016)
   if (all(is.na(df$age))) return(2015)
   if (is.na(df1$y)) return(2018)
   if (is.na(df1$hgt) && df1$age >= 1.0) return(2014)

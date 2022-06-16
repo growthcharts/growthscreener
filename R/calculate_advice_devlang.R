@@ -19,7 +19,7 @@
 #'                                 dom_vw42 = "01012022", vw42 = 1)
 #' msg(msgcode)
 #' @export
-calculate_advice_devlang <- function(dob = NA_integer_,
+calculate_advice_devlang <- function(dob = NA_character_,
                                      dom_vw41 = NA, vw41 = NA,
                                      dom_vw42 = NA, vw42 = NA,
                                      dom_vw43 = NA, vw43 = NA,
@@ -29,29 +29,37 @@ calculate_advice_devlang <- function(dob = NA_integer_,
                                      verbose = FALSE, force = FALSE) {
 
   # convert ages - probably a more elegant way of doing this ..
-  age_vw41 <- ifelse(all(nchar(dom_vw41) >= 8), date2age(dob, dom_vw41), dom_vw41)
-  age_vw42 <- ifelse(all(nchar(dom_vw42) >= 8), date2age(dob, dom_vw42), dom_vw42)
-  age_vw43 <- ifelse(all(nchar(dom_vw43) >= 8), date2age(dob, dom_vw43), dom_vw43)
-  age_vw44 <- ifelse(all(nchar(dom_vw44) >= 8), date2age(dob, dom_vw44), dom_vw44)
-  age_vw45 <- ifelse(all(nchar(dom_vw45) >= 8), date2age(dob, dom_vw45), dom_vw45)
-  age_vw46 <- ifelse(all(nchar(dom_vw46) >= 8), date2age(dob, dom_vw46), dom_vw46)
+  if (any(nchar(dom_vw41) >= 8 & !is.na(dom_vw41)))
+    age_vw41 <- date2age(dob, dom_vw41) else age_vw41 <- dom_vw41
+  if (any(nchar(dom_vw42) >= 8 & !is.na(dom_vw42)))
+    age_vw41 <- date2age(dob, dom_vw42) else age_vw42 <- dom_vw42
+  if (any(nchar(dom_vw43) >= 8 & !is.na(dom_vw43)))
+    age_vw41 <- date2age(dob, dom_vw43) else age_vw43 <- dom_vw43
+  if (any(nchar(dom_vw44) >= 8 & !is.na(dom_vw44)))
+    age_vw41 <- date2age(dob, dom_vw44) else age_vw44 <- dom_vw44
+  if (any(nchar(dom_vw45) >= 8 & !is.na(dom_vw45)))
+    age_vw41 <- date2age(dob, dom_vw45) else age_vw45 <- dom_vw45
+  if (any(nchar(dom_vw46) >= 8 & !is.na(dom_vw46)))
+    age_vw41 <- date2age(dob, dom_vw46) else age_vw46 <- dom_vw46
 
-  # create data.frame with vW responses
-  df <- data.frame(age = age_vw41, vw41) %>%
-    full_join(data.frame(age = age_vw42, vw42), by = "age") %>%
-    full_join(data.frame(age = age_vw43, vw43), by = "age") %>%
-    full_join(data.frame(age = age_vw44, vw44), by = "age") %>%
-    full_join(data.frame(age = age_vw45, vw45), by = "age") %>%
-    full_join(data.frame(age = age_vw46, vw46), by = "age")
+  # create tibble with vW responses
+  df <- tibble(dom = dom_vw41, age = age_vw41, vw41) %>%
+    full_join(tibble(dom = dom_vw42, age = age_vw42, vw42), by = c("dom", "age")) %>%
+    full_join(tibble(dom = dom_vw43, age = age_vw43, vw43), by = c("dom", "age")) %>%
+    full_join(tibble(dom = dom_vw44, age = age_vw44, vw44), by = c("dom", "age")) %>%
+    full_join(tibble(dom = dom_vw45, age = age_vw45, vw45), by = c("dom", "age")) %>%
+    full_join(tibble(dom = dom_vw46, age = age_vw46, vw46), by = c("dom", "age"))
 
-  # return early if data is insufficient
-  if (is.na(dob)) return(4001)
-  if (all(is.na(df$date))) return(4002)
+
+  # return early if data are insufficient
+  if (all(is.na(df$dom))) return(4015)
+  if (all(nchar(df$dom) >= 8) & is.na(dob)) return(4016)
+  if (all(is.na(df$age))) return(4015)
 
   age1 <- max(df$age, na.rm = TRUE)
-  if (age1 < 1.9166) return(4003)
-  if (age1 > 3.3333) return(4004)
-  if ((age1 >= 2.3333 && age1 < 2.4166) | (age1 >= 2.8333 && age1 < 2.9166)) return(4005)
+  if (age1 < 1.9166) return(4021)
+  if (age1 > 3.3333) return(4022)
+  if ((age1 >= 2.3333 && age1 < 2.4166) | (age1 >= 2.8333 && age1 < 2.9166)) return(4023)
 
   # vW to dichotomous variable
   df <- df %>%
@@ -65,7 +73,7 @@ calculate_advice_devlang <- function(dob = NA_integer_,
       filter(age >= 1.9166 & age < 2.3333 & !is.na(age)) %>%
       arrange(-age) %>%
       fill(vw41, vw42, .direction = "up") %>%
-      head(1) %>%
+      slice(1) %>%
       mutate(score = vw41 + vw42)
     if(is.na(df$score)) return(4011)
     if(df$score == 0) return(4041)
@@ -75,14 +83,15 @@ calculate_advice_devlang <- function(dob = NA_integer_,
 
   if (age1 >= 2.4166 && age1 < 2.8333) {
     # age 2.5 - check if neccesary
-    df <- df %>%
+    score_2 <- df %>%
       filter(age >= 1.9166 & age < 2.3333 & !is.na(age)) %>%
       arrange(-age) %>%
       fill(vw41, vw42, .direction = "up") %>%
-      head(1) %>%
-      mutate(score_2 = vw41 + vw42)
+      slice(1) %>%
+      transmute(score_2 = vw41 + vw42) %>%
+      unlist
 
-    if(is.na(df$score)) return(4012)
+    if(is.na(score_2) || length(score_2) < 1) return(4012)
 
     # age 2.5
     if(score_2 < 2) {
@@ -90,7 +99,7 @@ calculate_advice_devlang <- function(dob = NA_integer_,
         filter(age >= 2.4166 & age < 2.8333 & !is.na(age)) %>%
         arrange(-age) %>%
         fill(vw41, vw43, vw44, .direction = "up") %>%
-        head(1) %>%
+        slice(1) %>%
         mutate(score = vw41 + vw43 + vw44)
       if(is.na(df$score)) return(4011)
       if(df$score < 3) return(4041)
@@ -103,7 +112,7 @@ calculate_advice_devlang <- function(dob = NA_integer_,
       filter(age >= 2.8333 & age < 3.3333 & !is.na(age)) %>%
       arrange(-age) %>%
       fill(vw45, vw46, .direction = "up") %>%
-      head(1) %>%
+      slice(1) %>%
       mutate(score = vw45 + vw46)
     if(is.na(df$score)) return(4011)
     if(df$score == 0) return(4041)
