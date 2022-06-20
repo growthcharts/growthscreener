@@ -30,6 +30,7 @@ screen_curves_tgt <- function(tgt,
                               recalculate_z = FALSE,
                               ...) {
 
+  # if supplied tgt is incorrect return an empty object
   if (is.null(tgt) || !is.list(tgt) || !length(ynames))
     return(data.frame(
       Categorie = integer(0),
@@ -37,79 +38,70 @@ screen_curves_tgt <- function(tgt,
       Code = integer(0),
       CodeOmschrijving = character(0),
       Versie = integer(0),
-      Leeftijd0 = character(0),
-      Leeftijd1 = character(0),
+      Leeftijd = character(0),
       stringsAsFactors = FALSE)
     )
   child <- persondata(tgt)
-
-  # determine screening doms and ages
-  domlist <- calculate_screening_doms(tgt, ynames, na.omit = na.omit)
+  time <- timedata(tgt)
 
   # prepare output
   result <- vector("list", length(ynames))
   names(result) <- ynames
 
-  # for each screening protocol, calculate all msgcode's for all dom0's
+  # for each screening protocol, calculate msgcode
   for (yname in ynames) {
-    da <- domlist[[yname]]
-    n <- length(da$dom0)
-    if (n >= 1L) {
-      msgcodes <- rep(NA, n)
-      for (i in 1L:n) {
-        msgcodes[i] <-
-          switch(yname,
-                 hgt = calculate_advice_hgt(
-                   sex = child$sex,
-                   bw = child$bw,
-                   bl = NA,
-                   ga = child$ga,
-                   etn = substr(child$etn, 1L, 1L),
-                   hgtf = child$hgtf,
-                   hgtm = child$hgtm,
-                   dom1 = da$dom1,
-                   y1 = da$y1,
-                   dom0 = da$dom0[i],
-                   y0 = da$y0[i]),
-                 wgt = calculate_advice_wgt(
-                   sex = child$sex,
-                   ga = child$ga,
-                   dom1 = da$dom1,
-                   y1 = da$y1,
-                   hgt1 = da$h1,
-                   dom0 = da$dom0[i],
-                   y0 = da$y0[i],
-                   hgt0 = da$h0[i]),
-                 hdc = calculate_advice_hdc(
-                   sex = child$sex,
-                   ga = child$ga,
-                   dom1 = da$dom1,
-                   y1 = da$y1,
-                   dom0 = da$dom0[i],
-                   y0 = da$y0[i]),
-                 default = NA_integer_)
-      }
-      cati <- switch(yname,
-                     hgt = 1000L,
-                     wgt = 2000L,
-                     hdc = 3000L,
-                     NA_integer_)
-      cato <- switch(yname,
-                     hgt = "Lengte",
-                     wgt = "Gewicht",
-                     hdc = "Hoofdomtrek",
-                     "Onbekend")
+    msgcode <- NA_integer_
+    msgcode <-
+      switch(yname,
+             hgt = calculate_advice_hgt(
+               sex = child$sex,
+               bw = child$bw,
+               bl = NA,
+               ga = child$ga,
+               etn = child$etn, #substr(child$etn, 1L, 1L) AHJ: waarom werd dit gedaan?
+               hgtf = child$hgtf,
+               hgtm = child$hgtm,
+               dom = unlist(time[time$yname == "hgt", "age"]),
+               y = unlist(time[time$yname == "hgt", "y"])
+               ),
+             wgt = calculate_advice_wgt(
+               sex = child$sex,
+               ga = child$ga,
+               dom = unlist(time[time$yname == "wgt", "age"]),
+               y = unlist(time[time$yname == "wgt", "y"]),
+               dom_hgt = unlist(time[time$yname == "hgt", "age"]),
+               hgt = unlist(time[time$yname == "hgt", "y"])
+               ),
+             hdc = calculate_advice_hdc(
+               sex = child$sex,
+               ga = child$ga,
+               dom = unlist(time[time$yname == "hdc", "age"]),
+               y = unlist(time[time$yname == "hdc", "y"])
+               ),
+             default = NA_integer_)
 
-      result[[yname]] <- data.frame(
-        Categorie = rep(cati, n),
-        CategorieOmschrijving = rep(cato, n),
-        Code = as.integer(msgcodes),
-        CodeOmschrijving = msg(msgcodes),
-        Versie = rep(as.character(packageVersion("growthscreener")), n),
-        Leeftijd0 = format(child[["dob"]] + da$dom0, "%Y%m%d"),
-        Leeftijd1 = rep(format(child[["dob"]] + da$dom1, "%Y%m%d"), n),
-        stringsAsFactors = FALSE)
-    }
+    cati <- switch(yname,
+                   hgt = 1000L,
+                   wgt = 2000L,
+                   hdc = 3000L,
+                   NA_integer_)
+    cato <- switch(yname,
+                   hgt = "Lengte",
+                   wgt = "Gewicht",
+                   hdc = "Hoofdomtrek",
+                   "Onbekend")
+
+    age1 <- unlist(time[time$yname == yname, "age"])
+    age1 <- ifelse(!all(is.na(age1)), max(age1, na.rm=T), NA)
+
+    result[[yname]] <- data.frame(
+      Categorie = cati,
+      CategorieOmschrijving = cato,
+      Code = as.integer(msgcode),
+      CodeOmschrijving = msg(msgcode),
+      Versie = as.character(packageVersion("growthscreener")),
+      Leeftijd = age1,
+      stringsAsFactors = FALSE)
   }
   bind_rows(result)
 }

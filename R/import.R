@@ -3,7 +3,7 @@
 #' @importFrom centile        y2z
 #' @importFrom dplyr          %>% .data arrange bind_rows filter full_join
 #'                            left_join mutate mutate_at recode rename select
-#'                            slice
+#'                            transmute slice vars
 #' @importFrom lubridate      is.Date ymd
 #' @importFrom methods        slot
 #' @importFrom rlang          .data

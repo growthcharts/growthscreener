@@ -23,6 +23,7 @@ for (lib in libs) {
     if (file == file.path(path, "allegrosultum/antwoordbericht.json")) next
     if (file == file.path(path, "test/test14.json")) next
     if (file == file.path(path, "test/test8.json")) next
+    if (is.na(file)) next
     tgt <- bdsreader::read_bds(file)
     test_that(paste(file, "passes"), {
       expect_silent(screen_curves_tgt(tgt))

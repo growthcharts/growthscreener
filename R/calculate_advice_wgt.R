@@ -54,8 +54,8 @@ calculate_advice_wgt  <- function(sex = NA_character_,
 
   # outside age range
   if (df1$age >= 19.0) return(2021)
-  if (df1$age < 2.0 && df1$hgt < 35) return(2022)
-  if (df1$age < 2.0 && df1$hgt > 120) return(2023)
+  if (df1$age < 2.0 && df1$hgt < 35 && df1$age >= 1.0) return(2022)
+  if (df1$age < 2.0 && df1$hgt > 120 && df1$age >= 1.0) return(2023)
 
   # obtain Z-values
   pick <- pick_reference_wgt(df1$age, sex, ga, etn)
@@ -140,7 +140,7 @@ calculate_advice_wgt  <- function(sex = NA_character_,
       if (all(is.na(df0$y))) return(2012)
       if (all(is.na(df0$hgt))) return(2013)
       # both observed together return(newnum)
-      if (!is.na(df0$z) && (df1$z - df0$z) < -1.0) return(2075)
+      if (any(!is.na(df0$z)) & any((df1$z - df0$z) < -1.0, na.rm = TRUE)) return(2075)
     }
   }
 

@@ -35,15 +35,15 @@ calculate_advice_devlang <- function(dob = NA_character_,
   if (any(nchar(dom_vw41) >= 8 & !is.na(dom_vw41)))
     age_vw41 <- date2age(dob, dom_vw41) else age_vw41 <- dom_vw41
   if (any(nchar(dom_vw42) >= 8 & !is.na(dom_vw42)))
-    age_vw41 <- date2age(dob, dom_vw42) else age_vw42 <- dom_vw42
+    age_vw42 <- date2age(dob, dom_vw42) else age_vw42 <- dom_vw42
   if (any(nchar(dom_vw43) >= 8 & !is.na(dom_vw43)))
-    age_vw41 <- date2age(dob, dom_vw43) else age_vw43 <- dom_vw43
+    age_vw43 <- date2age(dob, dom_vw43) else age_vw43 <- dom_vw43
   if (any(nchar(dom_vw44) >= 8 & !is.na(dom_vw44)))
-    age_vw41 <- date2age(dob, dom_vw44) else age_vw44 <- dom_vw44
+    age_vw44 <- date2age(dob, dom_vw44) else age_vw44 <- dom_vw44
   if (any(nchar(dom_vw45) >= 8 & !is.na(dom_vw45)))
-    age_vw41 <- date2age(dob, dom_vw45) else age_vw45 <- dom_vw45
+    age_vw45 <- date2age(dob, dom_vw45) else age_vw45 <- dom_vw45
   if (any(nchar(dom_vw46) >= 8 & !is.na(dom_vw46)))
-    age_vw41 <- date2age(dob, dom_vw46) else age_vw46 <- dom_vw46
+    age_vw46 <- date2age(dob, dom_vw46) else age_vw46 <- dom_vw46
 
   # create tibble with vW responses
   df <- tibble(dom = dom_vw41, age = age_vw41, vw41) %>%

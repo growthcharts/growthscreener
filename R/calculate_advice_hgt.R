@@ -132,6 +132,7 @@ calculate_advice_hgt <- function(sex = NA_character_,
 
     # tall
     if (z1 > 2.5) return(1047)
+    y1 <- y[which.max(age)]
     if (z1 > 2.0 && sex == "female" && y1 >= 170) return(1071)
     if (z1 > 2.0 && sex == "male" && y1 >= 185) return(1072)
     if (z1 > 2.0) return(1073)
@@ -174,7 +175,7 @@ calculate_advice_hgt <- function(sex = NA_character_,
 
       # tall
       zrep <- min(z[repeated], na.rm = TRUE) # largest difference
-      if ((z1 - z0) > 2.0) return(1054)
+      if (any((z1 - zrep) > 2.0)) return(1054)
     }
   }
 

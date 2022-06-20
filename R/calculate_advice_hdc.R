@@ -68,7 +68,7 @@ calculate_advice_hdc <- function(sex = NA_character_,
   if (test_gain) {
     if (length(!is.na(dom)) < 2) return(3022)
     if (length(!is.na(y)) < 2) return(3023)
-    if (is.na(z0)) return(3025)
+    if (all(is.na(z0))) return(3025)
 
     if (any((z1 - z0) > 2.5)) return(3042)
 
