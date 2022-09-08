@@ -1,3 +1,7 @@
+# growthscreener 1.15.0
+
+- Update roxygen version to 7.2.1
+
 # growthscreener 1.14.0
 
 - Siplify data structure to list with elements `psn` and `xyz`
