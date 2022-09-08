@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">growthscreener</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.0</span>
       </span>
     </div>
 
@@ -47,7 +47,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">calculate_birth_z</span><span class="op">(</span><span class="va">y</span>, <span class="va">sex</span>, <span class="va">ga</span>, yname <span class="op">=</span> <span class="st">"wgt"</span>, dec <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calculate_birth_z</span><span class="op">(</span><span class="va">y</span>, <span class="va">sex</span>, <span class="va">ga</span>, yname <span class="op">=</span> <span class="st">"wgt"</span>, dec <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -55,34 +55,43 @@
     <dl><dt>y</dt>
 <dd><p>Birth weight (grammes) or birth length (cm).
 May be a vector. Converted to numeric.</p></dd>
+
+
 <dt>sex</dt>
 <dd><p>Character, either <code>"M"</code> (male) or <code>"F"</code> (female)</p></dd>
+
+
 <dt>ga</dt>
 <dd><p>Gestational age, completed week (Integer or character)</p></dd>
+
+
 <dt>yname</dt>
 <dd><p>Either <code>"wgt"</code> (for birth weight) or <code>"hgt"</code>
 (for birth length)</p></dd>
+
+
 <dt>dec</dt>
 <dd><p>Number of decimals for rounding</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <div class="sourceCode"><pre><code> Numeric vector of `length(bw)` elements with
-         standard deviation scores relative to Dutch birth
-         weight references
-</code></pre></div>
+    
+
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1"></a> Numeric vector of <span class="st">`</span><span class="dt">length(bw)</span><span class="st">`</span> elements with</span>
+<span id="cb1-2"><a href="#cb1-2"></a>         standard deviation scores relative to Dutch birth</span>
+<span id="cb1-3"><a href="#cb1-3"></a>         weight references</span></code></pre><p></p></div>
+
+
     </div>
     <div id="author">
     <h2>Author</h2>
-    
-<div class="sourceCode"><pre><code> Stef van Buuren, 2019
-</code></pre></div>
-
+    <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1"></a> Stef van Buuren, <span class="dv">2019</span></span></code></pre><p></p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">calculate_birth_z</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2500</span>, <span class="fl">3000</span><span class="op">)</span>, sex <span class="op">=</span> <span class="st">"M"</span>, ga <span class="op">=</span> <span class="fl">36</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">calculate_birth_z</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2500</span>, <span class="fl">3000</span><span class="op">)</span>, sex <span class="op">=</span> <span class="st">"M"</span>, ga <span class="op">=</span> <span class="fl">36</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA NA</span>
 </code></pre></div>
     </div>
@@ -98,7 +107,7 @@ May be a vector. Converted to numeric.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

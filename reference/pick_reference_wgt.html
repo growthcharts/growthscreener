@@ -18,7 +18,7 @@ referral guidelines for underweight and overweight."><!-- mathjax --><script src
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">growthscreener</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.0</span>
       </span>
     </div>
 
@@ -49,26 +49,38 @@ referral guidelines for underweight and overweight.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">pick_reference_wgt</span><span class="op">(</span>age <span class="op">=</span> <span class="cn">NA</span>, sex <span class="op">=</span> <span class="cn">NA_character_</span>, ga <span class="op">=</span> <span class="cn">NA</span>, etn <span class="op">=</span> <span class="cn">NA_character_</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pick_reference_wgt</span><span class="op">(</span>age <span class="op">=</span> <span class="cn">NA</span>, sex <span class="op">=</span> <span class="cn">NA_character_</span>, ga <span class="op">=</span> <span class="cn">NA</span>, etn <span class="op">=</span> <span class="cn">NA_character_</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>age</dt>
 <dd><p>Scalar, most recent decimal age (in years).</p></dd>
+
+
 <dt>sex</dt>
 <dd><p>Character, either <code>"male"</code> or <code>"female"</code></p></dd>
+
+
 <dt>ga</dt>
 <dd><p>Gestational age, completed weeks (Integer or character)</p></dd>
+
+
 <dt>etn</dt>
 <dd><p>Ethnicity, one of <code>"NL"</code> (dutch), <code>"TU"</code> (turkish),
 <code>"MA"</code> (moroccan) or <code>"HS"</code> (hindustani).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list or <code>NULL</code>. Element <code>call</code> contains
+    
+
+<p>A list or <code>NULL</code>. Element <code>call</code> contains
 an executable string to the proper reference. Element <code>ty</code> is a function
-to be applied to the measurement before calculating the Z-score. Element <code>yname</code>is the type of measurement. The function returns <code>NULL</code> if it cannot
+to be applied to the measurement before calculating the Z-score. Element <code>yname</code></p>
+
+
+<p>is the type of measurement. The function returns <code>NULL</code> if it cannot
 determine a proper reference (e.g. for missing age or sex).</p>
     </div>
     <div id="details">
@@ -101,7 +113,7 @@ If <code>etn</code> is missing the function assumes Dutch ethnicity.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">growthscreener</span><span class="fu">:::</span><span class="fu">pick_reference_wgt</span><span class="op">(</span>age <span class="op">=</span> <span class="fl">0.5</span>, sex <span class="op">=</span> <span class="st">"male"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">growthscreener</span><span class="fu">:::</span><span class="fu">pick_reference_wgt</span><span class="op">(</span>age <span class="op">=</span> <span class="fl">0.5</span>, sex <span class="op">=</span> <span class="st">"male"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "nl_1980_wfh_male_nla"</span>
 </code></pre></div>
     </div>
@@ -117,7 +129,7 @@ If <code>etn</code> is missing the function assumes Dutch ethnicity.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

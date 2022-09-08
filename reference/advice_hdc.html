@@ -18,7 +18,7 @@ below the age of 1."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">growthscreener</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.0</span>
       </span>
     </div>
 
@@ -49,41 +49,58 @@ below the age of 1.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">calculate_advice_hdc</span><span class="op">(</span>
-  sex <span class="op">=</span> <span class="cn">NA_character_</span>,
-  ga <span class="op">=</span> <span class="cn">NA</span>,
-  dom1 <span class="op">=</span> <span class="cn">NA_integer_</span>,
-  y1 <span class="op">=</span> <span class="cn">NA</span>,
-  dom0 <span class="op">=</span> <span class="cn">NA_integer_</span>,
-  y0 <span class="op">=</span> <span class="cn">NA</span>,
-  test_gain <span class="op">=</span> <span class="cn">TRUE</span>,
-  verbose <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calculate_advice_hdc</span><span class="op">(</span></span>
+<span>  sex <span class="op">=</span> <span class="cn">NA_character_</span>,</span>
+<span>  ga <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  dom1 <span class="op">=</span> <span class="cn">NA_integer_</span>,</span>
+<span>  y1 <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  dom0 <span class="op">=</span> <span class="cn">NA_integer_</span>,</span>
+<span>  y0 <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  test_gain <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>sex</dt>
 <dd><p>Character, either <code>"male"</code> or <code>"female"</code></p></dd>
+
+
 <dt>ga</dt>
 <dd><p>Gestational age, completed weeks (Integer or character)</p></dd>
+
+
 <dt>dom1</dt>
 <dd><p>Age at last measurement (days)</p></dd>
+
+
 <dt>y1</dt>
 <dd><p>Head circumference at last measurement (cm)</p></dd>
+
+
 <dt>dom0</dt>
 <dd><p>Age at previous measurement (days)</p></dd>
+
+
 <dt>y0</dt>
 <dd><p>Head circumference at previous measurement (cm)</p></dd>
+
+
 <dt>test_gain</dt>
 <dd><p>Logical. Should the increase or decrease in Z-scores be
 tested? The default is <code>TRUE</code>.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Set to <code>TRUE</code> to obtain warnings on reference finding.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>calculate_advice_hdc</code> returns an integer, the <code>msgcode</code>,
+    
+
+<p><code>calculate_advice_hdc</code> returns an integer, the <code>msgcode</code>,
 between 3000-3999.</p>
     </div>
     <div id="details">
@@ -108,12 +125,12 @@ the referal probability.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="msg.html">msg</a></span><span class="op">(</span><span class="fu">calculate_advice_hdc</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="msg.html">msg</a></span><span class="op">(</span><span class="fu">calculate_advice_hdc</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Voer het geslacht in."</span>
-<span class="r-in"><span class="va">msgcode</span> <span class="op">&lt;-</span> <span class="fu">calculate_advice_hdc</span><span class="op">(</span>sex <span class="op">=</span> <span class="st">"female"</span>,</span>
-<span class="r-in">                                dom1 <span class="op">=</span> <span class="fl">243</span>, y1 <span class="op">=</span> <span class="fl">40</span>,</span>
-<span class="r-in">                                dom0 <span class="op">=</span> <span class="fl">91</span>, y0 <span class="op">=</span> <span class="fl">36</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="msg.html">msg</a></span><span class="op">(</span><span class="va">msgcode</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">msgcode</span> <span class="op">&lt;-</span> <span class="fu">calculate_advice_hdc</span><span class="op">(</span>sex <span class="op">=</span> <span class="st">"female"</span>,</span></span>
+<span class="r-in"><span>                                dom1 <span class="op">=</span> <span class="fl">243</span>, y1 <span class="op">=</span> <span class="fl">40</span>,</span></span>
+<span class="r-in"><span>                                dom0 <span class="op">=</span> <span class="fl">91</span>, y0 <span class="op">=</span> <span class="fl">36</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="msg.html">msg</a></span><span class="op">(</span><span class="va">msgcode</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Zeer kleine hoofdomtrek (&lt; -2 SD), advies: Uit onderzoek blijkt dat een zeer kleine hoofdomtrek kan duiden op microcefalie. Dit kan een overweging zijn om het kind te verwijzen."</span>
 </code></pre></div>
     </div>
@@ -129,7 +146,7 @@ the referal probability.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

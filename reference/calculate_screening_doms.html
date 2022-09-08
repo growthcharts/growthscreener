@@ -18,7 +18,7 @@ pairs used by the calculate_advice_xxx() functions."><!-- mathjax --><script src
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">growthscreener</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.0</span>
       </span>
     </div>
 
@@ -49,24 +49,31 @@ pairs used by the <code>calculate_advice_xxx()</code> functions.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">calculate_screening_doms</span><span class="op">(</span><span class="va">tgt</span>, ynames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hgt"</span>, <span class="st">"wgt"</span>, <span class="st">"hdc"</span><span class="op">)</span>, na.omit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calculate_screening_doms</span><span class="op">(</span><span class="va">tgt</span>, ynames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hgt"</span>, <span class="st">"wgt"</span>, <span class="st">"hdc"</span><span class="op">)</span>, na.omit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>tgt</dt>
 <dd><p>A list with elements <code>psn</code> and <code>xyz</code></p></dd>
+
+
 <dt>ynames</dt>
 <dd><p>Character vector identifying the measures to be
 screened. By default, <code>ynames = c("hgt", "wgt", "hdc")</code>.</p></dd>
+
+
 <dt>na.omit</dt>
 <dd><p>A logical indicating whether records with a missing
 <code>x</code> (age) or <code>y</code> (yname) should be removed. Defaults to
 <code>TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list with <code>length(ynames)</code> elements. Each list element
+    
+
+<p>A list with <code>length(ynames)</code> elements. Each list element
 is another <code>list</code> with elements <code>dom0</code> (back-calculated
 dates of measurement, vector, reverse time), <code>age0</code> (decimal age),
 <code>y0</code> (measurement), <code>z0</code> (Z-score equivalent) and</p><ul><li><p>for weight - <code>h0</code>, as well as similar quantities <code>dom1</code>,
@@ -86,7 +93,7 @@ choosing pairs. This strategy selects the last observation as
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">growthscreener</span><span class="fu">:::</span><span class="fu">calculate_screening_doms</span><span class="op">(</span><span class="va">target</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">growthscreener</span><span class="fu">:::</span><span class="fu">calculate_screening_doms</span><span class="op">(</span><span class="va">target</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hgt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hgt$dom0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 562 457 373 275 177  86  58  37   0</span>
@@ -197,7 +204,7 @@ choosing pairs. This strategy selects the last observation as
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

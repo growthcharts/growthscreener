@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">growthscreener</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.0</span>
       </span>
     </div>
 
@@ -47,42 +47,51 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">calculate_th</span><span class="op">(</span><span class="va">hgtf</span>, <span class="va">hgtm</span>, sex <span class="op">=</span> <span class="cn">NULL</span>, etn <span class="op">=</span> <span class="cn">NULL</span>, dec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">3L</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calculate_th</span><span class="op">(</span><span class="va">hgtf</span>, <span class="va">hgtm</span>, sex <span class="op">=</span> <span class="cn">NULL</span>, etn <span class="op">=</span> <span class="cn">NULL</span>, dec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">3L</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>hgtf</dt>
 <dd><p>Length of biological father (cm)</p></dd>
+
+
 <dt>hgtm</dt>
 <dd><p>Length of biological mother (cm)</p></dd>
+
+
 <dt>sex</dt>
 <dd><p>Character, either <code>"male"</code> or <code>"female"</code></p></dd>
+
+
 <dt>etn</dt>
 <dd><p>Etnicity, one of <code>"NL"</code> (dutch), <code>"TU"</code> (turkish),
 <code>"MA"</code> (moroccan) or <code>"HS"</code> (hindustani).</p></dd>
+
+
 <dt>dec</dt>
 <dd><p>Integer vector, length 2, indicating rounding for
 th and th_z, respectively</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <div class="sourceCode"><pre><code> Numeric, length 2: target height (cm) and target height
-         standard deviation score (z), relative to populations
-         living in The Netherlands
-</code></pre></div>
+    
+
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1"></a> Numeric, length <span class="dv">2</span><span class="op">:</span><span class="st"> </span>target <span class="kw">height</span> (cm) and target height</span>
+<span id="cb1-2"><a href="#cb1-2"></a>         standard deviation <span class="kw">score</span> (z), relative to populations</span>
+<span id="cb1-3"><a href="#cb1-3"></a>         living <span class="cf">in</span> The Netherlands</span></code></pre><p></p></div>
+
+
     </div>
     <div id="author">
     <h2>Author</h2>
-    
-<div class="sourceCode"><pre><code> Stef van Buuren, 2019
-</code></pre></div>
-
+    <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1"></a> Stef van Buuren, <span class="dv">2019</span></span></code></pre><p></p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">calculate_th</span><span class="op">(</span><span class="fl">180</span>, <span class="fl">170</span>, <span class="st">"male"</span>, <span class="st">"NL"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">calculate_th</span><span class="op">(</span><span class="fl">180</span>, <span class="fl">170</span>, <span class="st">"male"</span>, <span class="st">"NL"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 182.100  -0.246</span>
 </code></pre></div>
     </div>
@@ -98,7 +107,7 @@ th and th_z, respectively</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
