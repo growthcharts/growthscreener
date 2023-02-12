@@ -118,7 +118,7 @@ calculate_advice_devlang <- function(dob = NA_character_,
       slice(1) %>%
       mutate(score = vw45 + vw46)
     if(is.na(df$score)) return(4011)
-    if(df$score == 0) return(4041)
+    if(df$score == 0 | df$vw45 == 0) return(4041)
     if(df$score == 1) return(4043)
   }
   # signal everything is alright
