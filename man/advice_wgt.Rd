@@ -14,6 +14,12 @@ calculate_advice_wgt(
   hgt = NA,
   dob = NA_character_,
   test_gain = TRUE,
+  y1 = NA,
+  y0 = NA,
+  hgt1 = NA,
+  hgt0 = NA,
+  dom1 = NA_integer_,
+  dom0 = NA_integer_,
   verbose = FALSE
 )
 }
@@ -41,6 +47,18 @@ date string.}
 
 \item{test_gain}{Logical. Should the increase or decrease in Z-scores be
 tested? The default is \code{TRUE}.}
+
+\item{y1}{Legacy parameter.}
+
+\item{y0}{Legacy parameter.}
+
+\item{hgt1}{Legacy parameter.}
+
+\item{hgt0}{Legacy parameter.}
+
+\item{dom1}{Legacy parameter.}
+
+\item{dom0}{Legacy parameter.}
 
 \item{verbose}{Set to \code{TRUE} to obtain warnings on reference finding.}
 }

@@ -18,7 +18,6 @@ calculate_advice_devlang(
   vw45 = NA,
   dom_vw46 = NA,
   vw46 = NA,
-  verbose = FALSE,
   force = FALSE
 )
 }
@@ -29,7 +28,35 @@ date string.}
 \item{dom_vw41}{Date of measurement for van Wiechen item 41. Either a vector
 of age in decimal years or a date in the format \code{ddmmYYYY}}
 
-\item{vw41}{Outcome of the van Wiechen item.}
+\item{vw41}{Outcome of the van Wiechen item 41.}
+
+\item{dom_vw42}{Date of measurement for van Wiechen item 42. Either a vector
+of age in decimal years or a date in the format \code{ddmmYYYY}}
+
+\item{vw42}{Outcome of the van Wiechen item 42.}
+
+\item{dom_vw43}{Date of measurement for van Wiechen item 43. Either a vector
+of age in decimal years or a date in the format \code{ddmmYYYY}}
+
+\item{vw43}{Outcome of the van Wiechen item 43.}
+
+\item{dom_vw44}{Date of measurement for van Wiechen item 44. Either a vector
+of age in decimal years or a date in the format \code{ddmmYYYY}}
+
+\item{vw44}{Outcome of the van Wiechen item 44.}
+
+\item{dom_vw45}{Date of measurement for van Wiechen item 45. Either a vector
+of age in decimal years or a date in the format \code{ddmmYYYY}}
+
+\item{vw45}{Outcome of the van Wiechen item 45.}
+
+\item{dom_vw46}{Date of measurement for van Wiechen item 46. Either a vector
+of age in decimal years or a date in the format \code{ddmmYYYY}}
+
+\item{vw46}{Outcome of the van Wiechen item 46.}
+
+\item{force}{Should the repeat at 2.5 years be done regarldess of outcome at
+2? Default value is \code{FALSE}.}
 }
 \value{
 \code{calculate_advice_devlang} returns an integer, the \code{msgcode}, between

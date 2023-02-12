@@ -1,5 +1,7 @@
 #' Calculate decimal age from date of birth and date of measurement
 #'
+#' @param dob Date of birth
+#' @param dom Date of measurement
 #' @note Internal function. Not to be called directly.
 #' @examples
 #' growthscreener:::date2age(dob = "17022020", dom = "04062021")

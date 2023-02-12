@@ -23,6 +23,10 @@
 #' @param y     Vector with height measurements (cm)
 #' @param test_gain Logical. Should the increase or decrease in Z-scores be
 #'   tested? The default is `TRUE`.
+#' @param y1 Legacy parameter.
+#' @param y0 Legacy parameter.
+#' @param dom1 Legacy parameter.
+#' @param dom0 Legacy parameter.
 #' @param verbose Set to `TRUE` to obtain warnings on reference finding.
 #' @return `calculate_advice_hgt` returns an integer, the `msgcode`
 #' @author Paula van Dommelen, Stef van Buuren, 2021
@@ -40,10 +44,18 @@ calculate_advice_hgt <- function(sex = NA_character_,
                                  bw = NA, bl = NA, ga = NA,
                                  etn = "NL", hgtf = NA, hgtm = NA,
                                  dob = NA_character_, dom = NA_character_, y = NA,
+                                 y1 = NA, y0 = NA,
+                                 dom1 = NA_integer_, dom0 = NA_integer_,
                                  test_gain = TRUE,
                                  verbose = FALSE) {
 
   etn <- "NL" # nieuwe groeistudie nodig voordat etn gebruikt kan worden
+
+  # convert legacy format to new format
+  if(!is.na(y1) & all(is.na(y))) {
+    y <- c(y0, y1)
+    dom_hgt <- dom <- round(c(dom0, dom1) / 365.25, digits = 5) # convert to years
+  }
 
   # convert ga
   if(ga > 60 & !is.na(ga)) ga <- ga/7 # convert days to weeks
@@ -79,7 +91,7 @@ calculate_advice_hgt <- function(sex = NA_character_,
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(1019)
   if (all(is.na(dom))) return(1015)
-  if (any(nchar(dom) >= 8) & is.na(dob)) return(1016)
+  if (any(nchar(dom) >= 8  & !is.na(dom)) & is.na(dob)) return(1016)
   if (!is.numeric(age)) return(1015)
   if (all(is.na(y))) return(ifelse(age1 < 18.0, 1018, 1021))
 

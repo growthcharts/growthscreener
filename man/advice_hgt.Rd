@@ -15,6 +15,10 @@ calculate_advice_hgt(
   dob = NA_character_,
   dom = NA_character_,
   y = NA,
+  y1 = NA,
+  y0 = NA,
+  dom1 = NA_integer_,
+  dom0 = NA_integer_,
   test_gain = TRUE,
   verbose = FALSE
 )
@@ -43,6 +47,14 @@ date string.}
 decimal years or a date in the format \code{ddmmYYYY}.}
 
 \item{y}{Vector with height measurements (cm)}
+
+\item{y1}{Legacy parameter.}
+
+\item{y0}{Legacy parameter.}
+
+\item{dom1}{Legacy parameter.}
+
+\item{dom0}{Legacy parameter.}
 
 \item{test_gain}{Logical. Should the increase or decrease in Z-scores be
 tested? The default is \code{TRUE}.}

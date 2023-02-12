@@ -7,8 +7,8 @@ kids <- tibble(
   vw42 = c(1, 2, 1, NA, 2, NA),
   vw43 = c(NA, NA, NA, 1, 1, NA),
   vw44 = c(NA, NA, NA, 1, 1, NA),
-  vw45 = c(NA, NA, NA, NA, NA, 2),
-  vw46 = c(NA, NA, NA, NA, NA, 1),
+  vw45 = c(NA, NA, NA, NA, NA, 1),
+  vw46 = c(NA, NA, NA, NA, NA, 2),
   dom_vw41 = list(
     2, NA, 2, NA, c(2.3, 2.5), NA
   ),

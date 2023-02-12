@@ -20,10 +20,10 @@ calculate_th(hgtf, hgtm, sex = NULL, etn = NULL, dec = c(1L, 3L))
 th and th_z, respectively}
 }
 \value{
-\preformatted{ Numeric, length 2: target height (cm) and target height
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Numeric, length 2: target height (cm) and target height
          standard deviation score (z), relative to populations
          living in The Netherlands
-}
+}\if{html}{\out{</div>}}
 }
 \description{
 Calculate target height SDS
@@ -32,6 +32,6 @@ Calculate target height SDS
 calculate_th(180, 170, "male", "NL")
 }
 \author{
-\preformatted{ Stef van Buuren, 2019
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Stef van Buuren, 2019
+}\if{html}{\out{</div>}}
 }

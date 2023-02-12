@@ -6,6 +6,11 @@
 \usage{
 date2age(dob = NA_character_, dom = NA_character_)
 }
+\arguments{
+\item{dob}{Date of birth}
+
+\item{dom}{Date of measurement}
+}
 \description{
 Calculate decimal age from date of birth and date of measurement
 }

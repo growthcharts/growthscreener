@@ -20,10 +20,10 @@ May be a vector. Converted to numeric.}
 \item{dec}{Number of decimals for rounding}
 }
 \value{
-\preformatted{ Numeric vector of `length(bw)` elements with
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Numeric vector of `length(bw)` elements with
          standard deviation scores relative to Dutch birth
          weight references
-}
+}\if{html}{\out{</div>}}
 }
 \description{
 Calculate birth weight SDS relative to Dutch references
@@ -32,6 +32,6 @@ Calculate birth weight SDS relative to Dutch references
 calculate_birth_z(c(2500, 3000), sex = "M", ga = 36)
 }
 \author{
-\preformatted{ Stef van Buuren, 2019
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Stef van Buuren, 2019
+}\if{html}{\out{</div>}}
 }

@@ -11,6 +11,8 @@
 #' @param dom_hgt Vector with date of measurement relating to height. Either
 #'   supplied as age in decimal years or a date in the format `ddmmYYYY`.
 #' @param hgt Vector with height measurements (cm)
+#' @param hgt1 Legacy parameter.
+#' @param hgt0 Legacy parameter.
 #' @return `calculate_advice_wgt()` returns an integer, the `msgcode`
 #' @author Arjan Huizing, Stef van Buuren 2020
 #' @rdname advice_wgt
@@ -31,7 +33,17 @@ calculate_advice_wgt  <- function(sex = NA_character_,
                                   dom_hgt = NA_integer_, hgt = NA,
                                   dob = NA_character_,
                                   test_gain = TRUE,
+                                  y1 = NA, y0 = NA,
+                                  hgt1 = NA, hgt0 = NA,
+                                  dom1 = NA_integer_, dom0 = NA_integer_,
                                   verbose = FALSE) {
+
+  # convert legacy format to new format
+  if(!is.na(y1) & all(is.na(y))) {
+    y <- c(y0, y1)
+    hgt <- c(hgt0, hgt1)
+    dom_hgt <- dom <- round(c(dom0, dom1) / 365.25, digits = 5) # convert to years
+  }
 
   # convert date to age
   if (any(nchar(dom) >= 8 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
@@ -50,7 +62,7 @@ calculate_advice_wgt  <- function(sex = NA_character_,
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(2019)
   if (all(is.na(dom))) return(2015)
-  if (any(nchar(dom) >= 8) & is.na(dob)) return(2016)
+  if (any(nchar(dom) >= 8 & !is.na(dom)) & is.na(dob)) return(2016)
   if (all(is.na(df$age))) return(2015)
   if (is.na(df1$y)) return(2018)
   if (is.na(df1$hgt) && df1$age >= 1.0) return(2014)

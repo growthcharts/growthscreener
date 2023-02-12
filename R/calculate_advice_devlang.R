@@ -10,7 +10,24 @@
 #'   date string.
 #' @param dom_vw41  Date of measurement for van Wiechen item 41. Either a vector
 #'   of age in decimal years or a date in the format `ddmmYYYY`
-#' @param vw41 Outcome of the van Wiechen item.
+#' @param vw41 Outcome of the van Wiechen item 41.
+#' @param dom_vw42  Date of measurement for van Wiechen item 42. Either a vector
+#'   of age in decimal years or a date in the format `ddmmYYYY`
+#' @param vw42 Outcome of the van Wiechen item 42.
+#' @param dom_vw43  Date of measurement for van Wiechen item 43. Either a vector
+#'   of age in decimal years or a date in the format `ddmmYYYY`
+#' @param vw43 Outcome of the van Wiechen item 43.
+#' @param dom_vw44  Date of measurement for van Wiechen item 44. Either a vector
+#'   of age in decimal years or a date in the format `ddmmYYYY`
+#' @param vw44 Outcome of the van Wiechen item 44.
+#' @param dom_vw45  Date of measurement for van Wiechen item 45. Either a vector
+#'   of age in decimal years or a date in the format `ddmmYYYY`
+#' @param vw45 Outcome of the van Wiechen item 45.
+#' @param dom_vw46  Date of measurement for van Wiechen item 46. Either a vector
+#'   of age in decimal years or a date in the format `ddmmYYYY`
+#' @param vw46 Outcome of the van Wiechen item 46.
+#' @param force Should the repeat at 2.5 years be done regarldess of outcome at
+#'   2? Default value is `FALSE`.
 #' @return `calculate_advice_devlang` returns an integer, the `msgcode`, between
 #'   4000-4999.
 #' @author Arjan Huizing, Stef van Buuren, 2020
@@ -29,7 +46,7 @@ calculate_advice_devlang <- function(dob = NA_character_,
                                      dom_vw44 = NA, vw44 = NA,
                                      dom_vw45 = NA, vw45 = NA,
                                      dom_vw46 = NA, vw46 = NA,
-                                     verbose = FALSE, force = FALSE) {
+                                     force = FALSE) {
 
   # convert ages - probably a more elegant way of doing this ..
   if (any(nchar(dom_vw41) >= 8 & !is.na(dom_vw41)))
@@ -86,15 +103,17 @@ calculate_advice_devlang <- function(dob = NA_character_,
 
   if (age1 >= 2.4166 && age1 < 2.8333) {
     # age 2.5 - check if neccesary
-    score_2 <- df %>%
-      filter(age >= 1.9166 & age < 2.3333 & !is.na(age)) %>%
-      arrange(-age) %>%
-      fill(vw41, vw42, .direction = "up") %>%
-      slice(1) %>%
-      transmute(score_2 = vw41 + vw42) %>%
-      unlist
+    if (!force) {
+      score_2 <- df %>%
+        filter(age >= 1.9166 & age < 2.3333 & !is.na(age)) %>%
+        arrange(-age) %>%
+        fill(vw41, vw42, .direction = "up") %>%
+        slice(1) %>%
+        transmute(score_2 = vw41 + vw42) %>%
+        unlist
 
-    if(is.na(score_2) || length(score_2) < 1) return(4012)
+      if(is.na(score_2) || length(score_2) < 1) return(4012)
+    }
 
     # age 2.5
     if(score_2 < 2) {
