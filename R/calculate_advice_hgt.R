@@ -45,6 +45,9 @@ calculate_advice_hgt <- function(sex = NA_character_,
 
   etn <- "NL" # nieuwe groeistudie nodig voordat etn gebruikt kan worden
 
+  # convert ga
+  if(ga > 60 & !is.na(ga)) ga <- ga/7 # convert days to weeks
+
   # birth Z-scores
   bw_z <- calculate_birth_z(bw, sex, ga, yname = "wgt")
   bl_z <- calculate_birth_z(bl, sex, ga, yname = "hgt")
