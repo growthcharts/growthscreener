@@ -87,3 +87,14 @@ msgcode	msg
 3043	Zeer kleine hoofdomtrek (< -2 SD), advies: Uit onderzoek blijkt dat een zeer kleine hoofdomtrek kan duiden op microcefalie. Dit kan een overweging zijn om het kind te verwijzen.
 3044	Snelle toename van de hoofdomtrek sinds de eerdere meting (> 0,5 SD), advies: In de gaten houden, naar eigen inzicht handelen.
 3045	Afbuigende hoofdomtrek sinds de eerdere meting (< -0,5 SD), advies: In de gaten houden, naar eigen inzicht handelen.
+4011	Voer de van Wiechen mijlpalen in die bij de laatst gemeten leeftijd horen.
+4012	Voer de van Wiechen mijlpalen 41 en 42 in op de leeftijd van 2 jaar om te bepalen of een herhaalmeting op 2,5 jaar nodig is.
+4015	Voer de meetdatum of leeftijd waarop de van Wiechen gemeten zijn in.
+4016	Voer een geboortedatum in.
+4021	Het kind is nog te jong voor deze richtlijn.
+4022	Het kind is te oud voor deze richtlijn.
+4023	De leeftijd van het kind valt momenteel tussen twee richtlijn momenten in. De richtlijn is beschikbaar op de leeftijden van 23 maanden tot 27 maanden, van 29 maanden tot 33 maanden en van 35 maanden tot 39 maanden.
+4031	Het advies volgens de JGZ-richtlijn taalontwikkeling is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen.
+4041	Het advies volgens de JGZ-richtlijn taalontwikkeling is als volgt: Uitslag 'onvoldoende', verwijzen naar een audiologisch centrum voor multidisciplinaire diagnostiek.
+4042	Het advies volgens de JGZ-richtlijn taalontwikkeling is als volgt: Uitslag 'twijfel', aanbod begeleiding door preventief werkend logopedist of jeugdverpleegkundige en herbeoordeling op 2 jaar en 6 maanden.
+4043	Het advies volgens de JGZ-richtlijn taalontwikkeling is als volgt: als zijn geen voorgaande negatieve bevindingen met betrekking tot de verstaanbaarheid zijn gehoorproblematiek uitsluiten en verwijzen naar logopedist. Na 4- 6 maanden herbeoordeling door de JGZA; als er wel voorgaande negatieve bevindingen met betrekking tot de verstaanbaarheid zijn (bijvoorbeeld zorgen van ouders verwijzen naar een audiologisch centrum voor multidisciplinaire diagnostiek.
