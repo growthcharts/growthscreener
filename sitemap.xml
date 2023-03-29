@@ -16,13 +16,16 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/advice_devlang.html</loc>
+  </url>
+  <url>
     <loc>/reference/advice_hdc.html</loc>
   </url>
   <url>
     <loc>/reference/advice_hgt.html</loc>
   </url>
   <url>
-    <loc>/reference/calculate_advice_wgt.html</loc>
+    <loc>/reference/advice_wgt.html</loc>
   </url>
   <url>
     <loc>/reference/calculate_birth_z.html</loc>
@@ -35,6 +38,9 @@
   </url>
   <url>
     <loc>/reference/datasets.html</loc>
+  </url>
+  <url>
+    <loc>/reference/date2age.html</loc>
   </url>
   <url>
     <loc>/reference/fold.html</loc>

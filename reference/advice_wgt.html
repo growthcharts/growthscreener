@@ -40,7 +40,7 @@
     <div class="page-header">
     <h1>Referral advice for weight for height</h1>
     
-    <div class="hidden name"><code>calculate_advice_wgt.Rd</code></div>
+    <div class="hidden name"><code>advice_wgt.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -53,13 +53,18 @@
 <span>  sex <span class="op">=</span> <span class="cn">NA_character_</span>,</span>
 <span>  ga <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  etn <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  dom0 <span class="op">=</span> <span class="cn">NA_integer_</span>,</span>
-<span>  y0 <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  dom1 <span class="op">=</span> <span class="cn">NA_integer_</span>,</span>
+<span>  dom <span class="op">=</span> <span class="cn">NA_integer_</span>,</span>
+<span>  y <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  dom_hgt <span class="op">=</span> <span class="cn">NA_integer_</span>,</span>
+<span>  hgt <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  dob <span class="op">=</span> <span class="cn">NA_character_</span>,</span>
+<span>  test_gain <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  y1 <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  y0 <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  hgt1 <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  hgt0 <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  test_gain <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  dom1 <span class="op">=</span> <span class="cn">NA_integer_</span>,</span>
+<span>  dom0 <span class="op">=</span> <span class="cn">NA_integer_</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -75,38 +80,61 @@
 
 
 <dt>etn</dt>
-<dd><p>Etnicity, one of <code>"NL"</code> (dutch), <code>"TU"</code> (turkish),
-<code>"MA"</code> (moroccan) or <code>"HS"</code> (hindustani).
-The default is <code>"NL"</code>. Only used for target height.</p></dd>
+<dd><p>Etnicity, one of <code>"NL"</code> (dutch), <code>"TU"</code> (turkish), <code>"MA"</code>
+(moroccan) or <code>"HS"</code> (hindustani). Currently not functional, always uses
+<code>"NL"</code>. Only used for target height.</p></dd>
 
 
-<dt>dom0</dt>
-<dd><p>Age at previous measurement (days)</p></dd>
+<dt>dom</dt>
+<dd><p>Vector with dates of measurements. Either supplied as age in
+decimal years or a date in the format <code>ddmmYYYY</code>.</p></dd>
 
 
-<dt>y0</dt>
-<dd><p>Height at previous measurement (cm)</p></dd>
+<dt>y</dt>
+<dd><p>Vector with height measurements (cm)</p></dd>
 
 
-<dt>dom1</dt>
-<dd><p>Age at last measurement (days)</p></dd>
+<dt>dom_hgt</dt>
+<dd><p>Vector with date of measurement relating to height. Either
+supplied as age in decimal years or a date in the format <code>ddmmYYYY</code>.</p></dd>
 
 
-<dt>y1</dt>
-<dd><p>Height at last measurement (cm)</p></dd>
+<dt>hgt</dt>
+<dd><p>Vector with height measurements (cm)</p></dd>
 
 
-<dt>hgt1</dt>
-<dd><p>Height at last measurement (cm)</p></dd>
-
-
-<dt>hgt0</dt>
-<dd><p>Height at previous measurement (cm)</p></dd>
+<dt>dob</dt>
+<dd><p>Date of birth (<code>ddmmYYYY</code>). Required if <code>dom</code> is supplied as a
+date string.</p></dd>
 
 
 <dt>test_gain</dt>
 <dd><p>Logical. Should the increase or decrease in Z-scores be
 tested? The default is <code>TRUE</code>.</p></dd>
+
+
+<dt>y1</dt>
+<dd><p>Legacy parameter.</p></dd>
+
+
+<dt>y0</dt>
+<dd><p>Legacy parameter.</p></dd>
+
+
+<dt>hgt1</dt>
+<dd><p>Legacy parameter.</p></dd>
+
+
+<dt>hgt0</dt>
+<dd><p>Legacy parameter.</p></dd>
+
+
+<dt>dom1</dt>
+<dd><p>Legacy parameter.</p></dd>
+
+
+<dt>dom0</dt>
+<dd><p>Legacy parameter.</p></dd>
 
 
 <dt>verbose</dt>
@@ -123,14 +151,9 @@ tested? The default is <code>TRUE</code>.</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The decision tree assesses both single and paired measurements.
-The last observations (<code>y1</code>) is generally taken as the
-last measurement, whereas <code>y0</code> can be one of the previous
-measurements. For more than two measurements, there are many
-pairs possible, and these pairs need not be consecutive.
-The <code>y0</code> measurement needs to be defined by the user,
-and is informally taken as an earlier measurement that maximizes
-the referral probability.</p>
+    <p>The decision tree assesses both single and paired measurements. The
+observation corresponding to the oldest age is taken is the current
+measurement.</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -141,9 +164,15 @@ the referral probability.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="msg.html">msg</a></span><span class="op">(</span><span class="fu">calculate_advice_wgt</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Voer het geslacht in."</span>
-<span class="r-in"><span><span class="va">msgcode</span> <span class="op">&lt;-</span> <span class="fu">calculate_advice_wgt</span><span class="op">(</span>sex <span class="op">=</span> <span class="st">"male"</span>, dom1 <span class="op">=</span> <span class="fl">1441</span>, y1 <span class="op">=</span> <span class="fl">25</span>, hgt1 <span class="op">=</span> <span class="fl">120</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">msgcode</span> <span class="op">&lt;-</span> <span class="fu">calculate_advice_wgt</span><span class="op">(</span>sex <span class="op">=</span> <span class="st">"male"</span>, dob <span class="op">=</span> <span class="st">"01012020"</span>,</span></span>
+<span class="r-in"><span>                                dom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01022020"</span>, <span class="st">"01062020"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                dom_hgt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01022020"</span>, <span class="st">"01062020"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5.4</span>, <span class="fl">6.8</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                hgt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">54</span>, <span class="fl">60</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                ga <span class="op">=</span> <span class="fl">35</span>,</span></span>
+<span class="r-in"><span>                                test_gain <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="msg.html">msg</a></span><span class="op">(</span><span class="va">msgcode</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Het advies kan niet worden bepaald. Voer het gewicht bij de eerdere meting in."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Het advies volgens de JGZ-richtlijn overgewicht is als volgt: In principe geen verwijzing nodig, naar eigen inzicht handelen."</span>
 </code></pre></div>
     </div>
   </div>
@@ -158,7 +187,7 @@ the referral probability.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

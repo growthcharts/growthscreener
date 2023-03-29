@@ -71,6 +71,7 @@
 <li>height</li>
 <li>weight</li>
 <li>head circumference</li>
+<li>language development</li>
 </ul>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -89,7 +90,7 @@
 <span><span class="co">#&gt; Loading required package: nlreferences</span></span>
 <span></span>
 <span><span class="co"># a very short girl, 4 months old</span></span>
-<span><span class="va">msgcode</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/advice_hgt.html">calculate_advice_hgt</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="st">"female"</span>, bw <span class="op">=</span> <span class="fl">3250</span>, ga <span class="op">=</span> <span class="fl">40</span>, dom1 <span class="op">=</span> <span class="fl">134</span>, y1 <span class="op">=</span> <span class="fl">55</span><span class="op">)</span></span>
+<span><span class="va">msgcode</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/advice_hgt.html">calculate_advice_hgt</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="st">"female"</span>, bw <span class="op">=</span> <span class="fl">3250</span>, ga <span class="op">=</span> <span class="fl">40</span>, dom <span class="op">=</span> <span class="fl">0.367</span>, y <span class="op">=</span> <span class="fl">55</span><span class="op">)</span></span>
 <span><span class="va">msgcode</span></span>
 <span><span class="co">#&gt; [1] 1045</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="reference/fold.html">fold</a></span><span class="op">(</span><span class="fu"><a href="reference/msg.html">msg</a></span><span class="op">(</span><span class="va">msgcode</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -114,6 +115,9 @@
 </li>
 <li>
 <strong>Beslisboom Hoofdomtrek</strong>: A decision tree for head circumference for children below the age of 1 year.</li>
+<li>
+<strong>JGZ-Richtlijn Taalontwikkeling 2018</strong>: <a href="https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/taalontwikkeling" class="external-link uri">https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/taalontwikkeling</a>
+</li>
 </ul>
 <p>There are 45 different messages for height, 26 messages for weight and 17 messages for head circumference. To see them all:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -162,7 +166,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
