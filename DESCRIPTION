@@ -26,7 +26,6 @@ Imports:
     bdsreader (>= 0.16.1),
     centile (>= 0.12.1),
     dplyr,
-    lubridate,
     methods,
     rlang,
     tidyr,
@@ -45,3 +44,4 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 URL: https://growthcharts.org/growthscreener/
+RoxygenNote: 7.2.3

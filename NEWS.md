@@ -1,3 +1,8 @@
+# growthscreener 1.16.0.9999
+
+- Remove `lubridate` dependency
+- Make sure `ga` is in completed weeks 
+
 # growthscreener 1.16.0
 
 - Merges the srm branch
