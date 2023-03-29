@@ -49,8 +49,8 @@ calculate_advice_wgt  <- function(sex = NA_character_,
   if (any(nchar(dom) >= 8 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
   if (any(nchar(dom_hgt) >= 8 & !is.na(dom_hgt))) age_hgt <- date2age(dob, dom_hgt) else age_hgt <- dom_hgt
 
-  # convert ga
-  if(ga > 60 & !is.na(ga)) ga <- ga/7 # convert days to weeks
+  # convert days to completed weeks
+  if (ga > 60 && !is.na(ga)) ga <- as.integer(ga / 7)
 
   # sort wgt and hgt observations
   df <- data.frame(age = age, y = y) %>%
