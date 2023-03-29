@@ -1,11 +1,14 @@
-kids <- data.frame(
-  dom1 = c(134, NA, NA, NA, NA, 134, 134, 134, 134, 134, 134, 134, 134),
-  dom0 = c(213, NA, NA, NA, NA, NA, NA, NA, NA, NA,
-           NA, NA, NA),
-  y1   = c(64, NA, NA, NA, NA, NA, 64, 64, 40, 40,
-           40, 40, 75),
-  y0   = c(60, NA, NA, NA, NA, NA, NA, NA, NA, NA,
-           NA, NA, NA),
+# create tibble with observations and expected outcome
+kids <- tibble(
+  dob = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "01012020"),
+  dom = list(
+    c(0.3669, 0.5832),
+    NA, NA, NA, NA, 0.3669, 0.3669, 0.3669, 0.3669, 0.3669, 0.3669, 0.3669, "14052020"
+  ),
+  y = list(
+    c(60, 64),
+    NA, NA, NA, NA, NA, 64, 64, 40, 40, 40, 40, 75
+  ),
   sex  = c("male", NA_character_, "X", "female", "female", "female", "female", "female", "female", "female",
            "female", "female", "female"),
   bw   = c(3000, NA, NA, NA, NA, NA, NA, NA, NA, 3000,
@@ -32,13 +35,12 @@ for (k in 1:nrow(kids)) {
                                 bw   = kids[k, "bw"],
                                 bl   = kids[k, "bl"],
                                 ga   = kids[k, "ga"],
-                                etn  = kids[k, "etn"],
+                                etn  = unlist(kids[k, "etn"]),
                                 hgtf = kids[k, "hgtf"],
                                 hgtm = kids[k, "hgtm"],
-                                dom1 = kids[k, "dom1"],
-                                y1   = kids[k, "y1"],
-                                dom0 = kids[k, "dom0"],
-                                y0   = kids[k, "y0"])
+                                dob = kids[k, "dob"],
+                                dom = unlist(kids[k, "dom"]),
+                                y   = unlist(kids[k, "y"]))
   results[k, ] <- c(k, kids$code[k], found)
 }
 

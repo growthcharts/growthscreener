@@ -17,6 +17,7 @@ The current version implements Dutch guidelines for
 -   height
 -   weight
 -   head circumference
+-   language development
 
 ## Installation
 
@@ -36,7 +37,7 @@ library(growthscreener)
 #> Loading required package: nlreferences
 
 # a very short girl, 4 months old
-msgcode <- calculate_advice_hgt(sex = "female", bw = 3250, ga = 40, dom1 = 134, y1 = 55)
+msgcode <- calculate_advice_hgt(sex = "female", bw = 3250, ga = 40, dom = 0.367, y = 55)
 msgcode
 #> [1] 1045
 cat(fold(msg(msgcode)))
@@ -60,6 +61,8 @@ The package implements the following guidelines:
     <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/ondergewicht-2019>
 -   **Beslisboom Hoofdomtrek**: A decision tree for head circumference
     for children below the age of 1 year.
+-   **JGZ-Richtlijn Taalontwikkeling 2018**:
+    <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/taalontwikkeling>
 
 There are 45 different messages for height, 26 messages for weight and
 17 messages for head circumference. To see them all:

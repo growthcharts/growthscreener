@@ -29,6 +29,7 @@ Imports:
     lubridate,
     methods,
     rlang,
+    tidyr,
     tidyselect
 Suggests: 
     jamesdemodata (>= 0.7.0),

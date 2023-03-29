@@ -1,28 +1,37 @@
-kids <- data.frame(
-  dom1 = c(NA, NA, NA, 134, 134, 499, 499, 1230, 1230, 1230),
-  dom0 = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA),
-  y1   = c(NA, NA, NA, 6.0, 5.5, 13, 10, 20, 13, 16),
-  y0   = c(NA, NA, NA, 5.4, 5.4, NA, NA, NA, NA, 17),
+# create tibble with observations and expected outcome
+kids <- tibble(
+  dob = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, "01012020"),
+  dom = list(
+    NA, NA, NA, c(NA, 0.3669), c(NA, 0.3669),
+    1.3662, 1.3662, 3.3676, 3.3676, c(NA, 3.3676)
+  ),
+  y = list(
+    NA, NA, NA, c(5.4, 6.0), c(5.4, 5.5), 13, 10, 20, 13, c(17, 16)
+  ),
+  dom_hgt = list(
+    NA, NA, NA, c(NA, 0.3669), c(NA, 0.3669), c(NA, 1.3662), c(NA, 1.3662),
+    c(NA, 3.3676), c(NA, 3.3676), c(NA, 3.3676)
+  ),
+  hgt = list(
+    NA, NA, NA, c(59, 60), c(59, 65), c(NA, 85), c(NA, 85), c(NA, 105), c(NA, 105), c(102, 105)
+  ),
   sex  = c(NA_character_, "male", "male", "female", "female", "female",
            "female", "female", "female", "female"),
   ga   = c(NA, NA, NA, NA, NA, 33, 33, NA, NA, NA),
-  hgt0 = c(NA, NA, NA, 59, 59, NA, NA, NA, NA, 102),
-  hgt1 = c(NA, NA, NA, 60, 65, 85, 85, 105, 105, 105),
-  code = c(2019, 2015, 2015, 2031, 2074, 2073, 2011, 2045, 2074, 2075),
-  stringsAsFactors = FALSE)
+  code = c(2019, 2015, 2015, 2031, 2074, 2073, 2012, 2045, 2074, 2075)
+  )
 
 # apply algorithm to kids
 results <- matrix(NA, nrow = nrow(kids), ncol = 3)
 colnames(results) <- c("k", "expected", "found")
 for (k in 1:nrow(kids)) {
-  found <- calculate_advice_wgt(sex  = kids[k, "sex"],
+  found <- calculate_advice_wgt(sex  = unlist(kids[k, "sex"]),
                                 ga   = kids[k, "ga"],
-                                hgt0 = kids[k, "hgt0"],
-                                hgt1 = kids[k, "hgt1"],
-                                dom1 = kids[k, "dom1"],
-                                y1   = kids[k, "y1"],
-                                dom0 = kids[k, "dom0"],
-                                y0   = kids[k, "y0"])
+                                dob = kids[k, "dob"],
+                                dom = unlist(kids[k, "dom"]),
+                                y   = unlist(kids[k, "y"]),
+                                dom_hgt = unlist(kids[k, "dom_hgt"]),
+                                hgt   = unlist(kids[k, "hgt"]))
   results[k, ] <- c(k, kids$code[k], found)
 }
 

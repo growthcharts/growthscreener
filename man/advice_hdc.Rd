@@ -7,10 +7,9 @@
 calculate_advice_hdc(
   sex = NA_character_,
   ga = NA,
-  dom1 = NA_integer_,
-  y1 = NA,
-  dom0 = NA_integer_,
-  y0 = NA,
+  dob = NA_character_,
+  dom = NA_integer_,
+  y = NA,
   test_gain = TRUE,
   verbose = FALSE
 )
@@ -20,13 +19,13 @@ calculate_advice_hdc(
 
 \item{ga}{Gestational age, completed weeks (Integer or character)}
 
-\item{dom1}{Age at last measurement (days)}
+\item{dob}{Date of birth (\code{ddmmYYYY}). Required if \code{dom} is supplied as a
+date string.}
 
-\item{y1}{Head circumference at last measurement (cm)}
+\item{dom}{Vector with dates of measurements. Either supplied as age in
+decimal years or a date in the format \code{ddmmYYYY}.}
 
-\item{dom0}{Age at previous measurement (days)}
-
-\item{y0}{Head circumference at previous measurement (cm)}
+\item{y}{Head circumference (cm)}
 
 \item{test_gain}{Logical. Should the increase or decrease in Z-scores be
 tested? The default is \code{TRUE}.}
@@ -42,24 +41,16 @@ This function traverses a decision tree for head circumference for children
 below the age of 1.
 }
 \details{
-The decision tree assesses both single and paired measurements.
-The last observations (\code{y1}) is generally taken as the
-last measurement, whereas \code{y0} can be one of the previous
-measurements. For more than two measurements, there are many
-pairs possible, and these pairs need not be consecutive.
-The \code{y0} measurement needs to be defined by the user,
-and is informally taken as an earlier measurement that maximizes
-the referal probability.
+The decision tree assesses both single and paired measurements. The
+observation corresponding to the oldest age is taken is the current
+measurement.
 }
 \examples{
 msg(calculate_advice_hdc())
 msgcode <- calculate_advice_hdc(sex = "female",
-                                dom1 = 243, y1 = 40,
-                                dom0 = 91, y0 = 36)
+                                dom = c(0.2491, 0.6653),
+                                y = c(36, 40))
 msg(msgcode)
-}
-\seealso{
-calculate_helpers
 }
 \author{
 Arjan Huizing, Stef van Buuren, 2020

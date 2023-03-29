@@ -3,39 +3,32 @@
 #' This function traverses a decision tree for head circumference for children
 #' below the age of 1.
 #'
-#' The decision tree assesses both single and paired measurements.
-#' The last observations (`y1`) is generally taken as the
-#' last measurement, whereas `y0` can be one of the previous
-#' measurements. For more than two measurements, there are many
-#' pairs possible, and these pairs need not be consecutive.
-#' The `y0` measurement needs to be defined by the user,
-#' and is informally taken as an earlier measurement that maximizes
-#' the referal probability.
+#' The decision tree assesses both single and paired measurements. The
+#' observation corresponding to the oldest age is taken is the current
+#' measurement.
 #'
-#' @param y1    Head circumference at last measurement (cm)
-#' @param y0    Head circumference at previous measurement (cm)
+#' @param y    Head circumference (cm)
 #' @inheritParams calculate_advice_hgt
 #' @return `calculate_advice_hdc` returns an integer, the `msgcode`,
 #' between 3000-3999.
 #' @author Arjan Huizing, Stef van Buuren, 2020
-#' @seealso calculate_helpers
 #' @rdname advice_hdc
 #' @examples
 #' msg(calculate_advice_hdc())
 #' msgcode <- calculate_advice_hdc(sex = "female",
-#'                                 dom1 = 243, y1 = 40,
-#'                                 dom0 = 91, y0 = 36)
+#'                                 dom = c(0.2491, 0.6653),
+#'                                 y = c(36, 40))
 #' msg(msgcode)
 #' @export
 calculate_advice_hdc <- function(sex = NA_character_,
-                                 ga = NA,
-                                 dom1 = NA_integer_, y1 = NA,
-                                 dom0 = NA_integer_, y0 = NA,
+                                 ga = NA, dob = NA_character_,
+                                 dom = NA_integer_, y = NA,
                                  test_gain = TRUE,
                                  verbose = FALSE) {
 
-  age1 <- round(dom1/365.25, 4)
-  age0 <- round(dom0/365.25, 4)
+  # convert date to age
+  if (any(nchar(dom) >= 8 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
+  age1 <- ifelse(!all(is.na(age)), max(age, na.rm=T), NA)
 
   # select reference
   pt <- !is.na(ga) && ga < 37 && !is.na(age1) && age1 < 4
@@ -49,17 +42,19 @@ calculate_advice_hdc <- function(sex = NA_character_,
   if (is.null(reftab)) {
     z1 <- z0 <- NA_real_
   } else {
-    z <- centile::y2z(y = c(y1, y0), x = c(age1, age0), refcode = reftab)
-    z1 <- z[1L]
-    z0 <- z[2L]
+    z <- centile::y2z(y = y, x = age, refcode = reftab)
+    z1 <- z[which.max(age)]
+    z0 <- z[-which.max(age)]
   }
 
   # start the sieve
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(3019)
-  if (is.na(dom1)) return(3015)
-  if (is.na(y1)) return(ifelse(age1 < 1.0, 3018, 3021))
+  if (all(is.na(dom))) return(3015)
+  if (any(nchar(dom) >= 8) & is.na(dob)) return(3016)
+  if (!is.numeric(age)) return(3015)
+  if (all(is.na(y))) return(ifelse(age1 < 1.0, 3018, 3021))
 
   # outside age range
   if (age1 >= 1.0) return(3021)
@@ -71,19 +66,20 @@ calculate_advice_hdc <- function(sex = NA_character_,
 
   # check for change z1 - z0
   if (test_gain) {
-    if (is.na(dom0)) return(3022)
-    if (is.na(y0)) return(3023)
-    if (is.na(z0)) return(3025)
+    if (length(!is.na(dom)) < 2) return(3022)
+    if (length(!is.na(y)) < 2) return(3023)
+    if (all(is.na(z0))) return(3025)
 
-    if ((z1 - z0) > 2.5) return(3042)
+    if (any((z1 - z0) > 2.5)) return(3042)
 
     # increase (within 0.5 yrs)
-    if (age1 - age0 <= 0.5){
-      if ((z1 - z0) > 0.5) return(3044)
+    age0 <- age[-which.max(age)]
+    if (any(age1 - age0 <= 0.5)){
+      if (any((z1 - z0[age1 - age0 <= 0.5]) > 0.5)) return(3044)
     }
 
     # decrease
-    if ((z1 - z0) < -0.5) return(3045)
+    if (any((z1 - z0) < -0.5)) return(3045)
   }
 
   # signal everything is OK

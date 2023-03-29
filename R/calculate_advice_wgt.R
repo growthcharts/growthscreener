@@ -3,127 +3,147 @@
 #' This function traverses the decision tree of the "JGZ-Richtlijn overgewicht
 #' 2012" and "JGZ-Richtlijn Ondergewicht 2019"
 #'
-#' The decision tree assesses both single and paired measurements.
-#' The last observations (`y1`) is generally taken as the
-#' last measurement, whereas `y0` can be one of the previous
-#' measurements. For more than two measurements, there are many
-#' pairs possible, and these pairs need not be consecutive.
-#' The `y0` measurement needs to be defined by the user,
-#' and is informally taken as an earlier measurement that maximizes
-#' the referral probability.
+#' The decision tree assesses both single and paired measurements. The
+#' observation corresponding to the oldest age is taken is the current
+#' measurement.
 #'
 #' @inheritParams calculate_advice_hgt
-#' @param hgt1    Height at last measurement (cm)
-#' @param hgt0    Height at previous measurement (cm)
+#' @param dom_hgt Vector with date of measurement relating to height. Either
+#'   supplied as age in decimal years or a date in the format `ddmmYYYY`.
+#' @param hgt Vector with height measurements (cm)
+#' @param hgt1 Legacy parameter.
+#' @param hgt0 Legacy parameter.
 #' @return `calculate_advice_wgt()` returns an integer, the `msgcode`
 #' @author Arjan Huizing, Stef van Buuren 2020
+#' @rdname advice_wgt
 #' @examples
 #' msg(calculate_advice_wgt())
-#' msgcode <- calculate_advice_wgt(sex = "male", dom1 = 1441, y1 = 25, hgt1 = 120)
+#' msgcode <- calculate_advice_wgt(sex = "male", dob = "01012020",
+#'                                 dom = c("01022020", "01062020"),
+#'                                 dom_hgt = c("01022020", "01062020"),
+#'                                 y = c(5.4, 6.8),
+#'                                 hgt = c(54, 60),
+#'                                 ga = 35,
+#'                                 test_gain = FALSE)
 #' msg(msgcode)
 #' @export
 calculate_advice_wgt  <- function(sex = NA_character_,
                                   ga = NA, etn = NA,
-                                  dom0 = NA_integer_,
-                                  y0 = NA, dom1 = NA_integer_, y1 = NA,
-                                  hgt1 = NA, hgt0 = NA,
+                                  dom = NA_integer_, y = NA,
+                                  dom_hgt = NA_integer_, hgt = NA,
+                                  dob = NA_character_,
                                   test_gain = TRUE,
+                                  y1 = NA, y0 = NA,
+                                  hgt1 = NA, hgt0 = NA,
+                                  dom1 = NA_integer_, dom0 = NA_integer_,
                                   verbose = FALSE) {
+
+  # convert legacy format to new format
+  if(!is.na(y1) & all(is.na(y))) {
+    y <- c(y0, y1)
+    hgt <- c(hgt0, hgt1)
+    dom_hgt <- dom <- round(c(dom0, dom1) / 365.25, digits = 5) # convert to years
+  }
+
+  # convert date to age
+  if (any(nchar(dom) >= 8 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
+  if (any(nchar(dom_hgt) >= 8 & !is.na(dom_hgt))) age_hgt <- date2age(dob, dom_hgt) else age_hgt <- dom_hgt
+
+  # convert ga
+  if(ga > 60 & !is.na(ga)) ga <- ga/7 # convert days to weeks
+
+  # sort wgt and hgt observations
+  df <- data.frame(age = age, y = y) %>%
+    left_join(data.frame(age = age_hgt, hgt = hgt), by = "age")
+  df1 <- df[which.max(df$age), ] # subset today
+
+  # start the sieve
 
   # return early if data are insufficient
   if (!sex %in% c("male", "female")) return(2019)
-  if (is.na(dom1)) return(2015)
-  if (is.na(y1)) return(2018)
-  if (is.na(hgt1)) return(2014)
+  if (all(is.na(dom))) return(2015)
+  if (any(nchar(dom) >= 8 & !is.na(dom)) & is.na(dob)) return(2016)
+  if (all(is.na(df$age))) return(2015)
+  if (is.na(df1$y)) return(2018)
+  if (is.na(df1$hgt) && df1$age >= 1.0) return(2014)
 
-  # check applicability
-  age1 <- round(dom1/365.25, 4)
-  age0 <- round(dom0/365.25, 4)
-  if (age1 >= 19.0) return(2021)
-  if (age1 < 2.0 && hgt1 < 35) return(2022)
-  if (age1 < 2.0 && hgt1 > 120) return(2023)
+  # outside age range
+  if (df1$age >= 19.0) return(2021)
+  if (df1$age < 2.0 && df1$hgt < 35 && df1$age >= 1.0) return(2022)
+  if (df1$age < 2.0 && df1$hgt > 120 && df1$age >= 1.0) return(2023)
 
   # obtain Z-values
-  pick <- pick_reference_wgt(age1, sex, ga, etn)
+  pick <- pick_reference_wgt(df1$age, sex, ga, etn)
   if (is.null(pick)) {
-    z0 <- rep(NA_real_, length(y0))
-    z1 <- rep(NA_real_, length(y1))
+    df$z <- rep(NA_real_, nrow(df))
+    df1$z <- NA_real_
   } else {
     reftable <- centile::load_reference(refcode = pick, pkg = "nlreferences", verbose = verbose)
     if (is.null(reftable)) {
-      z0 <- rep(NA_real_, length(y0))
-      z1 <- rep(NA_real_, length(y0))
+      df$z <- rep(NA_real_, nrow(df))
+      df1$z <- NA_real_
     } else {
-      z0 <- centile::y2z(y = y0, x = hgt0, refcode = reftable)
-      z1 <- centile::y2z(y = y1, x = hgt1, refcode = reftable)
+      df$z <- centile::y2z(y = df$y, x = df$hgt, refcode = reftable)
+      df1$z <- centile::y2z(y = df1$y, x = df1$hgt, refcode = reftable)
     }
   }
+  df0 <- df[-which.max(df$age), ] # subset out today
 
-  # start sieve
-
-  if (age1 < 1.0) {
-
-    # fast increase
-    if (test_gain && age1 > 0.0) {
-      if (is.na(y0)) return(2012)
-      if (is.na(hgt0)) return(2013)
-      if (!is.na(age0) && age0 >= 0.5 && z0 > 1.0 && (z1 - z0) > 0.67) return(2071)
-    }
+  # apply decision tree
+  if (df1$age < 1.0) {
 
     # low weight
-    if (!is.na(z1) && z1 < -2.0) return(2074)
+    if (!is.na(df1$z) && df1$z < -2.0) return(2074)
 
-    # fast decrease 1SD
+    # fast decrease 1SD - for any previous measurement
     if (test_gain) {
-      if (!is.na(z0) && !is.na(z1) && (z1 - z0) < -1.0) return(2075)
+      if (nrow(df0) < 1 | all(is.na(df0$y))) return(2012)
+      #if (all(is.na(df0$age))) return(2011) -> Old version doesnt check, should we add this?
+      if (all(is.na(df0$hgt))) return(2013)
+      if (any(!is.na(df0$z) & !is.na(df1$z) & (df1$z - df0$z) < -1.0)) return(2075)
     }
   }
 
-  if (age1 >= 1.0 && age1 < 2.0) {
+  if (df1$age >= 1.0 && df1$age < 2.0) {
 
     # high weight
-    if (z1 > 2.0) return(2042)
-    if (z1 > 1.0) return(2073)
-
-    # increasing
-    if (test_gain) {
-      if (is.na(dom0)) return(2011)
-      if (is.na(y0)) return(2012)
-      if (is.na(hgt0)) return(2013)
-      if (age0 >= 0.5 && z0 > 1.0 && (z1 - z0) > 0.67) return(2071)
-    }
+    if (df1$z > 2.0) return(2042)
+    if (df1$z > 1.0) return(2073)
 
     # low weight
-    if (z1 < -3.0) return(2076)
-    if (z1 < -2.0) return(2074)
+    if (df1$z < -3.0) return(2076)
+    if (df1$z < -2.0) return(2074)
 
-    # decreasing
+    # decreasing - any previous measurement
     if (test_gain) {
-      if (!is.na(z0) && (z1 - z0) < -1.0) return(2075)
+      if (nrow(df0) < 1 | all(is.na(df0$y))) return(2012)
+      if (all(is.na(df0$age))) return(2011)
+      if (all(is.na(df0$hgt))) return(2013)
+      if (any(!is.na(df0$z) & (df1$z - df0$z) < -1.0)) return(2075)
     }
   }
 
-  if (age1 >= 2.0) {
+  if (df1$age >= 2.0) {
 
-    bmi <- y1/(hgt1/100)^2
+    bmi <- df1$y/(df1$hgt/100)^2
     bmi_table <- growthscreener::bmi_table
     grp <- "IOTF"
     if (!is.na(etn) && etn == "HS") grp <- "HS"
     bmi_table <- bmi_table[bmi_table$sex == sex & bmi_table$etn == grp, ]
     cutoff_obesity <- approx(x = bmi_table$age,
                              y = bmi_table$obesity,
-                             xout = age1)$y
+                             xout = df1$age)$y
     cutoff_overweight <- approx(x = bmi_table$age,
                                 y = bmi_table$overweight,
-                                xout = age1)$y
+                                xout = df1$age)$y
     cutoff_underweight <- approx(x = bmi_table$age,
                                  y = bmi_table$underweight,
-                                 xout = age1)$y
+                                 xout = df1$age)$y
 
     # high weight (bmi)
     if (bmi > cutoff_obesity) return(2044)
     if (bmi > cutoff_overweight) {
-      if (age1 < 5.0) return(2045)
+      if (df1$age < 5.0) return(2045)
       return(2046)
     }
 
@@ -132,9 +152,10 @@ calculate_advice_wgt  <- function(sex = NA_character_,
 
     # decreasing (wfh)
     if (test_gain) {
-      if (is.na(y0)) return(2012)
-      if (is.na(hgt0)) return(2013)
-      if (!is.na(z0) && (z1 - z0) < -1.0) return(2075)
+      if (all(is.na(df0$y))) return(2012)
+      if (all(is.na(df0$hgt))) return(2013)
+      # both observed together return(newnum)
+      if (any(!is.na(df0$z)) & any((df1$z - df0$z) < -1.0, na.rm = TRUE)) return(2075)
     }
   }
 

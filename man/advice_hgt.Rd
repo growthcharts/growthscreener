@@ -12,10 +12,13 @@ calculate_advice_hgt(
   etn = "NL",
   hgtf = NA,
   hgtm = NA,
-  dom1 = NA_integer_,
+  dob = NA_character_,
+  dom = NA_character_,
+  y = NA,
   y1 = NA,
-  dom0 = NA_integer_,
   y0 = NA,
+  dom1 = NA_integer_,
+  dom0 = NA_integer_,
   test_gain = TRUE,
   verbose = FALSE
 )
@@ -29,21 +32,29 @@ calculate_advice_hgt(
 
 \item{ga}{Gestational age, completed weeks (Integer or character)}
 
-\item{etn}{Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
-\code{"MA"} (moroccan) or \code{"HS"} (hindustani).
-The default is \code{"NL"}. Only used for target height.}
+\item{etn}{Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish), \code{"MA"}
+(moroccan) or \code{"HS"} (hindustani). Currently not functional, always uses
+\code{"NL"}. Only used for target height.}
 
 \item{hgtf}{Height of father (cm)}
 
 \item{hgtm}{Height of mother (cm)}
 
-\item{dom1}{Age at last measurement (days)}
+\item{dob}{Date of birth (\code{ddmmYYYY}). Required if \code{dom} is supplied as a
+date string.}
 
-\item{y1}{Height at last measurement (cm)}
+\item{dom}{Vector with dates of measurements. Either supplied as age in
+decimal years or a date in the format \code{ddmmYYYY}.}
 
-\item{dom0}{Age at previous measurement (days)}
+\item{y}{Vector with height measurements (cm)}
 
-\item{y0}{Height at previous measurement (cm)}
+\item{y1}{Legacy parameter.}
+
+\item{y0}{Legacy parameter.}
+
+\item{dom1}{Legacy parameter.}
+
+\item{dom0}{Legacy parameter.}
 
 \item{test_gain}{Logical. Should the increase or decrease in Z-scores be
 tested? The default is \code{TRUE}.}
@@ -54,27 +65,20 @@ tested? The default is \code{TRUE}.}
 \code{calculate_advice_hgt} returns an integer, the \code{msgcode}
 }
 \description{
-This function traverses the decision tree of the
-"JGZ-Richtlijn Lengtegroei 2019".
+This function traverses the decision tree of the "JGZ-Richtlijn Lengtegroei
+2019".
 }
 \details{
-The decision tree assesses both single and paired measurements.
-The last observations (\code{y1}) is generally taken as the
-last measurement, whereas \code{y0} can be one of the previous
-measurements. For more than two measurements, there are many
-pairs possible, and these pairs need not be consecutive.
-The \code{y0} measurement needs to be defined by the user,
-and is informally taken as an earlier measurement that maximumizes
-the referal probability. On the other hand, defining pairs that are
-remote in ages (e.g. period between 1 month and 14 years) is probably
-not that useful. In practice, we may be interested in setting the
-maximum period to, say, five years.
+The decision tree assesses both single and paired measurements. The
+observation corresponding to the oldest age is taken is the current
+measurement.
 }
 \examples{
 msg(calculate_advice_hgt())
-msgcode <- calculate_advice_hgt(sex = "male",
-                                dom1 = 134,
-                                y1 = 64, ga = 35,
+msgcode <- calculate_advice_hgt(sex = "male", dob = "01012020",
+                                dom = c("01022020", "01062020"),
+                                y = c(54, 68),
+                                ga = 35,
                                 test_gain = FALSE)
 msg(msgcode)
 }
