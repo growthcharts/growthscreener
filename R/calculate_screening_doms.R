@@ -15,10 +15,13 @@
 #' `x1` and forms pairs with every earlier observation.
 #' @note Internal function. Not to be called directly.
 #' @examples
+#' \dontrun{
 #' growthscreener:::calculate_screening_doms(target)
+#' }
 calculate_screening_doms <- function(tgt,
                                      ynames = c("hgt", "wgt", "hdc"),
                                      na.omit = TRUE) {
+  .Deprecated()
   stopifnot(is.list(tgt))
   time <- timedata(tgt)
 

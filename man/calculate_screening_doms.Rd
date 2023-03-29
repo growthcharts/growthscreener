@@ -40,5 +40,7 @@ choosing pairs. This strategy selects the last observation as
 Internal function. Not to be called directly.
 }
 \examples{
+\dontrun{
 growthscreener:::calculate_screening_doms(target)
+}
 }

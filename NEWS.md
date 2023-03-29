@@ -1,7 +1,8 @@
 # growthscreener 1.16.0.9999
 
-- Remove `lubridate` dependency
-- Make sure `ga` is in completed weeks 
+- Deprecates `calculate_screening_doms()`
+- Removes `lubridate` dependency
+- Makes sure `ga` is in completed weeks 
 
 # growthscreener 1.16.0
 
