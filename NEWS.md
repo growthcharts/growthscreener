@@ -1,3 +1,14 @@
+# growthscreener 1.16.0
+
+- Merges the srm branch
+- Generalises screening functions from two time points to any number of time points
+- Assumes that the last time point is current
+- Returns one advice for all time points combined (rather than m-1 retrospective pairs)
+- Adds a new screening algorithm for language based on six Van Wiechen items
+- Contains numerous other improvements
+- Updates to roxygen version to 7.2.3
+- Updates GitHub actions
+
 # growthscreener 1.15.0
 
 - Update roxygen version to 7.2.1

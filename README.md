@@ -14,10 +14,10 @@ physician or pediatrician.
 
 The current version implements Dutch guidelines for
 
--   height
--   weight
--   head circumference
--   language development
+- height
+- weight
+- head circumference
+- language development
 
 ## Installation
 
@@ -53,16 +53,16 @@ the reason for referral.
 
 The package implements the following guidelines:
 
--   **JGZ-Richtlijn Lengtegroei 2019**:
-    <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/lengtegroei-2019>
--   **JGZ-Richtlijn Overgewicht 2012**:
-    <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/overgewicht>
--   **JGZ-Richtlijn Ondergewicht 2019**:
-    <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/ondergewicht-2019>
--   **Beslisboom Hoofdomtrek**: A decision tree for head circumference
-    for children below the age of 1 year.
--   **JGZ-Richtlijn Taalontwikkeling 2018**:
-    <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/taalontwikkeling>
+- **JGZ-Richtlijn Lengtegroei 2019**:
+  <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/lengtegroei-2019>
+- **JGZ-Richtlijn Overgewicht 2012**:
+  <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/overgewicht>
+- **JGZ-Richtlijn Ondergewicht 2019**:
+  <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/ondergewicht-2019>
+- **Beslisboom Hoofdomtrek**: A decision tree for head circumference for
+  children below the age of 1 year.
+- **JGZ-Richtlijn Taalontwikkeling 2018**:
+  <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/taalontwikkeling>
 
 There are 45 different messages for height, 26 messages for weight and
 17 messages for head circumference. To see them all:
