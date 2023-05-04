@@ -90,8 +90,8 @@ calculate_advice_devlang <- function(dob = NA_character_,
   if (age1 >= 1.9166 && age1 < 2.3333) {
     # age 2
     df <- df %>%
-      filter(age >= 1.9166 & age < 2.3333 & !is.na(age)) %>%
-      arrange(-age) %>%
+      filter(.data$age >= 1.9166 & .data$age < 2.3333 & !is.na(.data$age)) %>%
+      arrange(-.data$age) %>%
       fill(vw41, vw42, .direction = "up") %>%
       slice(1) %>%
       mutate(score = vw41 + vw42)
@@ -105,8 +105,8 @@ calculate_advice_devlang <- function(dob = NA_character_,
     # age 2.5 - check if neccesary
     if (!force) {
       score_2 <- df %>%
-        filter(age >= 1.9166 & age < 2.3333 & !is.na(age)) %>%
-        arrange(-age) %>%
+        filter(.data$age >= 1.9166 & .data$age < 2.3333 & !is.na(.data$age)) %>%
+        arrange(-.data$age) %>%
         fill(vw41, vw42, .direction = "up") %>%
         slice(1) %>%
         transmute(score_2 = vw41 + vw42) %>%
@@ -118,8 +118,8 @@ calculate_advice_devlang <- function(dob = NA_character_,
     # age 2.5
     if(score_2 < 2) {
       df <- df %>%
-        filter(age >= 2.4166 & age < 2.8333 & !is.na(age)) %>%
-        arrange(-age) %>%
+        filter(.data$age >= 2.4166 & .data$age < 2.8333 & !is.na(.data$age)) %>%
+        arrange(-.data$age) %>%
         fill(vw41, vw43, vw44, .direction = "up") %>%
         slice(1) %>%
         mutate(score = vw41 + vw43 + vw44)
@@ -131,8 +131,8 @@ calculate_advice_devlang <- function(dob = NA_character_,
   if (age1 >= 2.8333 && age1 < 3.3333) {
     # age 3
     df <- df %>%
-      filter(age >= 2.8333 & age < 3.3333 & !is.na(age)) %>%
-      arrange(-age) %>%
+      filter(.data$age >= 2.8333 & .data$age < 3.3333 & !is.na(.data$age)) %>%
+      arrange(-.data$age) %>%
       fill(vw45, vw46, .direction = "up") %>%
       slice(1) %>%
       mutate(score = vw45 + vw46)
