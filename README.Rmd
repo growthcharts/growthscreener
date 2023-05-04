@@ -23,7 +23,7 @@ The `growthscreener` package implements tools to evaluate child
 growth with respect to Dutch criteria for unusual growth. 
 Application of these tools helps to identify children that meet 
 criteria for criteria for referral from youth health care (JGZ) for
-follow-up with a general physician or pediatrician.
+follow-up with a general physician or paediatrician.
 
 The current version implements Dutch guidelines for
 

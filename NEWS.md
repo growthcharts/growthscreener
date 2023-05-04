@@ -1,5 +1,7 @@
-# growthscreener 1.16.0.9999
+# growthscreener 1.16.1
 
+- Extrapolates the BMI cutoff table beyond 18 years to evade error when the child age is between 18 and 19 years
+- Silences the Rm CMD CHECK error on global variable `age`
 - Deprecates `calculate_screening_doms()`
 - Removes `lubridate` dependency
 - Makes sure `ga` is in completed weeks 

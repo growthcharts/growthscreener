@@ -4,13 +4,15 @@
 # growthscreener
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/growthcharts/growthscreener/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/growthcharts/growthscreener/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The `growthscreener` package implements tools to evaluate child growth
 with respect to Dutch criteria for unusual growth. Application of these
 tools helps to identify children that meet criteria for criteria for
 referral from youth health care (JGZ) for follow-up with a general
-physician or pediatrician.
+physician or paediatrician.
 
 The current version implements Dutch guidelines for
 
