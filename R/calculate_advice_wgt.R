@@ -17,14 +17,13 @@
 #' @author Arjan Huizing, Stef van Buuren 2020
 #' @rdname advice_wgt
 #' @examples
-#' msg(calculate_advice_wgt())
 #' msgcode <- calculate_advice_wgt(sex = "male", dob = "01012020",
-#'                                 dom = c("01022020", "01062020"),
-#'                                 dom_hgt = c("01022020", "01062020"),
-#'                                 y = c(5.4, 6.8),
-#'                                 hgt = c(54, 60),
-#'                                 ga = 35,
-#'                                 test_gain = FALSE)
+#'                                dom = c("01022020", "01062020"),
+#'                                dom_hgt = c("01022020", "01062020"),
+#'                                y = c(5.4, 6.8),
+#'                                hgt = c(54, 60),
+#'                                ga = 35,
+#'                                test_gain = FALSE)
 #' msg(msgcode)
 #' @export
 calculate_advice_wgt  <- function(sex = NA_character_,
@@ -132,13 +131,16 @@ calculate_advice_wgt  <- function(sex = NA_character_,
     bmi_table <- bmi_table[bmi_table$sex == sex & bmi_table$etn == grp, ]
     cutoff_obesity <- approx(x = bmi_table$age,
                              y = bmi_table$obesity,
-                             xout = df1$age)$y
+                             xout = df1$age,
+                             rule = c(1, 2))$y
     cutoff_overweight <- approx(x = bmi_table$age,
                                 y = bmi_table$overweight,
-                                xout = df1$age)$y
+                                xout = df1$age,
+                                rule = c(1, 2))$y
     cutoff_underweight <- approx(x = bmi_table$age,
                                  y = bmi_table$underweight,
-                                 xout = df1$age)$y
+                                 xout = df1$age,
+                                 rule = c(1, 2))$y
 
     # high weight (bmi)
     if (bmi > cutoff_obesity) return(2044)

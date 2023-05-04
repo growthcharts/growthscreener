@@ -75,14 +75,13 @@ observation corresponding to the oldest age is taken is the current
 measurement.
 }
 \examples{
-msg(calculate_advice_wgt())
 msgcode <- calculate_advice_wgt(sex = "male", dob = "01012020",
-                                dom = c("01022020", "01062020"),
-                                dom_hgt = c("01022020", "01062020"),
-                                y = c(5.4, 6.8),
-                                hgt = c(54, 60),
-                                ga = 35,
-                                test_gain = FALSE)
+                               dom = c("01022020", "01062020"),
+                               dom_hgt = c("01022020", "01062020"),
+                               y = c(5.4, 6.8),
+                               hgt = c(54, 60),
+                               ga = 35,
+                               test_gain = FALSE)
 msg(msgcode)
 }
 \author{
