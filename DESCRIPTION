@@ -1,6 +1,6 @@
 Package: growthscreener
 Title: Finding Children with Unusual Growth Patterns
-Version: 1.16.0
+Version: 1.17.0
 Authors@R: 
     c(person(given = "Paula",
            family = "van Dommelen",
@@ -26,7 +26,6 @@ Imports:
     bdsreader (>= 0.16.1),
     centile (>= 0.12.1),
     dplyr,
-    lubridate,
     methods,
     rlang,
     tidyr,
@@ -44,4 +43,5 @@ License: AGPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
+URL: https://growthcharts.org/growthscreener/
 RoxygenNote: 7.2.0

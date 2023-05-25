@@ -57,8 +57,8 @@ calculate_advice_hgt <- function(sex = NA_character_,
     dom_hgt <- dom <- round(c(dom0, dom1) / 365.25, digits = 5) # convert to years
   }
 
-  # convert ga
-  if(ga > 60 & !is.na(ga)) ga <- ga/7 # convert days to weeks
+  # convert days to completed weeks
+  if (ga > 60 && !is.na(ga)) ga <- as.integer(ga / 7)
 
   # birth Z-scores
   bw_z <- calculate_birth_z(bw, sex, ga, yname = "wgt")

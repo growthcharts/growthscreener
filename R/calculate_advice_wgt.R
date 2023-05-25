@@ -49,8 +49,8 @@ calculate_advice_wgt  <- function(sex = NA_character_,
   if (any(as.numeric(dom) > 999 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
   if (any(as.numeric(dom_hgt) > 999 & !is.na(dom_hgt))) age_hgt <- date2age(dob, dom_hgt) else age_hgt <- dom_hgt
 
-  # convert ga
-  if(ga > 60 & !is.na(ga)) ga <- ga/7 # convert days to weeks
+  # convert days to completed weeks
+  if (ga > 60 && !is.na(ga)) ga <- as.integer(ga / 7)
 
   # sort wgt and hgt observations
   df <- data.frame(age = age, y = y) %>%
@@ -132,13 +132,16 @@ calculate_advice_wgt  <- function(sex = NA_character_,
     bmi_table <- bmi_table[bmi_table$sex == sex & bmi_table$etn == grp, ]
     cutoff_obesity <- approx(x = bmi_table$age,
                              y = bmi_table$obesity,
-                             xout = df1$age)$y
+                             xout = df1$age,
+                             rule = c(1, 2))$y
     cutoff_overweight <- approx(x = bmi_table$age,
                                 y = bmi_table$overweight,
-                                xout = df1$age)$y
+                                xout = df1$age,
+                                rule = c(1, 2))$y
     cutoff_underweight <- approx(x = bmi_table$age,
                                  y = bmi_table$underweight,
-                                 xout = df1$age)$y
+                                 xout = df1$age,
+                                 rule = c(1, 2))$y
 
     # high weight (bmi)
     if (bmi > cutoff_obesity) return(2044)

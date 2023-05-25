@@ -1,3 +1,26 @@
+# growthscreener 1.16.1
+
+- Extrapolates the BMI cutoff table beyond 18 years to evade error when the child age is between 18 and 19 years
+- Silences the Rm CMD CHECK error on global variable `age`
+- Deprecates `calculate_screening_doms()`
+- Removes `lubridate` dependency
+- Makes sure `ga` is in completed weeks 
+
+# growthscreener 1.16.0
+
+- Merges the srm branch
+- Generalises screening functions from two time points to any number of time points
+- Assumes that the last time point is current
+- Returns one advice for all time points combined (rather than m-1 retrospective pairs)
+- Adds a new screening algorithm for language based on six Van Wiechen items
+- Contains numerous other improvements
+- Updates to roxygen version to 7.2.3
+- Updates GitHub actions
+
+# growthscreener 1.15.0
+
+- Update roxygen version to 7.2.1
+
 # growthscreener 1.14.0
 
 - Siplify data structure to list with elements `psn` and `xyz`

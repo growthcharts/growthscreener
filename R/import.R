@@ -4,7 +4,9 @@
 #' @importFrom dplyr          %>% .data arrange bind_rows case_when filter
 #'                            full_join left_join mutate mutate_at recode rename
 #'                            select transmute slice vars
-#' @importFrom lubridate      is.Date ymd
+#' @importFrom dplyr          %>% .data arrange bind_rows filter full_join
+#'                            left_join mutate mutate_at recode rename select
+#'                            transmute slice vars
 #' @importFrom methods        slot
 #' @importFrom rlang          .data
 #' @importFrom stats          approx
