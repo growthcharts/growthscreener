@@ -27,7 +27,7 @@ calculate_advice_hdc <- function(sex = NA_character_,
                                  verbose = FALSE) {
 
   # convert date to age
-  if (any(nchar(dom) >= 8 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
+  if (any(as.numeric(dom) > 999 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
   age1 <- ifelse(!all(is.na(age)), max(age, na.rm=T), NA)
 
   # select reference

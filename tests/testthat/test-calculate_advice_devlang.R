@@ -1,6 +1,6 @@
 # create tibble with observations and expected outcome
 kids <- tibble(
-  dob = c(NA, NA, NA, NA, NA, "01012020"),
+  dob = c(NA, NA, NA, NA, NA, "20200101"),
   vw41 = list(
     1, NA, 2, NA, c(2, 3), NA
   ),

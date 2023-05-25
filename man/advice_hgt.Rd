@@ -40,11 +40,11 @@ calculate_advice_hgt(
 
 \item{hgtm}{Height of mother (cm)}
 
-\item{dob}{Date of birth (\code{ddmmYYYY}). Required if \code{dom} is supplied as a
+\item{dob}{Date of birth (\code{yyyymmdd}). Required if \code{dom} is supplied as a
 date string.}
 
 \item{dom}{Vector with dates of measurements. Either supplied as age in
-decimal years or a date in the format \code{ddmmYYYY}.}
+decimal years or a date in the format \code{yyyymmdd}.}
 
 \item{y}{Vector with height measurements (cm)}
 
@@ -75,8 +75,8 @@ measurement.
 }
 \examples{
 msg(calculate_advice_hgt())
-msgcode <- calculate_advice_hgt(sex = "male", dob = "01012020",
-                                dom = c("01022020", "01062020"),
+msgcode <- calculate_advice_hgt(sex = "male", dob = "20200101",
+                                dom = c("01022020", "20200601"),
                                 y = c(54, 68),
                                 ga = 35,
                                 test_gain = FALSE)

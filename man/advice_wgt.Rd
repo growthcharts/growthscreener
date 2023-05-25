@@ -33,16 +33,16 @@ calculate_advice_wgt(
 \code{"NL"}. Only used for target height.}
 
 \item{dom}{Vector with dates of measurements. Either supplied as age in
-decimal years or a date in the format \code{ddmmYYYY}.}
+decimal years or a date in the format \code{yyyymmdd}.}
 
 \item{y}{Vector with height measurements (cm)}
 
 \item{dom_hgt}{Vector with date of measurement relating to height. Either
-supplied as age in decimal years or a date in the format \code{ddmmYYYY}.}
+supplied as age in decimal years or a date in the format \code{yyyymmdd}.}
 
 \item{hgt}{Vector with height measurements (cm)}
 
-\item{dob}{Date of birth (\code{ddmmYYYY}). Required if \code{dom} is supplied as a
+\item{dob}{Date of birth (\code{yyyymmdd}). Required if \code{dom} is supplied as a
 date string.}
 
 \item{test_gain}{Logical. Should the increase or decrease in Z-scores be
@@ -76,9 +76,9 @@ measurement.
 }
 \examples{
 msg(calculate_advice_wgt())
-msgcode <- calculate_advice_wgt(sex = "male", dob = "01012020",
-                                dom = c("01022020", "01062020"),
-                                dom_hgt = c("01022020", "01062020"),
+msgcode <- calculate_advice_wgt(sex = "male", dob = "20200101",
+                                dom = c("20200201", "20200601"),
+                                dom_hgt = c("20200201", "20200601"),
                                 y = c(5.4, 6.8),
                                 hgt = c(54, 60),
                                 ga = 35,

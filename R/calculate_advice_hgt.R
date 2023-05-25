@@ -16,10 +16,10 @@
 #'   `"NL"`. Only used for target height.
 #' @param hgtf  Height of father (cm)
 #' @param hgtm  Height of mother (cm)
-#' @param dob   Date of birth (`ddmmYYYY`). Required if `dom` is supplied as a
+#' @param dob   Date of birth (`yyyymmdd`). Required if `dom` is supplied as a
 #'   date string.
 #' @param dom  Vector with dates of measurements. Either supplied as age in
-#'   decimal years or a date in the format `ddmmYYYY`.
+#'   decimal years or a date in the format `yyyymmdd`.
 #' @param y     Vector with height measurements (cm)
 #' @param test_gain Logical. Should the increase or decrease in Z-scores be
 #'   tested? The default is `TRUE`.
@@ -33,8 +33,8 @@
 #' @rdname advice_hgt
 #' @examples
 #' msg(calculate_advice_hgt())
-#' msgcode <- calculate_advice_hgt(sex = "male", dob = "01012020",
-#'                                 dom = c("01022020", "01062020"),
+#' msgcode <- calculate_advice_hgt(sex = "male", dob = "20200101",
+#'                                 dom = c("01022020", "20200601"),
 #'                                 y = c(54, 68),
 #'                                 ga = 35,
 #'                                 test_gain = FALSE)
@@ -66,7 +66,7 @@ calculate_advice_hgt <- function(sex = NA_character_,
   th_z <- calculate_th(hgtf, hgtm, sex = sex, etn = etn)[2L]
 
   # convert date to age
-  if (any(nchar(dom) >= 8 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
+  if (any(as.numeric(dom) > 999 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
   age1 <- ifelse(!all(is.na(age)), max(age, na.rm=T), NA)
 
   # select reference

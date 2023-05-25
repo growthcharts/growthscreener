@@ -1,9 +1,9 @@
 #' @import nlreferences
 #' @importFrom bdsreader      persondata timedata
 #' @importFrom centile        y2z
-#' @importFrom dplyr          %>% .data arrange bind_rows filter full_join
-#'                            left_join mutate mutate_at recode rename select
-#'                            transmute slice vars
+#' @importFrom dplyr          %>% .data arrange bind_rows case_when filter
+#'                            full_join left_join mutate mutate_at recode rename
+#'                            select transmute slice vars
 #' @importFrom lubridate      is.Date ymd
 #' @importFrom methods        slot
 #' @importFrom rlang          .data

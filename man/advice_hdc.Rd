@@ -19,11 +19,11 @@ calculate_advice_hdc(
 
 \item{ga}{Gestational age, completed weeks (Integer or character)}
 
-\item{dob}{Date of birth (\code{ddmmYYYY}). Required if \code{dom} is supplied as a
+\item{dob}{Date of birth (\code{yyyymmdd}). Required if \code{dom} is supplied as a
 date string.}
 
 \item{dom}{Vector with dates of measurements. Either supplied as age in
-decimal years or a date in the format \code{ddmmYYYY}.}
+decimal years or a date in the format \code{yyyymmdd}.}
 
 \item{y}{Head circumference (cm)}
 

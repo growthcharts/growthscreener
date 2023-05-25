@@ -26,32 +26,32 @@ calculate_advice_devlang(
 date string.}
 
 \item{dom_vw41}{Date of measurement for van Wiechen item 41. Either a vector
-of age in decimal years or a date in the format \code{ddmmYYYY}}
+of age in decimal years or a date in the format \code{yyyymmdd}}
 
 \item{vw41}{Outcome of the van Wiechen item 41.}
 
 \item{dom_vw42}{Date of measurement for van Wiechen item 42. Either a vector
-of age in decimal years or a date in the format \code{ddmmYYYY}}
+of age in decimal years or a date in the format \code{yyyymmdd}}
 
 \item{vw42}{Outcome of the van Wiechen item 42.}
 
 \item{dom_vw43}{Date of measurement for van Wiechen item 43. Either a vector
-of age in decimal years or a date in the format \code{ddmmYYYY}}
+of age in decimal years or a date in the format \code{yyyymmdd}}
 
 \item{vw43}{Outcome of the van Wiechen item 43.}
 
 \item{dom_vw44}{Date of measurement for van Wiechen item 44. Either a vector
-of age in decimal years or a date in the format \code{ddmmYYYY}}
+of age in decimal years or a date in the format \code{yyyymmdd}}
 
 \item{vw44}{Outcome of the van Wiechen item 44.}
 
 \item{dom_vw45}{Date of measurement for van Wiechen item 45. Either a vector
-of age in decimal years or a date in the format \code{ddmmYYYY}}
+of age in decimal years or a date in the format \code{yyyymmdd}}
 
 \item{vw45}{Outcome of the van Wiechen item 45.}
 
 \item{dom_vw46}{Date of measurement for van Wiechen item 46. Either a vector
-of age in decimal years or a date in the format \code{ddmmYYYY}}
+of age in decimal years or a date in the format \code{yyyymmdd}}
 
 \item{vw46}{Outcome of the van Wiechen item 46.}
 
@@ -72,9 +72,9 @@ measurement.
 }
 \examples{
 msg(calculate_advice_devlang())
-msgcode <- calculate_advice_devlang(dob = "01012020",
-                                dom_vw41 = "01012022", vw41 = 2,
-                                dom_vw42 = "01012022", vw42 = 1)
+msgcode <- calculate_advice_devlang(dob = "20200101",
+                                dom_vw41 = "20220101", vw41 = 2,
+                                dom_vw42 = "20220101", vw42 = 1)
 msg(msgcode)
 }
 \author{

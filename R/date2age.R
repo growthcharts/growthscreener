@@ -11,8 +11,8 @@ date2age <- function(dob = NA_character_, dom = NA_character_) {
   if (is.na(dob) || all(is.na(dom))) return(rep(NA_real_, length(dom)))
 
   # gsub to remove dashes and slashes, convert string to Date
-  dob <- as.Date(gsub("(-)|(/)", "", dob), "%d%m%Y")
-  dom <- as.Date(gsub("(-)|(/)", "", dom), "%d%m%Y")
+  dob <- as.Date(gsub("(-)|(/)", "", dob), "%Y%m%d")
+  dom <- as.Date(gsub("(-)|(/)", "", dom), "%Y%m%d")
 
   return (as.numeric(round((dom - dob)/365.25, 4)))
 }

@@ -9,7 +9,7 @@
 #'
 #' @inheritParams calculate_advice_hgt
 #' @param dom_hgt Vector with date of measurement relating to height. Either
-#'   supplied as age in decimal years or a date in the format `ddmmYYYY`.
+#'   supplied as age in decimal years or a date in the format `yyyymmdd`.
 #' @param hgt Vector with height measurements (cm)
 #' @param hgt1 Legacy parameter.
 #' @param hgt0 Legacy parameter.
@@ -18,9 +18,9 @@
 #' @rdname advice_wgt
 #' @examples
 #' msg(calculate_advice_wgt())
-#' msgcode <- calculate_advice_wgt(sex = "male", dob = "01012020",
-#'                                 dom = c("01022020", "01062020"),
-#'                                 dom_hgt = c("01022020", "01062020"),
+#' msgcode <- calculate_advice_wgt(sex = "male", dob = "20200101",
+#'                                 dom = c("20200201", "20200601"),
+#'                                 dom_hgt = c("20200201", "20200601"),
 #'                                 y = c(5.4, 6.8),
 #'                                 hgt = c(54, 60),
 #'                                 ga = 35,
@@ -46,8 +46,8 @@ calculate_advice_wgt  <- function(sex = NA_character_,
   }
 
   # convert date to age
-  if (any(nchar(dom) >= 8 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
-  if (any(nchar(dom_hgt) >= 8 & !is.na(dom_hgt))) age_hgt <- date2age(dob, dom_hgt) else age_hgt <- dom_hgt
+  if (any(as.numeric(dom) > 999 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
+  if (any(as.numeric(dom_hgt) > 999 & !is.na(dom_hgt))) age_hgt <- date2age(dob, dom_hgt) else age_hgt <- dom_hgt
 
   # convert ga
   if(ga > 60 & !is.na(ga)) ga <- ga/7 # convert days to weeks
