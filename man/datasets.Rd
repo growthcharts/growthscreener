@@ -9,6 +9,7 @@
 \alias{messages}
 \alias{bmi_table}
 \alias{target}
+\alias{reminder_table}
 \title{Table of Dutch birth weight references}
 \format{
 An object of class \code{data.frame} with 36 rows and 8 columns.
@@ -17,11 +18,13 @@ An object of class \code{data.frame} with 36 rows and 8 columns.
 
 An object of class \code{data.frame} with 706 rows and 7 columns.
 
-An object of class \code{data.frame} with 99 rows and 2 columns.
+An object of class \code{data.frame} with 101 rows and 2 columns.
 
 An object of class \code{data.frame} with 132 rows and 6 columns.
 
 An object of class \code{list} of length 2.
+
+An object of class \code{data.frame} with 37 rows and 4 columns.
 }
 \usage{
 ref.nl5defSGAgewicht
@@ -35,6 +38,8 @@ messages
 bmi_table
 
 target
+
+reminder_table
 }
 \description{
 Table of Dutch birth weight references
@@ -48,5 +53,8 @@ Table of return message and return code
 Table of BMI cut-off points (Cole, 2000 (overweight), 2007 (thinness), De Wilde)
 
 Example of an object of class \code{target} created by thge \code{bdsreader} package
+
+Data frame of BDS elements and the window of time in which they should be
+performed
 }
 \keyword{datasets}

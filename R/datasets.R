@@ -21,3 +21,8 @@
 #' Example of an object of class `target` created by thge `bdsreader` package
 #' @rdname datasets
 "target"
+
+#' Data frame of BDS elements and the window of time in which they should be
+#' performed
+#' @rdname datasets
+"reminder_table"
