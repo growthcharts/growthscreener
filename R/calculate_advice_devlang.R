@@ -96,8 +96,10 @@ calculate_advice_devlang <- function(dob = NA_character_,
       slice(1) %>%
       mutate(score = vw41 + vw42)
     if(is.na(df$score)) return(4011)
-    if(df$score %in% c(0, 1)) return(4041)
-    if(df$score %in% c(2, 3)) return(4042)
+    if(df$score == 0) return(4041)
+    if(df$score == 1) return(4045) # speelvraag
+    if(df$score == 2) return(4042)
+    if(df$score == 3) return(4046) # speelvraag
   }
 
 
@@ -112,7 +114,8 @@ calculate_advice_devlang <- function(dob = NA_character_,
         transmute(score_2 = vw41 + vw42) %>%
         unlist
 
-      if(is.na(score_2) || length(score_2) < 1) return(4012)
+      if(is.na(score_2) || length(score_2) < 1) return(4012) # bij laag genoege score
+      # add scores
     }
 
     # age 2.5
@@ -123,9 +126,9 @@ calculate_advice_devlang <- function(dob = NA_character_,
         arrange(-.data$age) %>%
         fill(vw41, vw43, vw44, .direction = "up") %>%
         slice(1) %>%
-        mutate(score = vw41 + vw43 + vw44)
+        mutate(score = if_else(vw41 == 0 | vw43 == 0 | vw44 == 0, 'ja', 'nee'))
       if(is.na(df$score)) return(4011)
-      if(df$score < 3) return(4041)
+      if(df$score == "ja") return(4041) # bij een of meer kenmerken negatief.
     }
   }
 
@@ -136,11 +139,10 @@ calculate_advice_devlang <- function(dob = NA_character_,
       filter(.data$age >= 2.8333 & .data$age < 3.3333 & !is.na(.data$age)) %>%
       arrange(-.data$age) %>%
       fill(vw45, vw46, .direction = "up") %>%
-      slice(1) %>%
-      mutate(score = vw45 + vw46)
-    if(is.na(df$score)) return(4011)
-    if(df$score == 0 | df$vw45 == 0) return(4041)
-    if(df$score == 1) return(4043)
+      slice(1)
+    if(is.na(df$vw45) | is.na(df$vw46)) return(4011)
+    if(df$vw45 == 0) return(4041)
+    if(df$vw46 == 0) return(4043)
   }
   # signal everything is alright
   return(4031)
