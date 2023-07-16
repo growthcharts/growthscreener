@@ -145,7 +145,7 @@ create_bds_df <- function(list = list()) {
 
 	if("vwo2" %in% names(list)) {
 		df <- list$vwo2
-		df <- data.frame(bds = 881, time = df[!is.na(df$vwo2), "age"])
+		df <- data.frame(bds = 881, time = df[!is.na(df$vwo2_l) | !is.na(df$vwo2_r), "age"])
 		bds_df <- rbind(bds_df, df)
 	}
 
