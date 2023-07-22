@@ -20,7 +20,8 @@ calculate_advice_date <- function(age, bds_df = NULL) {
 	bds_df <- bds_df %>% arrange("time")
 
 	# filter what's relevant
-	now <- reminder_table %>% filter(.data$time_l <= age & age <= .data$time_r) %>% mutate(done = FALSE)
+	now <- reminder_table %>% filter(.data$time_l <= age & age <= .data$time_r) %>% mutate(done = FALSE) %>%
+		filter(.data$topic != "vax") # nu geen BDS om dit te checken. Daarom alleen iets bij vooruit kijken en niet op het moment zelf.
 	later <- reminder_table %>% filter(age < .data$time_l) %>% arrange(.data$time_l)
 
 	# filter out topics from now that have already been done
