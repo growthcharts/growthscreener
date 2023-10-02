@@ -83,6 +83,10 @@ create_reminder_table <- function() {
 												time_l = c(wks(11)),
 												time_r = c(wks(15)))
 
+	vax_df <- data.frame(topic = "vax",
+											 bds = 0,
+											 time_l = c(mnths(2.5), mnths(4.5), mnths(10.5), mnths(13), mnths(45)),
+											 time_r = c(mnths(3.5), mnths(5.5), mnths(11.5), mnths(15), mnths(52)))
 
 	# combine
 
