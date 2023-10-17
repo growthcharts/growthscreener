@@ -1,3 +1,16 @@
+# growthscreener 1.20.0
+
+- Merges srm brnach into master
+- Updates NEWS.md
+
+# growthscreener 1.19.0
+
+- Version increases 1.16.0 --> 1.19.0 were made in srm branch
+- Adds advice algorithm for future visit date (remind date guideline)
+- Adds screener for language development, 2 yrs
+- Changes all dates to `yyyymmdd`	
+- Merges with master
+
 # growthscreener 1.16.1
 
 - Extrapolates the BMI cutoff table beyond 18 years to evade error when the child age is between 18 and 19 years

@@ -66,8 +66,7 @@ The package implements the following guidelines:
 - **JGZ-Richtlijn Taalontwikkeling 2018**:
   <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/taalontwikkeling>
 
-There are 45 different messages for height, 26 messages for weight and
-17 messages for head circumference. To see them all:
+There are 101 signals. To see them all:
 
 ``` r
 messages
