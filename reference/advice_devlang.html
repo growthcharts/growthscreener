@@ -12,7 +12,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">growthscreener</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.20.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@ date string.</p></dd>
 
 <dt>dom_vw41</dt>
 <dd><p>Date of measurement for van Wiechen item 41. Either a vector
-of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
+of age in decimal years or a date in the format <code>yyyymmdd</code></p></dd>
 
 
 <dt>vw41</dt>
@@ -84,7 +84,7 @@ of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
 
 <dt>dom_vw42</dt>
 <dd><p>Date of measurement for van Wiechen item 42. Either a vector
-of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
+of age in decimal years or a date in the format <code>yyyymmdd</code></p></dd>
 
 
 <dt>vw42</dt>
@@ -93,7 +93,7 @@ of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
 
 <dt>dom_vw43</dt>
 <dd><p>Date of measurement for van Wiechen item 43. Either a vector
-of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
+of age in decimal years or a date in the format <code>yyyymmdd</code></p></dd>
 
 
 <dt>vw43</dt>
@@ -102,7 +102,7 @@ of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
 
 <dt>dom_vw44</dt>
 <dd><p>Date of measurement for van Wiechen item 44. Either a vector
-of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
+of age in decimal years or a date in the format <code>yyyymmdd</code></p></dd>
 
 
 <dt>vw44</dt>
@@ -111,7 +111,7 @@ of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
 
 <dt>dom_vw45</dt>
 <dd><p>Date of measurement for van Wiechen item 45. Either a vector
-of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
+of age in decimal years or a date in the format <code>yyyymmdd</code></p></dd>
 
 
 <dt>vw45</dt>
@@ -120,7 +120,7 @@ of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
 
 <dt>dom_vw46</dt>
 <dd><p>Date of measurement for van Wiechen item 46. Either a vector
-of age in decimal years or a date in the format <code>ddmmYYYY</code></p></dd>
+of age in decimal years or a date in the format <code>yyyymmdd</code></p></dd>
 
 
 <dt>vw46</dt>
@@ -153,9 +153,9 @@ measurement.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="msg.html">msg</a></span><span class="op">(</span><span class="fu">calculate_advice_devlang</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Voer de meetdatum of leeftijd waarop de van Wiechen gemeten zijn in."</span>
-<span class="r-in"><span><span class="va">msgcode</span> <span class="op">&lt;-</span> <span class="fu">calculate_advice_devlang</span><span class="op">(</span>dob <span class="op">=</span> <span class="st">"01012020"</span>,</span></span>
-<span class="r-in"><span>                                dom_vw41 <span class="op">=</span> <span class="st">"01012022"</span>, vw41 <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>                                dom_vw42 <span class="op">=</span> <span class="st">"01012022"</span>, vw42 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">msgcode</span> <span class="op">&lt;-</span> <span class="fu">calculate_advice_devlang</span><span class="op">(</span>dob <span class="op">=</span> <span class="st">"20200101"</span>,</span></span>
+<span class="r-in"><span>                                dom_vw41 <span class="op">=</span> <span class="st">"20220101"</span>, vw41 <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>                                dom_vw42 <span class="op">=</span> <span class="st">"20220101"</span>, vw42 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="msg.html">msg</a></span><span class="op">(</span><span class="va">msgcode</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Het advies volgens de JGZ-richtlijn taalontwikkeling is als volgt: Uitslag twijfel, aanbod begeleiding door preventief werkend logopedist of jeugdverpleegkundige en herbeoordeling op 2 jaar en 6 maanden."</span>
 </code></pre></div>
