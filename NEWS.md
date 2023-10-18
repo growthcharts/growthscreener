@@ -1,3 +1,8 @@
+# growthscreener 1.20.0.9000
+
+- Makes `list_screeners()` aware of the language development guidelines
+- Introduces `lgd` as abbreviation for language development
+
 # growthscreener 1.20.0
 
 - Merges srm brnach into master

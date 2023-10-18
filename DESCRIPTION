@@ -1,6 +1,6 @@
 Package: growthscreener
 Title: Finding Children with Unusual Growth Patterns
-Version: 1.20.0
+Version: 1.20.0.9000
 Authors@R: 
     c(person(given = "Paula",
            family = "van Dommelen",
@@ -14,11 +14,11 @@ Authors@R:
             family = "Huizing", 
             role = c("aut"),
             email = "arjan.huizing@tno.nl"))
-Description: Unusual child growth may be a sign of an underlying 
-    disease or condition. This package implements functions that 
-    evaluate the growth pattern of a child relative to Dutch 
-    guidelines. Contains tools to detect unusual 
-    growth in height, weight and head circumference.
+Description: Unusual child growth and development may be a sign of an underlying 
+    disease or condition. This package implements functions that evaluate 
+    growth and developmental patterns of a target child relative to Dutch 
+    guidelines. Contains tools to detect unusual growth in height, weight and 
+    head circumference, and unusual language development.
 Depends: 
     R (>= 3.5.0),
     nlreferences (>= 0.12.1)

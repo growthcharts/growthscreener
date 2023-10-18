@@ -4,7 +4,7 @@
 \alias{list_screeners}
 \title{List the available screeners for JGZ guidelines}
 \usage{
-list_screeners(ynames = c("hgt", "wgt", "hdc"), ...)
+list_screeners(ynames = c("hgt", "wgt", "hdc", "lgd"), ...)
 }
 \arguments{
 \item{ynames}{Character vector identifying the measures to be
@@ -17,7 +17,7 @@ A data frame with the following columns
 \describe{
 \item{\code{Versie}}{Version of \code{growthscreener} package}
 \item{\code{yname}}{JAMES name of outcome measure}
-\item{\code{Categorie}}{The category of the screening guidelines, 1000/2000/3000}
+\item{\code{Categorie}}{The category of the screening guidelines, 1000/2000/3000/4000}
 \item{\code{CategorieOmschrijving}}{A string indicating the measure}
 \item{\code{JGZRichtlijn}}{Name of JGZ Richtlijn}
 \item{\code{Code}}{Integer message code}
@@ -26,4 +26,8 @@ A data frame with the following columns
 }
 \description{
 List the available screeners for JGZ guidelines
+}
+\examples{
+screeners <- list_screeners()
+table(screeners$Categorie)
 }
