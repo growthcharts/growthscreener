@@ -53,8 +53,8 @@ calculate_advice_wgt  <- function(sex = NA_character_,
   if (ga > 60 && !is.na(ga)) ga <- as.integer(ga / 7)
 
   # sort wgt and hgt observations
-  df <- data.frame(age = age, y = y) %>%
-    left_join(data.frame(age = age_hgt, hgt = hgt), by = "age")
+  df <- data.frame(age = as.numeric(age), y = y) %>%
+    left_join(data.frame(age = as.numeric(age_hgt), hgt = hgt), by = "age")
   df1 <- df[which.max(df$age), ] # subset today
 
   # start the sieve
