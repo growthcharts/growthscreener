@@ -83,8 +83,14 @@ calculate_advice_wgt  <- function(sex = NA_character_,
       df$z <- rep(NA_real_, nrow(df))
       df1$z <- NA_real_
     } else {
-      df$z <- centile::y2z(y = df$y, x = df$hgt, refcode = reftable)
-      df1$z <- centile::y2z(y = df1$y, x = df1$hgt, refcode = reftable)
+    	if (df1$age < 1.0) { # use age instead
+    		df$z <- centile::y2z(y = df$y, x = df$age, refcode = reftable)
+    		df1$z <- centile::y2z(y = df1$y, x = df1$age, refcode = reftable)
+    	} else {
+    		df$z <- centile::y2z(y = df$y, x = df$hgt, refcode = reftable)
+    		df1$z <- centile::y2z(y = df1$y, x = df1$hgt, refcode = reftable)
+    	}
+
     }
   }
   df0 <- df[-which.max(df$age), ] # subset out today

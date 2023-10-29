@@ -1,38 +1,35 @@
 #' Pick reference for evaluating weight guidelines
 #'
-#' The function picks the reference for evaluation according to Dutch
-#' referral guidelines for underweight and overweight.
+#' The function picks the reference for evaluation according to Dutch referral
+#' guidelines for underweight and overweight.
 #'
-#' @details
-#' The Z-score calculation relies on normative references. The exact reference
-#' used depends on the age of the child, sex, gestational age and ethnicity.
+#' @details The Z-score calculation relies on normative references. The exact
+#' reference used depends on the age of the child, sex, gestational age and
+#' ethnicity.
 #'
 #' The underweight guideline prescribes `wgt` references for ages 0-1 years,
 #' `wfh` references for ages 1-2 years. The overweight guidelines prescribes
-#' `wfh` references for ages 0-2 years. For consistency and simplicity, the
-#' suggestion of the overweight guidelines is followed for both under- and
-#' overweight. For ages > 2.0,  international and ethnic
-#' specific (for HS) BMI-cut offs are use.
-#' For preterms (ga < 37) Dutch preterm `wgt` and `wfh` references
-#' are used. The function does not return BMI references.
+#' `wfh` references for ages 1-2 years. For ages > 2.0,  international and
+#' ethnic specific (for HS) BMI-cut offs are use. For preterms (ga < 37) Dutch
+#' preterm `wgt` and `wfh` references are used. The function does not return BMI
+#' references.
 #'
-#' Missing data policy: if `age` or `sex` are missing, the function
-#' returns `NULL`. If `ga` is missing, the function assumes term birth.
-#' If `etn` is missing the function assumes Dutch ethnicity.
+#' Missing data policy: if `age` or `sex` are missing, the function returns
+#' `NULL`. If `ga` is missing, the function assumes term birth. If `etn` is
+#' missing the function assumes Dutch ethnicity.
 #'
 #' @param age   Scalar, most recent decimal age (in years).
 #' @param sex   Character, either `"male"` or `"female"`
 #' @param ga    Gestational age, completed weeks (Integer or character)
-#' @param etn   Ethnicity, one of `"NL"` (dutch), `"TU"` (turkish),
-#'   `"MA"` (moroccan) or `"HS"` (hindustani).
+#' @param etn   Ethnicity, one of `"NL"` (dutch), `"TU"` (turkish), `"MA"`
+#'   (moroccan) or `"HS"` (hindustani).
 #' @author Stef van Buuren, 2020
-#' @return A list or `NULL`. Element `call` contains
-#' an executable string to the proper reference. Element `ty` is a function
-#' to be applied to the measurement before calculating the Z-score. Element `yname`
-#' is the type of measurement. The function returns `NULL` if it cannot
-#' determine a proper reference (e.g. for missing age or sex).
-#' @references
-#' Dutch guideline overweight 2012:
+#' @return A list or `NULL`. Element `call` contains an executable string to the
+#'   proper reference. Element `ty` is a function to be applied to the
+#'   measurement before calculating the Z-score. Element `yname` is the type of
+#'   measurement. The function returns `NULL` if it cannot determine a proper
+#'   reference (e.g. for missing age or sex).
+#' @references Dutch guideline overweight 2012:
 #' <https://www.ncj.nl/richtlijnen/alle-richtlijnen/richtlijn/overgewicht>
 #'
 #' Dutch guidline underweight 2019:
@@ -56,31 +53,34 @@ pick_reference_wgt <- function(age = NA,
   # use weight for age. For purposes of consistency, I decided that the
   # both guidelines should use identical references. For simplicity, I prefer the
   # weight for height guidelines for period 0-2 years throughout. SvB 13jul20.
+
+  # AHJ 10/23: This causes issues in practice as our advice does not line up
+  # with what the professional sees on their own diagrams. Sticking with NCJ
+  # guidelines even if they are inconsistent.
+
   # first year: weight for age
-  # if (age < 1.0) {
-  #   if (!is.na(etn) && etn == "HS" && !is.na(ga) && ga >= 37) {
-  #     if (sex == "male") return(list(call = "clopus::nlhs[['nl1976wgt.mwgtHS']]", ty = function(y) y, yname = "wgt"))
-  #     if (sex == "female") return(list(call = "clopus::nlhs[['nl1976wgt.fwgtHS']]", ty = function(y) y, yname = "wgt"))
-  #   }
-  #   if (is.na(ga) || ga >= 37) {
-  #     if (sex == "male") return(list(call = "clopus::nl1980[['nl1980.mwgt']]", ty = function(y) y, yname = "wgt"))
-  #     if (sex == "female") return(list(call = "clopus::nl1980[['nl1980.fwgt']]", ty = function(y) y, yname = "wgt"))
-  #   }
-  #   if (ga < 25) ga <- 25
-  #   if (ga > 36) ga <- 36
-  #   if (sex == "male") return(list(call = paste0("clopus::preterm[['pt2012a.mwgt", ga, "']]"), ty = function(y) y, yname = "wgt"))
-  #   if (sex == "female") return(list(call = paste0("clopus::preterm[['pt2012a.fwgt", ga, "']]"), ty = function(y) y, yname = "wgt"))
-  #   return(NULL)
-  # }
+  if (age < 1.0) {
+    if (!is.na(etn) && etn == "HS" && !is.na(ga) && ga >= 37) {
+    	return(paste("nl_1976_wgt", sex, "hs", sep = "_"))
+    }
+    if (is.na(ga) || ga >= 37) {
+    	return(paste("nl_2009_wgt", sex, "nl", sep = "_"))
+    }
+    if (ga < 25) ga <- 25
+    if (ga > 36) ga <- 36
+    return(paste("nl_2012_wgt", sex, floor(ga), sep = "_"))
+    return(NULL)
+  }
 
   # later years: weight for height
-  if (!is.na(etn) && etn == "HS" && !is.na(ga) && ga >= 37) {
-    return(paste("nl_1976_wfh", sex, "hs", sep = "_"))
+  if (age > 2) {
+  	if (!is.na(etn) && etn == "HS" && !is.na(ga) && ga >= 37) {
+  		return(paste("nl_1976_wfh", sex, "hs", sep = "_"))
+  	}
+  	if (is.na(ga) || ga >= 37) {
+  		return(paste("nl_1980_wfh", sex, "nla", sep = "_"))
+  	}
   }
-  if (is.na(ga) || ga >= 37) {
-    return(paste("nl_1980_wfh", sex, "nla", sep = "_"))
-  }
-
-  # WFH until 120 cm
+  # WFH until 120 cm at age 0-2
   paste("nl_2012_wfh", sex, "", sep = "_")
 }

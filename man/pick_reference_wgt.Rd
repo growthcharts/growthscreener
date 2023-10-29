@@ -13,36 +13,35 @@ pick_reference_wgt(age = NA, sex = NA_character_, ga = NA, etn = NA_character_)
 
 \item{ga}{Gestational age, completed weeks (Integer or character)}
 
-\item{etn}{Ethnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
-\code{"MA"} (moroccan) or \code{"HS"} (hindustani).}
+\item{etn}{Ethnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish), \code{"MA"}
+(moroccan) or \code{"HS"} (hindustani).}
 }
 \value{
-A list or \code{NULL}. Element \code{call} contains
-an executable string to the proper reference. Element \code{ty} is a function
-to be applied to the measurement before calculating the Z-score. Element \code{yname}
-is the type of measurement. The function returns \code{NULL} if it cannot
-determine a proper reference (e.g. for missing age or sex).
+A list or \code{NULL}. Element \code{call} contains an executable string to the
+proper reference. Element \code{ty} is a function to be applied to the
+measurement before calculating the Z-score. Element \code{yname} is the type of
+measurement. The function returns \code{NULL} if it cannot determine a proper
+reference (e.g. for missing age or sex).
 }
 \description{
-The function picks the reference for evaluation according to Dutch
-referral guidelines for underweight and overweight.
+The function picks the reference for evaluation according to Dutch referral
+guidelines for underweight and overweight.
 }
 \details{
-The Z-score calculation relies on normative references. The exact reference
-used depends on the age of the child, sex, gestational age and ethnicity.
+The Z-score calculation relies on normative references. The exact
+reference used depends on the age of the child, sex, gestational age and
+ethnicity.
 
 The underweight guideline prescribes \code{wgt} references for ages 0-1 years,
 \code{wfh} references for ages 1-2 years. The overweight guidelines prescribes
-\code{wfh} references for ages 0-2 years. For consistency and simplicity, the
-suggestion of the overweight guidelines is followed for both under- and
-overweight. For ages > 2.0,  international and ethnic
-specific (for HS) BMI-cut offs are use.
-For preterms (ga < 37) Dutch preterm \code{wgt} and \code{wfh} references
-are used. The function does not return BMI references.
+\code{wfh} references for ages 1-2 years. For ages > 2.0,  international and
+ethnic specific (for HS) BMI-cut offs are use. For preterms (ga < 37) Dutch
+preterm \code{wgt} and \code{wfh} references are used. The function does not return BMI
+references.
 
-Missing data policy: if \code{age} or \code{sex} are missing, the function
-returns \code{NULL}. If \code{ga} is missing, the function assumes term birth.
-If \code{etn} is missing the function assumes Dutch ethnicity.
+Missing data policy: if \code{age} or \code{sex} are missing, the function returns
+\code{NULL}. If \code{ga} is missing, the function assumes term birth. If \code{etn} is
+missing the function assumes Dutch ethnicity.
 }
 \examples{
 growthscreener:::pick_reference_wgt(age = 0.5, sex = "male")
