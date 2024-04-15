@@ -1,8 +1,8 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.0.8
 pkgdown_sha: ~
 articles: {}
-last_built: 2023-10-18T08:08Z
+last_built: 2024-04-15T15:35Z
 urls:
   reference: https://growthcharts.org/growthscreener/reference
   article: https://growthcharts.org/growthscreener/articles
