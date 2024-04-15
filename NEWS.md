@@ -1,5 +1,11 @@
-# growthscreener 1.20.0.9000
+# growthscreener 1.21.0
 
+- Merges `srm` branch updates (v1.19.3) into main
+- Undo the choice for weight for height guidelines for period 0-2 years 
+  throughout (made SvB 13jul20)
+	This choice causes issues in practice as our advice does not line up
+  with what the professional sees on their own diagrams. Sticking with 2012
+  guidelines even if they are inconsistent.
 - Makes `list_screeners()` aware of the language development guidelines
 - Introduces `lgd` as abbreviation for language development
 
