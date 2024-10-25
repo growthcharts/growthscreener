@@ -20,8 +20,8 @@
 #'  always return `NA`. The default is `support_missing_hgt = FALSE`.
 #' @param dec   Integer vector, length 2, indicating rounding for th and th_z,
 #'   respectively
-#' @return      Numeric, length 2: target height (cm) and target height standard
-#'   deviation score (z), relative to populations living in The Netherlands
+#' @return      Numeric, length 3: 1) target height (cm), 2) target height
+#'   prediction error and 3) target height SDS.
 #' @author      Stef van Buuren, 2019, 2024
 #' @examples
 #' calculate_th(180, 170, "male", "NL")
@@ -30,7 +30,7 @@
 calculate_th <- function(hgtf, hgtm,
 												 sex = NULL, etn = NULL,
 												 support_missing_hgtf = FALSE,
-												 dec = c(1L, 3L)) {
+												 dec = c(1L, 3L, 3L)) {
 	# safety trim of inputs to scalar
 	hgtf <- as.numeric(hgtf[1L])
 	hgtm <- as.numeric(hgtm[1L])
@@ -57,6 +57,12 @@ calculate_th <- function(hgtf, hgtm,
 									 "NL" = 99.9 + 0.492 * hgtm,
 									 NA)
 		}
+		th_pe <- switch(EXPR = etn,
+										"NL" = 7.1 * sqrt(1 - 0.58^2),
+										"TU" = 6.8 * sqrt(1 - 0.58^2),
+										"MA" = 7.7 * sqrt(1 - 0.58^2),
+										"HS" = 7.0 * sqrt(1 - 0.58^2),
+										NA)
 		th_z <- switch(EXPR = etn,
 									 "NL" = (th - 183.8) / 7.1,
 									 "TU" = (th - 176.8) / 6.8,
@@ -77,6 +83,12 @@ calculate_th <- function(hgtf, hgtm,
 									 "NL" = 96.3 + 0.436 * hgtm,
 									 NA)
 		}
+		th_pe <- switch(EXPR = etn,
+										"NL" = 6.3 * sqrt(1 - 0.58^2),
+										"TU" = 6.0 * sqrt(1 - 0.58^2),
+										"MA" = 6.5 * sqrt(1 - 0.58^2),
+										"HS" = 5.9 * sqrt(1 - 0.58^2),
+										NA)
 		th_z <- switch(EXPR = etn,
 									 "NL" = (th - 170.7) / 6.3,
 									 "TU" = (th - 162.6) / 6.0,
@@ -87,5 +99,6 @@ calculate_th <- function(hgtf, hgtm,
 
 	# return th and th_z
 	return(c(round(th, dec[1]),
-					 round(th_z, dec[2])))
+					 round(th_pe, dec[2]),
+					 round(th_z, dec[3])))
 }

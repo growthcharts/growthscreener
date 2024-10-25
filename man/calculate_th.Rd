@@ -10,7 +10,7 @@ calculate_th(
   sex = NULL,
   etn = NULL,
   support_missing_hgtf = FALSE,
-  dec = c(1L, 3L)
+  dec = c(1L, 3L, 3L)
 )
 }
 \arguments{
@@ -34,10 +34,10 @@ always return \code{NA}. The default is \code{support_missing_hgt = FALSE}.}
 respectively}
 }
 \value{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{ Numeric, length 2: target height (cm) and target height standard
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Numeric, length 3: 1) target height (cm), 2) target height
 }\if{html}{\out{</div>}}
 
-deviation score (z), relative to populations living in The Netherlands
+prediction error and 3) target height SDS.
 }
 \description{
 \code{calculate_th()} calculates the target height of a child based on the height

@@ -63,7 +63,7 @@ calculate_advice_hgt <- function(sex = NA_character_,
   # birth Z-scores
   bw_z <- calculate_birth_z(bw, sex, ga, yname = "wgt")
   bl_z <- calculate_birth_z(bl, sex, ga, yname = "hgt")
-  th_z <- calculate_th(hgtf, hgtm, sex = sex, etn = etn)[2L]
+  th_z <- calculate_th(hgtf, hgtm, sex = sex, etn = etn)[3L]
 
   # convert date to age
   if (any(as.numeric(dom) > 999 & !is.na(dom))) age <- date2age(dob, dom) else age <- dom
