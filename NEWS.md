@@ -1,3 +1,7 @@
+# growthscreener 1.23.0
+
+- Extends `calculate_th()` with an extra output (prediction error) useful for calculating the target height range
+
 # growthscreener 1.22.0
 
 - Extends the `calculate_th()` function with a `support_missing_hgtf` argument to allow for the calculation of target height from only the mother's height. This is useful when height from the biological father height is missing. It currently works only for Dutch populations. If mother's height is missing, the function will return `NA`, as before.
