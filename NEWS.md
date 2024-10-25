@@ -1,3 +1,9 @@
+# growthscreener 1.22.0
+
+- Extends the `calculate_th()` function with a `support_missing_hgtf` argument to allow for the calculation of target height from only the mother's height. This is useful when height from the biological father height is missing. It currently works only for Dutch populations. If mother's height is missing, the function will return `NA`, as before.
+- Adds a silent safety trim of input arguments of `calculate_th()` to scalar values. This is to prevent the function from breaking when the input is a vector of length > 1. The function will now only use the first element of the input vector.
+- Adds functions `hermanussencole()` and `targetheight()` from the `chartdesigner` package. In contrast to `calculate_th()` these functions are vectorised, so more suited for group applications rather than individual application.
+
 # growthscreener 1.21.0
 
 - Merges `srm` branch updates (v1.19.3) into main
