@@ -2,36 +2,56 @@
 % Please edit documentation in R/calculate_th.R
 \name{calculate_th}
 \alias{calculate_th}
-\title{Calculate target height SDS}
+\title{Calculate target height SDS for a single child}
 \usage{
-calculate_th(hgtf, hgtm, sex = NULL, etn = NULL, dec = c(1L, 3L))
+calculate_th(
+  hgtf,
+  hgtm,
+  sex = NULL,
+  etn = NULL,
+  support_missing_hgtf = FALSE,
+  dec = c(1L, 3L)
+)
 }
 \arguments{
 \item{hgtf}{Length of biological father (cm)}
 
 \item{hgtm}{Length of biological mother (cm)}
 
-\item{sex}{Character, either \code{"male"} or \code{"female"}}
+\item{sex}{Character, either \code{"male"} or \code{"female"}. If omitted, the
+functions returns c(\code{NA}, \code{NA}).}
 
-\item{etn}{Etnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish),
-\code{"MA"} (moroccan) or \code{"HS"} (hindustani).}
+\item{etn}{Ethnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish), \code{"MA"}
+(moroccan) or \code{"HS"} (hindustani). If omitted, the
+functions returns c(\code{NA}, \code{NA}).}
 
-\item{dec}{Integer vector, length 2, indicating rounding for
-th and th_z, respectively}
+\item{support_missing_hgtf}{Logical, if \code{TRUE} and \code{hgtf} is missing, the
+function will calculate the target height based on \code{hgtm} only. This will
+work only for the Dutch population. If \code{hgtm} is missing, the function will
+always return \code{NA}. The default is \code{support_missing_hgt = FALSE}.}
+
+\item{dec}{Integer vector, length 2, indicating rounding for th and th_z,
+respectively}
 }
 \value{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{ Numeric, length 2: target height (cm) and target height
-         standard deviation score (z), relative to populations
-         living in The Netherlands
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Numeric, length 2: target height (cm) and target height standard
 }\if{html}{\out{</div>}}
+
+deviation score (z), relative to populations living in The Netherlands
 }
 \description{
-Calculate target height SDS
+\code{calculate_th()} calculates the target height of a child based on the height
+of the biological parents, using the method proposed by Hermanussen & Cole
+(2003) with a simplified formula for the Dutch population. The function is
+not vectorized, so it only works for a single child at a time. Optionally,
+it can calculate the target height based on the height of the mother only,
+although this only works for the Dutch population.
 }
 \examples{
 calculate_th(180, 170, "male", "NL")
+calculate_th(NA, 170, "male", "NL", support_missing_hgtf = TRUE)
 }
 \author{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{ Stef van Buuren, 2019
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ Stef van Buuren, 2019, 2024
 }\if{html}{\out{</div>}}
 }
