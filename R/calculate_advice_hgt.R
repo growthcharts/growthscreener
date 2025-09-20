@@ -34,7 +34,7 @@
 #' @examples
 #' msg(calculate_advice_hgt())
 #' msgcode <- calculate_advice_hgt(sex = "male", dob = "20200101",
-#'                                 dom = c("01022020", "20200601"),
+#'                                 dom = c("20200201", "20200601"),
 #'                                 y = c(54, 68),
 #'                                 ga = 35,
 #'                                 test_gain = FALSE)
@@ -132,10 +132,11 @@ calculate_advice_hgt <- function(sex = NA_character_,
     # tall
     if (z1 > 2.5) return(1047)
     if (!is.na(th_z)) if (z1 > 2.0 && (z1 - th_z) > 2.0) return(1046)
-    if (z1 > 2.0 && is.na(th_z)) return(1082)
-    if (z1 > 1.0 &&
-        ((age1 < 8.0 && sex == "female") || (age1 < 9.0 && sex == "male"))) return(1079)
-    if (z1 > 1.0) return(1081)
+
+  	if (z1 > 2.0 && is.na(th_z) &&
+  			((age1 < 8.0 && sex == "female") || (age1 < 9.0 && sex == "male"))) return(1079)
+  	if (z1 > 2.0 && is.na(th_z)) return(1082)
+    if (z1 > 1.0 && all(is.na(z0))) return(1081)
 
     if (all(is.na(z0)) && test_gain) return(1011)
   }
@@ -191,6 +192,10 @@ calculate_advice_hgt <- function(sex = NA_character_,
       # tall
       zrep <- min(z[repeated], na.rm = TRUE) # largest difference
       if (any((z1 - zrep) > 2.0)) return(1054)
+      # after ensuring previous timepoints have been checked
+      if (z1 > 1.0 &&
+      		((age1 < 8.0 && sex == "female") || (age1 < 9.0 && sex == "male"))) return(1078)
+      if (z1 > 1.0) return(1080)
     }
   }
 

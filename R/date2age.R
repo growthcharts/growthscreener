@@ -4,7 +4,7 @@
 #' @param dom Date of measurement
 #' @note Internal function. Not to be called directly.
 #' @examples
-#' growthscreener:::date2age(dob = "17022020", dom = "04062021")
+#' growthscreener:::date2age(dob = "20200217", dom = "20210604")
 date2age <- function(dob = NA_character_, dom = NA_character_) {
 
   # missing data
