@@ -76,7 +76,7 @@ measurement.
 \examples{
 msg(calculate_advice_hgt())
 msgcode <- calculate_advice_hgt(sex = "male", dob = "20200101",
-                                dom = c("01022020", "20200601"),
+                                dom = c("20200201", "20200601"),
                                 y = c(54, 68),
                                 ga = 35,
                                 test_gain = FALSE)

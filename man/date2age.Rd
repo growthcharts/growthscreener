@@ -18,5 +18,5 @@ Calculate decimal age from date of birth and date of measurement
 Internal function. Not to be called directly.
 }
 \examples{
-growthscreener:::date2age(dob = "17022020", dom = "04062021")
+growthscreener:::date2age(dob = "20200217", dom = "20210604")
 }
