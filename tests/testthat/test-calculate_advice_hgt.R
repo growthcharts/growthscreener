@@ -48,3 +48,4 @@ test_that("expected equals found", {
   expect_equal(results[, "expected"], results[, "found"])
 })
 
+

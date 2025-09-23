@@ -36,7 +36,6 @@ Find the advice for a very short girl:
 
 ``` r
 library(growthscreener)
-#> Loading required package: nlreferences
 
 # a very short girl, 4 months old
 msgcode <- calculate_advice_hgt(sex = "female", bw = 3250, ga = 40, dom = 0.367, y = 55)

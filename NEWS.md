@@ -1,3 +1,7 @@
+# growthscreener 1.24.0
+
+- Fixes issue in hgt advice and correct date in examples (#5)
+
 # growthscreener 1.23.0
 
 - Extends `calculate_th()` with an extra output (prediction error) useful for calculating the target height range
