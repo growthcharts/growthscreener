@@ -7,6 +7,9 @@
 #' growthscreener:::date2age(dob = "20200217", dom = "20210604")
 date2age <- function(dob = NA_character_, dom = NA_character_) {
 
+  # input date already age
+  if (all(nchar(dom) < 4 && grepl("^[0-9]+$", dom), na.rm = TRUE)) return(as.numeric(dom))
+
   # missing data
   if (is.na(dob) || all(is.na(dom))) return(rep(NA_real_, length(dom)))
 

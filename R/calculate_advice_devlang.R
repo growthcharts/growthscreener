@@ -48,37 +48,29 @@ calculate_advice_devlang <- function(dob = NA_character_,
                                      dom_vw46 = NA, vw46 = NA,
                                      force = FALSE) {
 
-  # convert ages - probably a more elegant way of doing this ..
-  if (any(as.numeric(dom_vw41) > 999 & !is.na(dom_vw41)))
-    age_vw41 <- date2age(dob, dom_vw41) else age_vw41 <- as.numeric(dom_vw41)
-  if (any(as.numeric(dom_vw42) > 999 & !is.na(dom_vw42)))
-    age_vw42 <- date2age(dob, dom_vw42) else age_vw42 <- as.numeric(dom_vw42)
-  if (any(as.numeric(dom_vw43) > 999 & !is.na(dom_vw43)))
-    age_vw43 <- date2age(dob, dom_vw43) else age_vw43 <- as.numeric(dom_vw43)
-  if (any(as.numeric(dom_vw44) > 999 & !is.na(dom_vw44)))
-    age_vw44 <- date2age(dob, dom_vw44) else age_vw44 <- as.numeric(dom_vw44)
-  if (any(as.numeric(dom_vw45) > 999 & !is.na(dom_vw45)))
-    age_vw45 <- date2age(dob, dom_vw45) else age_vw45 <- as.numeric(dom_vw45)
-  if (any(as.numeric(dom_vw46) > 999 & !is.na(dom_vw46)))
-    age_vw46 <- date2age(dob, dom_vw46) else age_vw46 <- as.numeric(dom_vw46)
+  dom_vw <- mget(paste0("dom_vw", 41:46), envir = environment())
+  vw <- mget(paste0("vw", 41:46), envir = environment())
 
-  # create tibble with vW responses
-  df <- tibble(dom = dom_vw41, age = age_vw41, vw41) %>%
-    full_join(tibble(dom = dom_vw42, age = age_vw42, vw42), by = c("dom", "age")) %>%
-    full_join(tibble(dom = dom_vw43, age = age_vw43, vw43), by = c("dom", "age")) %>%
-    full_join(tibble(dom = dom_vw44, age = age_vw44, vw44), by = c("dom", "age")) %>%
-    full_join(tibble(dom = dom_vw45, age = age_vw45, vw45), by = c("dom", "age")) %>%
-    full_join(tibble(dom = dom_vw46, age = age_vw46, vw46), by = c("dom", "age"))
-
-  df <- df %>%
+  # tibble
+  df <- tibble(
+    dom = unlist(dom_vw),
+    age = lapply(dom_vw, date2age, dob = dob) |> unlist(),
+    vw =  unlist(vw),
+    num = regmatches(names(unlist(vw)), regexpr("[0-9]+", names(unlist(vw))))
+  ) |>
+    pivot_wider(
+      id_cols = c(dom, age),
+      names_from = num,
+      values_from = vw,
+      names_glue = "vw{num}"
+    ) %>%
     mutate_at(vars(starts_with("vw")), function(x) case_when(x == "1" ~ 2,
                                                              x == "2" ~ 0,
                                                              x == "3" ~ 1,
                                                              TRUE ~ NA_real_))
 
   # return early if data are insufficient
-  if (all(is.na(df$dom))) return(4015)
-  if (all(nchar(df$dom) >= 8) & is.na(dob)) return(4016)
+  if (all(nchar(df$dom) > 4, na.rm = TRUE) && is.na(dob)) return(4016)
   if (all(is.na(df$age))) return(4015)
 
   age1 <- max(df$age, na.rm = TRUE)
@@ -114,7 +106,7 @@ calculate_advice_devlang <- function(dob = NA_character_,
         transmute(score_2 = vw41 + vw42) %>%
         unlist
 
-      if(is.na(score_2) || length(score_2) < 1) return(4012) # bij laag genoege score
+      if(is.na(score_2) || length(score_2) < 1) return(4012) # bij laag genoegen score
       # add scores
     }
 

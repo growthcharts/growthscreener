@@ -17,7 +17,7 @@ kids <- tibble(
   dom_vw44 = c(NA, NA, NA, 2.5, 2.5, NA),
   dom_vw45 = c(NA, NA, NA, NA, NA, 3),
   dom_vw46 = c(NA, NA, NA, NA, NA, 3),
-  code = c(4031, 4015, 4042, 4012, 4031, 4043)
+  code = c(4031, 4016, 4042, 4012, 4031, 4043)
 )
 
 # apply algorithm to kids
