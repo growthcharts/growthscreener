@@ -50,13 +50,14 @@ calculate_advice_devlang <- function(dob = NA_character_,
 
   dom_vw <- mget(paste0("dom_vw", 41:46), envir = environment())
   vw <- mget(paste0("vw", 41:46), envir = environment())
+  num <- gsub(x = rep(names(vw), lengths(vw)), pattern = "vw([0-9]+)", "\\1")
 
   # tibble
   df <- tibble(
     dom = unlist(dom_vw),
     age = lapply(dom_vw, date2age, dob = dob) |> unlist(),
     vw =  unlist(vw),
-    num = regmatches(names(unlist(vw)), regexpr("[0-9]+", names(unlist(vw))))
+    num
   ) |>
     pivot_wider(
       id_cols = c(dom, age),
