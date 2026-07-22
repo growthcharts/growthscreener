@@ -1,6 +1,6 @@
 Package: growthscreener
 Title: Finding Children with Unusual Growth Patterns
-Version: 1.24.0
+Version: 1.25.0
 Authors@R: 
     c(person(given = "Paula",
            family = "van Dommelen",

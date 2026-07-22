@@ -22,7 +22,7 @@ calculate_th(
 functions returns c(\code{NA}, \code{NA}).}
 
 \item{etn}{Ethnicity, one of \code{"NL"} (dutch), \code{"TU"} (turkish), \code{"MA"}
-(moroccan) or \code{"HS"} (hindustani). If omitted, the
+(moroccan), \code{"HS"} (hindustani) or \code{"DS"} (Down syndrome). If omitted, the
 functions returns c(\code{NA}, \code{NA}).}
 
 \item{support_missing_hgtf}{Logical, if \code{TRUE} and \code{hgtf} is missing, the
@@ -47,9 +47,24 @@ not vectorized, so it only works for a single child at a time. Optionally,
 it can calculate the target height based on the height of the mother only,
 although this only works for the Dutch population.
 }
+\details{
+For children with Down syndrome (\code{etn = "DS"}), the target height formula
+is taken from Van Gameren-Oosterom et al. (2012), fitted directly on
+final height of Dutch children with Down syndrome rather than derived
+from parent-offspring/assortative-mating correlations. That paper does
+not report a prediction error distinct from the final-height SD used in
+the SDS formula, so \code{th_pe} and the denominator of \code{th_z} both use that
+same SD (6.2 boys / 7.3 girls).
+}
 \examples{
 calculate_th(180, 170, "male", "NL")
 calculate_th(NA, 170, "male", "NL", support_missing_hgtf = TRUE)
+calculate_th(180, 170, "male", "DS")
+}
+\references{
+Van Gameren-Oosterom HBM, Van Dommelen P, Oudesluys-Murphy AM,
+Buitendijk SE, Van Buuren S, Van Wouwe JP (2012) Healthy Growth in
+Children with Down Syndrome. PLoS ONE 7(2): e31079.
 }
 \author{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{ Stef van Buuren, 2019, 2024

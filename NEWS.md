@@ -1,3 +1,11 @@
+# growthscreener 1.25.0
+
+- Adds a `"DS"` (Down syndrome) option to `calculate_th()`, using the target
+  height formula from Van Gameren-Oosterom et al. (2012). Previously
+  `calculate_th()` had no Down-syndrome case at all, so calling code (e.g.
+  `chartplotter::plot_target_height()`) fell back to the Dutch (`"NL"`)
+  formula for Down syndrome charts, silently giving the wrong target height.
+
 # growthscreener 1.24.0
 
 - Fixes issue in hgt advice and correct date in examples (#5)
