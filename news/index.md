@@ -1,5 +1,26 @@
 # Changelog
 
+## growthscreener 1.28.0
+
+- Refactors
+  [`calculate_advice_devlang()`](https://growthcharts.org/growthscreener/reference/advice_devlang.md)
+  to build the van Wiechen response tibble with `pivot_wider()` instead
+  of five chained `full_join()` calls.
+- Makes
+  [`date2age()`](https://growthcharts.org/growthscreener/reference/date2age.md)
+  robust to `dom` already being supplied as an age (a plain
+  numeric/decimal string) rather than a date: it now detects this case
+  and returns the value as-is instead of failing to parse it as a date.
+
+## growthscreener 1.27.0
+
+- Trims unused runtime dependencies. `methods`, `rlang` and
+  [`utils::hasName()`](https://rdrr.io/r/utils/hasName.html) were
+  imported but never called, so they are dropped. `bdsreader` was only
+  needed for two one-line list accessors (`persondata()`/`timedata()`),
+  which are now inlined internally; `bdsreader` moves from `Imports` to
+  `Suggests` (it is still used by `read_bds()` in tests).
+
 ## growthscreener 1.26.0
 
 - Adds a `prefix` argument to
