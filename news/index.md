@@ -1,14 +1,5 @@
 # Changelog
 
-## growthscreener 1.27.0
-
-- Trims unused runtime dependencies. `methods`, `rlang` and
-  [`utils::hasName()`](https://rdrr.io/r/utils/hasName.html) were
-  imported but never called, so they are dropped. `bdsreader` was only
-  needed for two one-line list accessors (`persondata()`/`timedata()`),
-  which are now inlined internally; `bdsreader` moves from `Imports` to
-  `Suggests` (it is still used by `read_bds()` in tests).
-
 ## growthscreener 1.26.0
 
 - Adds a `prefix` argument to

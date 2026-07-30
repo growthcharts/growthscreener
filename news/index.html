@@ -32,10 +32,6 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.27.0" id="growthscreener-1270">growthscreener 1.27.0<a class="anchor" aria-label="anchor" href="#growthscreener-1270"></a></h2>
-<ul><li>Trims unused runtime dependencies. <code>methods</code>, <code>rlang</code> and <code><a href="https://rdrr.io/r/utils/hasName.html" class="external-link">utils::hasName()</a></code> were imported but never called, so they are dropped. <code>bdsreader</code> was only needed for two one-line list accessors (<code>persondata()</code>/<code>timedata()</code>), which are now inlined internally; <code>bdsreader</code> moves from <code>Imports</code> to <code>Suggests</code> (it is still used by <code>read_bds()</code> in tests).</li>
-</ul></div>
-    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.26.0" id="growthscreener-1260">growthscreener 1.26.0<a class="anchor" aria-label="anchor" href="#growthscreener-1260"></a></h2>
 <ul><li>Adds a <code>prefix</code> argument to <code><a href="../reference/msg.html">msg()</a></code> (default <code>TRUE</code>, preserving current behaviour) so callers can request the bare advice text with <code>msg(msgcode, prefix = FALSE)</code>. Previously the lead-in “Het advies volgens de JGZ-richtlijn … is als volgt:” was hardcoded into <code>messages.txt</code> for advice messages, with no way to omit it.</li>
 </ul></div>

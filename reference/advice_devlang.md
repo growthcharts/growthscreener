@@ -109,7 +109,7 @@ Arjan Huizing, Stef van Buuren, 2020
 
 ``` r
 msg(calculate_advice_devlang())
-#> [1] "Voer de meetdatum of leeftijd waarop de van Wiechen gemeten zijn in."
+#> [1] "Voer een geboortedatum in."
 msgcode <- calculate_advice_devlang(dob = "20200101",
                                 dom_vw41 = "20220101", vw41 = 2,
                                 dom_vw42 = "20220101", vw42 = 1)
