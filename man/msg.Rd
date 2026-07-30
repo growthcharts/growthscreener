@@ -4,10 +4,14 @@
 \alias{msg}
 \title{Find message string}
 \usage{
-msg(msgcode)
+msg(msgcode, prefix = TRUE)
 }
 \arguments{
 \item{msgcode}{Integer vector with message codes}
+
+\item{prefix}{Logical. If \code{TRUE} (default), prepend the standard
+"Het advies volgens de JGZ-richtlijn ... is als volgt: " lead-in
+to advice messages (msgcodes 1031-1082, 2031-2076 and 4031-4046).}
 }
 \value{
 A vector of strings with the message code
@@ -17,4 +21,5 @@ Find message string
 }
 \examples{
 msg(c(31, 41))
+msg(c(31, 41), prefix = FALSE)
 }

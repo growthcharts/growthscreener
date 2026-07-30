@@ -1,5 +1,28 @@
 
 - Improved `calculate_advice_devlang` code
+# growthscreener 1.27.0
+
+- Trims unused runtime dependencies. `methods`, `rlang` and `utils::hasName()`
+  were imported but never called, so they are dropped. `bdsreader` was only
+  needed for two one-line list accessors (`persondata()`/`timedata()`), which
+  are now inlined internally; `bdsreader` moves from `Imports` to `Suggests`
+  (it is still used by `read_bds()` in tests).
+
+# growthscreener 1.26.0
+
+- Adds a `prefix` argument to `msg()` (default `TRUE`, preserving current
+  behaviour) so callers can request the bare advice text with
+  `msg(msgcode, prefix = FALSE)`. Previously the lead-in "Het advies
+  volgens de JGZ-richtlijn ... is als volgt: " was hardcoded into
+  `messages.txt` for advice messages, with no way to omit it.
+
+# growthscreener 1.25.0
+
+- Adds a `"DS"` (Down syndrome) option to `calculate_th()`, using the target
+  height formula from Van Gameren-Oosterom et al. (2012). Previously
+  `calculate_th()` had no Down-syndrome case at all, so calling code (e.g.
+  `chartplotter::plot_target_height()`) fell back to the Dutch (`"NL"`)
+  formula for Down syndrome charts, silently giving the wrong target height.
 
 # growthscreener 1.24.0
 
