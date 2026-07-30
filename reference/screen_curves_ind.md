@@ -87,7 +87,7 @@ screen_curves_ind(target)
 #> 2 Het advies volgens de JGZ-richtlijn ondergewicht is als volgt: Sterke gewichtsafname (-1 SD), advies: Is er sprake van een afwijkende voedingstoestand en/of klachten of symptomen die kunnen wijzen op onderliggende ziekte of problemen? Indien ja, Verwijzen naar kinderarts. Indien nee, dan is er in principe geen verwijzing nodig. Naar eigen inzicht handelen.
 #> 3                                                                                                                                                                                                                                                                                                          De richtlijn hoofdomtrek is bedoeld voor kinderen tot 1 jaar.
 #>   Versie Leeftijd
-#> 1 1.25.0   2.0397
-#> 2 1.25.0   2.0397
-#> 3 1.25.0   2.0397
+#> 1 1.26.0   2.0397
+#> 2 1.26.0   2.0397
+#> 3 1.26.0   2.0397
 ```
