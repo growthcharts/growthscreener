@@ -1,5 +1,11 @@
+# growthscreener 1.28.0
 
-- Improved `calculate_advice_devlang` code
+- Refactors `calculate_advice_devlang()` to build the van Wiechen response
+  tibble with `pivot_wider()` instead of five chained `full_join()` calls.
+- Makes `date2age()` robust to `dom` already being supplied as an age
+  (a plain numeric/decimal string) rather than a date: it now detects this
+  case and returns the value as-is instead of failing to parse it as a date.
+
 # growthscreener 1.27.0
 
 - Trims unused runtime dependencies. `methods`, `rlang` and `utils::hasName()`
