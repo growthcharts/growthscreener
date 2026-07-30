@@ -1,3 +1,11 @@
+# growthscreener 1.26.0
+
+- Adds a `prefix` argument to `msg()` (default `TRUE`, preserving current
+  behaviour) so callers can request the bare advice text with
+  `msg(msgcode, prefix = FALSE)`. Previously the lead-in "Het advies
+  volgens de JGZ-richtlijn ... is als volgt: " was hardcoded into
+  `messages.txt` for advice messages, with no way to omit it.
+
 # growthscreener 1.25.0
 
 - Adds a `"DS"` (Down syndrome) option to `calculate_th()`, using the target
